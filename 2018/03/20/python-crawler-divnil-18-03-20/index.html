@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,爬虫,妹子图,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 一段p话，觉得太幼稚去掉了，看正文就好  正文目标网站divinl">
+<meta name="keywords" content="python,爬虫,妹子图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫 - 抓取divnil动漫妹子图">
+<meta property="og:url" content="http://zckun.github.io/2018/03/20/python-crawler-divnil-18-03-20/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="前言 一段p话，觉得太幼稚去掉了，看正文就好  正文目标网站divinl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-2d32331cd7326ab6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-b6db293f87eeca41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-1de977462d3908ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-776df632fe2ea2a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-21b0d37ad48670b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-bb90206a6683abcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-c8780b7954568efc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-661eee1134df075a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-a66ebaa53ff84636.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-d77382d32307ce33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-f02e3b108d24ec93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-5344f795cacedb13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-01T19:01:30.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫 - 抓取divnil动漫妹子图">
+<meta name="twitter:description" content="前言 一段p话，觉得太幼稚去掉了，看正文就好  正文目标网站divinl">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3702047-2d32331cd7326ab6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2018/03/20/python-crawler-divnil-18-03-20/">
+
+
+
+
+
+  <title>Python爬虫 - 抓取divnil动漫妹子图 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2018/03/20/python-crawler-divnil-18-03-20/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬虫 - 抓取divnil动漫妹子图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T00:22:00+08:00">
+                2018-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/20/python-crawler-divnil-18-03-20/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/20/python-crawler-divnil-18-03-20/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/20/python-crawler-divnil-18-03-20/" class="leancloud_visitors" data-flag-title="Python爬虫 - 抓取divnil动漫妹子图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>一段p话，觉得太幼稚去掉了，看正文就好</p>
+</blockquote>
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>目标网站<a href="https://divnil.com/wallpaper/iphone8/%E3%82%A2%E3%83%8B%E3%83%A1%E3%81%AE%E5%A3%81%E7%B4%99.html" target="_blank" rel="noopener">divinl</a><br><a id="more"></a></p>
+<h4 id="首先看看这网站是怎样加载数据的"><a href="#首先看看这网站是怎样加载数据的" class="headerlink" title="首先看看这网站是怎样加载数据的;"></a>首先看看这网站是怎样加载数据的;</h4><blockquote>
+<p>打开网站后发现底部有下一页的按钮，ok，爬这个网站就很简单了;<br><img src="https://upload-images.jianshu.io/upload_images/3702047-2d32331cd7326ab6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="日文的"></p>
+</blockquote>
+<h4 id="我们目标是获取每张图片的高清的源地址，并且下载图片到桌面"><a href="#我们目标是获取每张图片的高清的源地址，并且下载图片到桌面" class="headerlink" title="我们目标是获取每张图片的高清的源地址，并且下载图片到桌面;"></a>我们目标是获取每张图片的高清的源地址，并且下载图片到桌面;</h4><blockquote>
+<p>先随便打开一张图片看看详细;<br>emmm，只有一张<a href="https://divnil.com/wallpaper/iphone8/item_2/d75bcb2a039b7409598b37b78f3f3e97_30044171f254adc68824bc0f19cae9a7.html" target="_blank" rel="noopener">图</a><br><img src="https://upload-images.jianshu.io/upload_images/3702047-b6db293f87eeca41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="你的名字"></p>
+</blockquote>
+<p>看起来还挺清晰的，单击新窗口打开<a href="https://divnil.com/wallpaper/iphone8/img/app/d/7/d75bcb2a039b7409598b37b78f3f3e97_30044171f254adc68824bc0f19cae9a7_raw.jpg" target="_blank" rel="noopener">图片</a>，还可以<br><img src="https://upload-images.jianshu.io/upload_images/3702047-1de977462d3908ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="大图"></p>
+<p>然后下载图片，说实话，这图片很小，我很担心不是高清原图(管他的);<br><img src="https://upload-images.jianshu.io/upload_images/3702047-776df632fe2ea2a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="比较小"></p>
+<p><em>PS:一定要禁用广告拦截插件，不然加载不出图，我就在这被坑T_T;</em><br><img src="https://upload-images.jianshu.io/upload_images/3702047-21b0d37ad48670b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="禁用过滤广告插件"></p>
+<h5 id="接着分析我们从何入手"><a href="#接着分析我们从何入手" class="headerlink" title="接着分析我们从何入手"></a>接着分析我们从何入手</h5><p>1、<strong>先去主页面获取每个图片的详细页面的链接</strong><br>这链接还是比较好获取的，直接 F12 审核元素，或者右键查看代码，手机上chrome和firefox在url前面加上 “view-source”，比如：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view-source:https://www.baidu.com/</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3702047-bb90206a6683abcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="链接"><br>2、<strong>从详细页面获取图片大图地址</strong><br>随便打开一个图片详细页面如图：<br><img src="https://upload-images.jianshu.io/upload_images/3702047-c8780b7954568efc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="详细页面"><br>接着按 F12 审核元素，我们需要定位该图片的链接，首先单击左上角的这玩意儿，像一个鼠标的图标：<br><img src="https://upload-images.jianshu.io/upload_images/3702047-661eee1134df075a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="左上角，一个鼠标的图标"><br>接着只需要单击网页上的图片就能定位到代码了：<br><img src="https://upload-images.jianshu.io/upload_images/3702047-a66ebaa53ff84636.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码"></p>
+<p>3、<strong>用大图地址下载该图片</strong><br>这个很简单，看代码</p>
+<h3 id="代码-纯手打，没有一点复制粘贴"><a href="#代码-纯手打，没有一点复制粘贴" class="headerlink" title="代码(纯手打，没有一点复制粘贴)"></a>代码(纯手打，没有一点复制粘贴)</h3><blockquote>
+<p>先安装 Requests 和 BeautifulSoup 库<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests bs4</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>导入库<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> sys</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>请求获取网页源代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">"https://divnil.com/wallpaper/iphone8/%E3%82%A2%E3%83%8B%E3%83%A1%E3%81%AE%E5%A3%81%E7%B4%99_2.html"</span></span><br><span class="line">headers = &#123;</span><br><span class="line">  <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"</span>,</span><br><span class="line">&#125;</span><br><span class="line">resp = requests.get(url, headers=headers)</span><br><span class="line"><span class="keyword">if</span> resp.status_code != requests.codes.OK:</span><br><span class="line">  print(<span class="string">"Request Error, Code: %d"</span>% resp.status_code)</span><br><span class="line">  sys.exit()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后解析出所有图片的详细地址<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(resp.text, <span class="string">"html.parser"</span>)</span><br><span class="line">contents = soup.findAll(<span class="string">"div"</span>, id=<span class="string">"contents"</span>)[<span class="number">0</span>]</span><br><span class="line">wallpapers = contents.findAll(<span class="string">"a"</span>, rel=<span class="string">"wallpaper"</span>)</span><br><span class="line">links = []</span><br><span class="line"><span class="keyword">for</span> wallpaper <span class="keyword">in</span> wallpapers:</span><br><span class="line">  links.append(wallpaper[<span class="string">'href'</span>])</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着在详细网页里获取那个看似高清的图片的不确定是否为真实图片链接并下载(/滑稽)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">head = <span class="string">"https://divnil.com/wallpaper/iphone8/"</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(<span class="string">"./Divnil"</span>) != <span class="keyword">True</span>:</span><br><span class="line">  os.mkdir(<span class="string">"./Divnil"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> links:</span><br><span class="line">  url = head + url</span><br><span class="line">  resp = requests.get(url, headers=headers)</span><br><span class="line">  <span class="keyword">if</span>  resp.status_code != requests.codes.OK:</span><br><span class="line">    print(<span class="string">"URL: %s REQUESTS ERROR. CODE: %d"</span> % (url, resp.status_code))</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line">  soup = BeautifulSoup(resp.text, <span class="string">"html.parser"</span>)</span><br><span class="line">  img =  soup.find(<span class="string">"div"</span>, id=<span class="string">"contents"</span>).contents.find(<span class="string">"img"</span>, id=<span class="string">"main_content"</span>)</span><br><span class="line">  img_url = head + img[<span class="string">'"original'</span>].replace(<span class="string">"../"</span>, <span class="string">""</span>)</span><br><span class="line">  img_name = img[<span class="string">'alt'</span>]</span><br><span class="line">  print(<span class="string">"start download %s ..."</span> % img_url)</span><br><span class="line"></span><br><span class="line">  resp = requests.get(img_url, headers=headers)</span><br><span class="line">  <span class="keyword">if</span> resp.status_code != requests.codes.OK:</span><br><span class="line">    print(<span class="string">"IMAGE %s DOWNLOAD FAILED."</span> % img_name)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">with</span> open(<span class="string">"./Divnil/"</span> + img_name + <span class="string">".jpg"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(resp.content)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3702047-d77382d32307ce33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载完成"></p>
+<blockquote>
+<p>主要代码<br><img src="https://upload-images.jianshu.io/upload_images/3702047-f02e3b108d24ec93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主要代码"></p>
+</blockquote>
+<blockquote>
+<p>完成，贴上所有代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Divnil</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.url = <span class="string">"https://divnil.com/wallpaper/iphone8/%E3%82%A2%E3%83%8B%E3%83%A1%E3%81%AE%E5%A3%81%E7%B4%99.html"</span></span><br><span class="line">		self.head = <span class="string">"https://divnil.com/wallpaper/iphone8/"</span></span><br><span class="line">		self.headers = &#123;</span><br><span class="line">			<span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"</span>,</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getImageInfoUrl</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">		resp = requests.get(self.url, headers=self.headers)</span><br><span class="line">		<span class="keyword">if</span> resp.status_code != requests.codes.OK:</span><br><span class="line">			print(<span class="string">"Request Error, Code: %d"</span>% resp.status_code)</span><br><span class="line">			sys.exit()</span><br><span class="line"></span><br><span class="line">		soup = BeautifulSoup(resp.text, <span class="string">"html.parser"</span>)</span><br><span class="line">		</span><br><span class="line">		contents = soup.find(<span class="string">"div"</span>, id=<span class="string">"contents"</span>)</span><br><span class="line">		wallpapers = contents.findAll(<span class="string">"a"</span>, rel=<span class="string">"wallpaper"</span>)</span><br><span class="line">		</span><br><span class="line">		self.links = []</span><br><span class="line">		<span class="keyword">for</span> wallpaper <span class="keyword">in</span> wallpapers:</span><br><span class="line">			self.links.append(wallpaper[<span class="string">'href'</span>])</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">downloadImage</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> os.path.exists(<span class="string">"./Divnil"</span>) != <span class="keyword">True</span>:</span><br><span class="line">			os.mkdir(<span class="string">"./Divnil"</span>)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> url <span class="keyword">in</span> self.links:</span><br><span class="line">			</span><br><span class="line">			url = self.head + url</span><br><span class="line">			</span><br><span class="line">			resp = requests.get(url, headers=self.headers)</span><br><span class="line">			<span class="keyword">if</span>  resp.status_code != requests.codes.OK:</span><br><span class="line">				print(<span class="string">"URL: %s REQUESTS ERROR. CODE: %d"</span> % (url, resp.status_code))</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			</span><br><span class="line">			soup = BeautifulSoup(resp.text, <span class="string">"html.parser"</span>)</span><br><span class="line">			</span><br><span class="line">			img = soup.find(<span class="string">"div"</span>, id=<span class="string">"contents"</span>).find(<span class="string">"img"</span>, id=<span class="string">"main_content"</span>)</span><br><span class="line">			img_url = self.head + img[<span class="string">'original'</span>].replace(<span class="string">"../"</span>, <span class="string">""</span>)</span><br><span class="line">			img_name = img[<span class="string">'alt'</span>]</span><br><span class="line">			</span><br><span class="line">			print(<span class="string">"start download %s ..."</span> % img_url)</span><br><span class="line"></span><br><span class="line">			resp = requests.get(img_url, headers=self.headers)</span><br><span class="line">			<span class="keyword">if</span> resp.status_code != requests.codes.OK:</span><br><span class="line">				print(<span class="string">"IMAGE %s DOWNLOAD FAILED."</span> % img_name)</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> <span class="string">'/'</span> <span class="keyword">in</span> img_name:</span><br><span class="line">				img_name = img_name.split(<span class="string">'/'</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">			<span class="keyword">with</span> open(<span class="string">"./Divnil/"</span> + img_name + <span class="string">".jpg"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">				f.write(resp.content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.getImageInfoUrl()</span><br><span class="line">		self.downloadImage()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	divnil = Divnil()</span><br><span class="line">	divnil.main()</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3702047-5344f795cacedb13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载完成"></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>完整代码地址：<a href="https://github.com/ZCkun/divnilCrawler" target="_blank" rel="noopener">完善了下载所有页面</a><br>感谢观看此文章 :)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="zck wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="zck 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zck 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/妹子图/" rel="tag"># 妹子图</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/记一次esp8266-01刷写AT固件/" rel="next" title="记一次esp8266-01刷写AT固件">
+                <i class="fa fa-chevron-left"></i> 记一次esp8266-01刷写AT固件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/02/app-ckmu-19-02-02/" rel="prev" title="CKMU - 音乐FLAC">
+                CKMU - 音乐FLAC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zck">
+            
+              <p class="site-author-name" itemprop="name">zck</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先看看这网站是怎样加载数据的"><span class="nav-number">2.1.</span> <span class="nav-text">首先看看这网站是怎样加载数据的;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们目标是获取每张图片的高清的源地址，并且下载图片到桌面"><span class="nav-number">2.2.</span> <span class="nav-text">我们目标是获取每张图片的高清的源地址，并且下载图片到桌面;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#接着分析我们从何入手"><span class="nav-number">2.2.1.</span> <span class="nav-text">接着分析我们从何入手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-纯手打，没有一点复制粘贴"><span class="nav-number">3.</span> <span class="nav-text">代码(纯手打，没有一点复制粘贴)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zck</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GVIJFftzvEgNsaeqkNjSu7Pe-gzGzoHsz',
+        appKey: 'W24IblK4zTwnaryWCov0Ql9j',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

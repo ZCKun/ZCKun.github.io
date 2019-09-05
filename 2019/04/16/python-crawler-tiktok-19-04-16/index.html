@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,tiktok,抖音,小视频,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言嘿嘿，有段时间没更新了，更新一下">
+<meta name="keywords" content="python,tiktok,抖音,小视频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫 - 抓取国际版tiktok小视频">
+<meta property="og:url" content="http://zckun.github.io/2019/04/16/python-crawler-tiktok-19-04-16/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="前言嘿嘿，有段时间没更新了，更新一下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-239fad3e21f933e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3702047-999beadc9b382a7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-04-16T16:14:19.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫 - 抓取国际版tiktok小视频">
+<meta name="twitter:description" content="前言嘿嘿，有段时间没更新了，更新一下">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3702047-239fad3e21f933e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/04/16/python-crawler-tiktok-19-04-16/">
+
+
+
+
+
+  <title>Python爬虫 - 抓取国际版tiktok小视频 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/04/16/python-crawler-tiktok-19-04-16/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬虫 - 抓取国际版tiktok小视频</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T22:19:41+08:00">
+                2019-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/16/python-crawler-tiktok-19-04-16/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/16/python-crawler-tiktok-19-04-16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/16/python-crawler-tiktok-19-04-16/" class="leancloud_visitors" data-flag-title="Python爬虫 - 抓取国际版tiktok小视频">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h4 id="嘿嘿，有段时间没更新了，更新一下"><a href="#嘿嘿，有段时间没更新了，更新一下" class="headerlink" title="嘿嘿，有段时间没更新了，更新一下"></a>嘿嘿，有段时间没更新了，更新一下</h4><a id="more"></a>
+<h4 id="不说废话，直接开始"><a href="#不说废话，直接开始" class="headerlink" title="不说废话，直接开始"></a>不说废话，直接开始</h4><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h4 id="确保电脑安装了-charles-fiddler-wireshark-或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。"><a href="#确保电脑安装了-charles-fiddler-wireshark-或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。" class="headerlink" title="确保电脑安装了 charles / fiddler / wireshark 或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。"></a>确保电脑安装了 <strong><em>charles</em></strong> / <strong><em>fiddler</em></strong> / <strong><em>wireshark</em></strong> 或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。</h4><blockquote>
+<p><strong><em>注</em></strong>：最好在 <strong><em>Android7.0</em></strong> 以下配置，7.0及以上版本不能抓https了，有点麻烦，推荐使用模拟器</p>
+</blockquote>
+<h4 id="首先安装好-tiktok-，打开后翻几个视频，会发现抓包工具里出现一堆请求"><a href="#首先安装好-tiktok-，打开后翻几个视频，会发现抓包工具里出现一堆请求" class="headerlink" title="首先安装好 tiktok ，打开后翻几个视频，会发现抓包工具里出现一堆请求"></a>首先安装好 <strong><em>tiktok</em></strong> ，打开后翻几个视频，会发现抓包工具里出现一堆请求</h4><p><img src="https://upload-images.jianshu.io/upload_images/3702047-239fad3e21f933e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="charles"></p>
+<h4 id="我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个"><a href="#我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个" class="headerlink" title="我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个"></a>我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个</h4><p><img src="https://upload-images.jianshu.io/upload_images/3702047-999beadc9b382a7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="charles"></p>
+<h4 id="接下来需要模拟请求，看看他的请求头"><a href="#接下来需要模拟请求，看看他的请求头" class="headerlink" title="接下来需要模拟请求，看看他的请求头"></a>接下来需要模拟请求，看看他的请求头</h4><blockquote>
+<p>accept-encoding = gzip<br>user-agent = okhttp/3.10.0.1<br>method = GET</p>
+</blockquote>
+<h4 id="接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。"><a href="#接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。" class="headerlink" title="接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。"></a>接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。</h4><h4 id="好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下"><a href="#好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下" class="headerlink" title="好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下"></a>好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"max_cursor"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="attr">"min_cursor"</span>: <span class="string">"-1"</span>,</span><br><span class="line">    "count": COUNT, # 加载个数</span><br><span class="line">    "volume": "0.2",</span><br><span class="line">    "pull_type": "2",</span><br><span class="line">    "req_from": "",</span><br><span class="line">    "gaid": "",</span><br><span class="line">    "ad_user_agent": "Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+6.0.1%3B+MuMu+Build%2FV417IR%29", # 广告ua</span><br><span class="line">    "filter_warn": "0",</span><br><span class="line">    "ts": TIMESTAMP[:-3], # 时间戳</span><br><span class="line">    "js_sdk_version": "",</span><br><span class="line">    "app_type": "normal",</span><br><span class="line">    "os_api": "28",</span><br><span class="line">    "device_type": "Xiaomi",</span><br><span class="line">    "ssmix": "a",</span><br><span class="line">    "manifest_version_code": "9999",</span><br><span class="line">    "dpi": "240",</span><br><span class="line">    "carrier_region": "JP", # 获取的小视频来源</span><br><span class="line">    "region": "JP",</span><br><span class="line">    "carrier_region_v2": "",</span><br><span class="line">    "app_name": "trill",</span><br><span class="line">    "version_name": "4.2.4",</span><br><span class="line">    "ab_version": "4.2.4",</span><br><span class="line">    "timezone_offset": "28800",</span><br><span class="line">    "pass-route": "1",</span><br><span class="line">    "pass-region": "1",</span><br><span class="line">    "is_my_cn": "0",</span><br><span class="line">    "fp":"",</span><br><span class="line">    #"fp": "R2TrcrUtFMsrFYQZcrU1LSFeFWm1",</span><br><span class="line">    "ac": "wifi",</span><br><span class="line">    "update_version_code": "4240",</span><br><span class="line">    "channel": "googleplay",</span><br><span class="line">    "_rticket": TIMESTAMP, # 时间戳（保留毫秒）</span><br><span class="line">    "device_platform": "android",</span><br><span class="line">    "iid":"6678981313393919746", # 暂不知来源，必须有，不能更改</span><br><span class="line">#     "iid": "6678981313393919746",</span><br><span class="line">    "build_number": "9.5",</span><br><span class="line">    "version_code": "424",</span><br><span class="line">    "timezone_name": "Asia%2FShanghai",</span><br><span class="line">    "openudid": "c55cd951e5464a56",</span><br><span class="line">    "device_id": "6678979145927919106",</span><br><span class="line">    "sys_region": "JP",</span><br><span class="line">    "app_language": "zh-Hans",</span><br><span class="line">    "resolution": RESOLUTION, # 画质</span><br><span class="line">#     "resolution": "1280*720",</span><br><span class="line">    "os_version": "9",</span><br><span class="line">    "device_brand": "Android",</span><br><span class="line">    "language": "jp",</span><br><span class="line">    "aid": "1180", # 暂不知来源，必须有，不能更改</span><br><span class="line">    "mcc_mnc": "",</span><br><span class="line">    "as": "",</span><br><span class="line">    "cp":"",</span><br><span class="line">    "mas":""</span><br><span class="line">    #"as": "a10548abb2087cfbe04299",</span><br><span class="line">    #"cp": "8c8fc35c2606b9bae1Wc_g",</span><br><span class="line">    #"mas": "019e07c3ae4fc3d6e172de9de34998f0ae9c9c4c2c0ca64666c6ec"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，fp、iid、aid、as、cp、mas-这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道-iid-和-aid-这两个参数的来历，保持不变即可"><a href="#这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，fp、iid、aid、as、cp、mas-这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道-iid-和-aid-这两个参数的来历，保持不变即可" class="headerlink" title="这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，fp、iid、aid、as、cp、mas 这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道 iid 和 aid 这两个参数的来历，保持不变即可"></a>这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，<strong><em>fp、iid、aid、as、cp、mas</em></strong> 这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道 <strong><em>iid</em></strong> 和 <strong><em>aid</em></strong> 这两个参数的来历，保持不变即可</h4><h4 id="ok，模拟请求，代码如下"><a href="#ok，模拟请求，代码如下" class="headerlink" title="ok，模拟请求，代码如下"></a>ok，模拟请求，代码如下</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"okhttp/3.10.0.1"</span>,</span><br><span class="line">    <span class="string">"Accpet-Encoding"</span>: <span class="string">"gzip"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://api-h2.tiktokv.com/aweme/v1/feed/"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_url_params</span><span class="params">(param)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    解析url参数为json</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    params = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'?'</span> <span class="keyword">in</span> param:</span><br><span class="line">        p = param.split(<span class="string">'?'</span>)[<span class="number">-1</span>]</span><br><span class="line">        ps = p.split(<span class="string">'&amp;'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> ps:</span><br><span class="line">            a = i.split(<span class="string">'='</span>)</span><br><span class="line">            params.update(&#123;a[<span class="number">0</span>]:<span class="string">''</span> <span class="keyword">if</span> len(a) == <span class="number">1</span> <span class="keyword">else</span> a[<span class="number">1</span>]&#125;)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ps = param.split(<span class="string">'&amp;'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> ps:</span><br><span class="line">            a = i.split(<span class="string">'='</span>)</span><br><span class="line">            params.update(&#123;a[<span class="number">0</span>]:<span class="string">''</span> <span class="keyword">if</span> len(a) == <span class="number">1</span> <span class="keyword">else</span> a[<span class="number">1</span>]&#125;)</span><br><span class="line">    <span class="keyword">return</span> params</span><br><span class="line"></span><br><span class="line">params = parse_url_params(<span class="string">"type=0&amp;max_cursor=0&amp;min_cursor=-1&amp;count=6&amp;volume=0.2&amp;pull_type=2&amp;req_from&amp;gaid&amp;ad_user_agent=Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+6.0.1%3B+MuMu+Build%2FV417IR%29&amp;filter_warn=0&amp;ts=1555073922&amp;js_sdk_version=&amp;app_type=normal&amp;os_api=23&amp;device_type=MuMu&amp;ssmix=a&amp;manifest_version_code=9999&amp;dpi=240&amp;carrier_region=JP&amp;region=CN&amp;carrier_region_v2=&amp;app_name=trill&amp;version_name=4.2.4&amp;ab_version=4.2.4&amp;timezone_offset=28800&amp;pass-route=1&amp;pass-region=1&amp;is_my_cn=0&amp;fp=R2TrcrUtFMsrFYQZcrU1LSFeFWm1&amp;ac=wifi&amp;update_version_code=4240&amp;channel=googleplay&amp;_rticket=1555073923091&amp;device_platform=android&amp;iid=6678981313393919746&amp;build_number=9.5&amp;version_code=424&amp;timezone_name=Asia%2FShanghai&amp;openudid=c55cd951e5464a56&amp;device_id=6678979145927919106&amp;sys_region=CN&amp;app_language=zh-Hans&amp;resolution=1280*720&amp;os_version=6.0.1&amp;device_brand=Android&amp;language=zh&amp;aid=1180&amp;mcc_mnc=&amp;as=a10548abb2087cfbe04299&amp;cp=8c8fc35c2606b9bae1Wc_g&amp;mas=019e07c3ae4fc3d6e172de9de34998f0ae9c9c4c2c0ca64666c6ec"</span>)</span><br><span class="line"></span><br><span class="line">resp = requests.get(url, headers=headers, params=params)</span><br><span class="line">print(resp.json())</span><br></pre></td></tr></table></figure>
+<h4 id="输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个"><a href="#输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个" class="headerlink" title="输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个"></a>输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;"aweme_id": "6673431479185624322", "desc": "", "create_time": 1553847851,..., "video": &#123;"play_addr": &#123;"uri": "v07025860000bietc60src5j25b1epvg", "url_list": [...], ... "play_addr": &#123;"uri": "v07025860000bietc60src5j25b1epvg", "url_list": [...], ... , "url_list": [...], ... , "url_list": [...] ... "url_list": [...], "width": 720, "height": 720, "url_key": "v07025860000bietc60src5j25b1epvg_h264_360p_290447"&#125;, "is_h265": 0&#125;], ...&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="这是一个视频的部分json内容，我们需要的有-create-time、video-play-addr-uri，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码"><a href="#这是一个视频的部分json内容，我们需要的有-create-time、video-play-addr-uri，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码" class="headerlink" title="这是一个视频的部分json内容，我们需要的有 create_time、video - play_addr - uri，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码"></a>这是一个视频的部分json内容，我们需要的有 <strong><em>create_time</em></strong>、<strong><em>video - play_addr - uri</em></strong>，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Spider.py</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> * <span class="comment"># 这里我把请求参数写在config里了，代码在下面</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TiktokSpider</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.url = <span class="string">'https://api-h2.tiktokv.com/aweme/v1/feed'</span></span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            <span class="string">"User-Agent"</span>: <span class="string">"okhttp/3.10.0.1"</span>,</span><br><span class="line">            <span class="string">"Accpet-Encoding"</span>: <span class="string">"gzip"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_aweme_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        获取视频列表</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        resp = requests.get(self.url, headers=self.headers, params=PARAMS)</span><br><span class="line">        <span class="keyword">if</span> resp.status_code != requests.codes.OK:</span><br><span class="line">            print(<span class="string">"获取视频列表失败."</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> resp.json()[<span class="string">'aweme_list'</span>]</span><br><span class="line">        <span class="keyword">except</span> KeyError:</span><br><span class="line">            print(resp.text)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        解析json格式小视频列表数据</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        aweme_list = self.get_aweme_list()</span><br><span class="line">        <span class="keyword">if</span> aweme_list <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> aweme_list</span><br><span class="line">        video_result = []</span><br><span class="line">        <span class="keyword">for</span> aweme <span class="keyword">in</span> aweme_list:</span><br><span class="line">            play_addr = aweme[<span class="string">'video'</span>][<span class="string">'play_addr'</span>]</span><br><span class="line">            author = aweme[<span class="string">'author'</span>]</span><br><span class="line">            result = &#123;</span><br><span class="line">                <span class="string">'video_infos'</span>: &#123;</span><br><span class="line">                    <span class="string">'url'</span>: play_addr[<span class="string">'url_list'</span>],</span><br><span class="line">                    <span class="string">'width'</span>: play_addr[<span class="string">'width'</span>],</span><br><span class="line">                    <span class="string">'height'</span>: play_addr[<span class="string">'height'</span>],</span><br><span class="line">                    <span class="string">'description'</span>: aweme[<span class="string">'desc'</span>],</span><br><span class="line">                    <span class="string">'create_time'</span>: str(time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime(aweme[<span class="string">'create_time'</span>]))),</span><br><span class="line">                    &#125;,</span><br><span class="line">                <span class="string">'aweme_id'</span>: aweme[<span class="string">'aweme_id'</span>],</span><br><span class="line">                <span class="string">'avatar_infos'</span>: &#123;</span><br><span class="line">                    <span class="string">'url'</span>: author[<span class="string">'avatar_thumb'</span>][<span class="string">'url_list'</span>],</span><br><span class="line">                    <span class="string">'height'</span>: author[<span class="string">'avatar_larger'</span>][<span class="string">'height'</span>],</span><br><span class="line">                    <span class="string">'width'</span>: author[<span class="string">'avatar_larger'</span>][<span class="string">'width'</span>]</span><br><span class="line">                    &#125;,</span><br><span class="line">                <span class="string">'author_infos'</span>: &#123;</span><br><span class="line">                    <span class="string">'nickname'</span>: author[<span class="string">'nickname'</span>],</span><br><span class="line">                    <span class="string">'uid'</span>: author[<span class="string">'uid'</span>],</span><br><span class="line">                    <span class="string">'short_id'</span>: author[<span class="string">'short_id'</span>],</span><br><span class="line">                    <span class="string">'signature'</span>: author[<span class="string">'signature'</span>],</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            video_result.append(result)</span><br><span class="line">        <span class="keyword">return</span> video_result</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.py</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">ORIGION=<span class="string">'JP'</span></span><br><span class="line">COUNT=<span class="string">"10"</span></span><br><span class="line">TIMESTAMP=str(math.floor(time.time()*<span class="number">1000</span>))</span><br><span class="line">RESOLUTION=<span class="string">"1920*1080"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PARAMS = &#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="string">"max_cursor"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="string">"min_cursor"</span>: <span class="string">"-1"</span>,</span><br><span class="line">    <span class="string">"count"</span>: COUNT, <span class="comment"># 加载个数</span></span><br><span class="line">    <span class="string">"volume"</span>: <span class="string">"0.2"</span>,</span><br><span class="line">    <span class="string">"pull_type"</span>: <span class="string">"2"</span>,</span><br><span class="line">    <span class="string">"req_from"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"gaid"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"ad_user_agent"</span>: <span class="string">"Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+6.0.1%3B+MuMu+Build%2FV417IR%29"</span>, <span class="comment"># 广告ua</span></span><br><span class="line">    <span class="string">"filter_warn"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="string">"ts"</span>: TIMESTAMP[:<span class="number">-3</span>], <span class="comment"># 时间戳</span></span><br><span class="line">    <span class="string">"js_sdk_version"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"app_type"</span>: <span class="string">"normal"</span>,</span><br><span class="line">    <span class="string">"os_api"</span>: <span class="string">"28"</span>,</span><br><span class="line">    <span class="string">"device_type"</span>: <span class="string">"Xiaomi"</span>,</span><br><span class="line">    <span class="string">"ssmix"</span>: <span class="string">"a"</span>,</span><br><span class="line">    <span class="string">"manifest_version_code"</span>: <span class="string">"9999"</span>,</span><br><span class="line">    <span class="string">"dpi"</span>: <span class="string">"240"</span>,</span><br><span class="line">    <span class="string">"carrier_region"</span>: <span class="string">"JP"</span>, <span class="comment"># 获取的小视频来源</span></span><br><span class="line">    <span class="string">"region"</span>: <span class="string">"JP"</span>,</span><br><span class="line">    <span class="string">"carrier_region_v2"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"app_name"</span>: <span class="string">"trill"</span>,</span><br><span class="line">    <span class="string">"version_name"</span>: <span class="string">"4.2.4"</span>,</span><br><span class="line">    <span class="string">"ab_version"</span>: <span class="string">"4.2.4"</span>,</span><br><span class="line">    <span class="string">"timezone_offset"</span>: <span class="string">"28800"</span>,</span><br><span class="line">    <span class="string">"pass-route"</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="string">"pass-region"</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="string">"is_my_cn"</span>: <span class="string">"0"</span>,</span><br><span class="line">    <span class="string">"fp"</span>:<span class="string">""</span>,</span><br><span class="line">    <span class="comment">#"fp": "R2TrcrUtFMsrFYQZcrU1LSFeFWm1",</span></span><br><span class="line">    <span class="string">"ac"</span>: <span class="string">"wifi"</span>,</span><br><span class="line">    <span class="string">"update_version_code"</span>: <span class="string">"4240"</span>,</span><br><span class="line">    <span class="string">"channel"</span>: <span class="string">"googleplay"</span>,</span><br><span class="line">    <span class="string">"_rticket"</span>: TIMESTAMP, <span class="comment"># 时间戳（保留毫秒）</span></span><br><span class="line">    <span class="string">"device_platform"</span>: <span class="string">"android"</span>,</span><br><span class="line">    <span class="string">"iid"</span>:<span class="string">"6678981313393919746"</span>, <span class="comment"># 暂不知来源，必须有，不能更改</span></span><br><span class="line"><span class="comment">#     "iid": "6678981313393919746",</span></span><br><span class="line">    <span class="string">"build_number"</span>: <span class="string">"9.5"</span>,</span><br><span class="line">    <span class="string">"version_code"</span>: <span class="string">"424"</span>,</span><br><span class="line">    <span class="string">"timezone_name"</span>: <span class="string">"Asia%2FShanghai"</span>, <span class="comment"># 时区</span></span><br><span class="line">    <span class="string">"openudid"</span>: <span class="string">"c55cd951e5464a56"</span>,</span><br><span class="line">    <span class="string">"device_id"</span>: <span class="string">"6678979145927919106"</span>,</span><br><span class="line">    <span class="string">"sys_region"</span>: <span class="string">"JP"</span>, </span><br><span class="line">    <span class="string">"app_language"</span>: <span class="string">"zh-Hans"</span>,</span><br><span class="line">    <span class="string">"resolution"</span>: RESOLUTION, <span class="comment"># 画质</span></span><br><span class="line"><span class="comment">#     "resolution": "1280*720",</span></span><br><span class="line">    <span class="string">"os_version"</span>: <span class="string">"9"</span>,</span><br><span class="line">    <span class="string">"device_brand"</span>: <span class="string">"Android"</span>,</span><br><span class="line">    <span class="string">"language"</span>: <span class="string">"jp"</span>,</span><br><span class="line">    <span class="string">"aid"</span>: <span class="string">"1180"</span>, <span class="comment"># 暂不知来源，必须有，不能更改</span></span><br><span class="line">    <span class="string">"mcc_mnc"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"as"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"cp"</span>:<span class="string">""</span>,</span><br><span class="line">    <span class="string">"mas"</span>:<span class="string">""</span></span><br><span class="line">    <span class="comment">#"as": "a10548abb2087cfbe04299",</span></span><br><span class="line">    <span class="comment">#"cp": "8c8fc35c2606b9bae1Wc_g",</span></span><br><span class="line">    <span class="comment">#"mas": "019e07c3ae4fc3d6e172de9de34998f0ae9c9c4c2c0ca64666c6ec"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址-Flask-Tiktok"><a href="#emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址-Flask-Tiktok" class="headerlink" title="emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址: Flask-Tiktok"></a>emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址: <a href="https://github.com/ZCKun/Flask-Tiktok" target="_blank" rel="noopener">Flask-Tiktok</a></h4>
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="zck wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="zck 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zck 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/tiktok/" rel="tag"># tiktok</a>
+          
+            <a href="/tags/抖音/" rel="tag"># 抖音</a>
+          
+            <a href="/tags/小视频/" rel="tag"># 小视频</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/14/hackintosh-clean-cache-19-02-14/" rel="next" title="解决绝大部分黑苹果重装、更新后出现的问题">
+                <i class="fa fa-chevron-left"></i> 解决绝大部分黑苹果重装、更新后出现的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/19/python-crawler-cctvnews-19-04-19/" rel="prev" title="Python爬虫 - 抓取央视网新闻要闻-新手向（第一篇）">
+                Python爬虫 - 抓取央视网新闻要闻-新手向（第一篇） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zck">
+            
+              <p class="site-author-name" itemprop="name">zck</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#嘿嘿，有段时间没更新了，更新一下"><span class="nav-number">1.0.1.</span> <span class="nav-text">嘿嘿，有段时间没更新了，更新一下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不说废话，直接开始"><span class="nav-number">1.0.2.</span> <span class="nav-text">不说废话，直接开始</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#确保电脑安装了-charles-fiddler-wireshark-或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。"><span class="nav-number">2.0.1.</span> <span class="nav-text">确保电脑安装了 charles / fiddler / wireshark 或其他能抓包的工具，然后在手机或者模拟器上配置好代理，记得安装证书，接着开始抓包。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首先安装好-tiktok-，打开后翻几个视频，会发现抓包工具里出现一堆请求"><span class="nav-number">2.0.2.</span> <span class="nav-text">首先安装好 tiktok ，打开后翻几个视频，会发现抓包工具里出现一堆请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个"><span class="nav-number">2.0.3.</span> <span class="nav-text">我们需要找到它小视频请求的链接，经过我个把小时的分析，找到了这个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接下来需要模拟请求，看看他的请求头"><span class="nav-number">2.0.4.</span> <span class="nav-text">接下来需要模拟请求，看看他的请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。"><span class="nav-number">2.0.5.</span> <span class="nav-text">接着我发现虽然是GET请求，但是url链接后面有一串贼鸡儿长的参数，wtm。。。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下"><span class="nav-number">2.0.6.</span> <span class="nav-text">好吧，分析分析请求参数把，看着太费劲所以我写了一个解析方法，解析成json格式，如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，fp、iid、aid、as、cp、mas-这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道-iid-和-aid-这两个参数的来历，保持不变即可"><span class="nav-number">2.0.7.</span> <span class="nav-text">这里面有些能从字面意思看懂的就不多说了，主要看那后面几个，fp、iid、aid、as、cp、mas 这里除了iid和aid这两个参数不能更改以外，以他的参数随便改，暂时也不知道 iid 和 aid 这两个参数的来历，保持不变即可</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ok，模拟请求，代码如下"><span class="nav-number">2.0.8.</span> <span class="nav-text">ok，模拟请求，代码如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个"><span class="nav-number">2.0.9.</span> <span class="nav-text">输出一堆json内容，由于内容实在是太多，所以只看重点部分，下面是几个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这是一个视频的部分json内容，我们需要的有-create-time、video-play-addr-uri，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码"><span class="nav-number">2.0.10.</span> <span class="nav-text">这是一个视频的部分json内容，我们需要的有 create_time、video - play_addr - uri，emmm好像就这些，还有作者的信息我没有贴上来自行分析吧，接着上全部代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址-Flask-Tiktok"><span class="nav-number">2.0.11.</span> <span class="nav-text">emmm，其实我把抓到的数据用flask写成了一个小网站，由于我css贼垃圾，所以做的不是很美观，项目地址: Flask-Tiktok</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zck</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GVIJFftzvEgNsaeqkNjSu7Pe-gzGzoHsz',
+        appKey: 'W24IblK4zTwnaryWCov0Ql9j',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

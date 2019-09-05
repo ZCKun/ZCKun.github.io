@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,爬虫,字体反爬,反爬虫,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 最近一直在为找工作烦恼，刚好遇到一家公司要求我先做几道反爬虫的题，看了之后觉得自己还挺菜的，不过也过了几关，刚好遇到一个之前没遇到过的反爬虫手段 — 字体反爬">
+<meta name="keywords" content="python,爬虫,字体反爬,反爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫 - 记一次字体反爬">
+<meta property="og:url" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="前言 最近一直在为找工作烦恼，刚好遇到一家公司要求我先做几道反爬虫的题，看了之后觉得自己还挺菜的，不过也过了几关，刚好遇到一个之前没遇到过的反爬虫手段 — 字体反爬">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/1.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/2.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/3.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/4.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/5.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/6.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/7.jpg">
+<meta property="og:updated_time" content="2019-07-26T01:31:47.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫 - 记一次字体反爬">
+<meta name="twitter:description" content="前言 最近一直在为找工作烦恼，刚好遇到一家公司要求我先做几道反爬虫的题，看了之后觉得自己还挺菜的，不过也过了几关，刚好遇到一个之前没遇到过的反爬虫手段 — 字体反爬">
+<meta name="twitter:image" content="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/images/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/">
+
+
+
+
+
+  <title>Python爬虫 - 记一次字体反爬 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/04/21/python-anti-crawler-of-font-19-04-21/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬虫 - 记一次字体反爬</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T21:51:03+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/21/python-anti-crawler-of-font-19-04-21/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/21/python-anti-crawler-of-font-19-04-21/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/21/python-anti-crawler-of-font-19-04-21/" class="leancloud_visitors" data-flag-title="Python爬虫 - 记一次字体反爬">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>最近一直在为找工作烦恼，刚好遇到一家公司要求我先做几道反爬虫的题，看了之后觉得自己还挺菜的，不过也过了几关，刚好遇到一个之前没遇到过的反爬虫手段 — 字体反爬<br><a id="more"></a></p>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="一、站点分析"><a href="#一、站点分析" class="headerlink" title="一、站点分析"></a>一、站点分析</h3><p>题目要求：<strong>这里有一个网站，分了1000页，求所有数字的和。注意，是人看到的数字，不是网页源码中的数字哦~</strong></p>
+<p><img src="images/1.jpg" alt="页面"></p>
+<p>就这，从图里能看出<strong>数字</strong>的字体有些不同，看看源码是什么样的</p>
+<p><img src="images/2.jpg" alt="网页源码"></p>
+<p>可以看到，源码里的内容和网页上显示的内容根本不一样，当然，题目也说了；那么这是怎么回事呢，切换到 <strong>Network</strong> 栏，刷新网页看看请求</p>
+<p><img src="images/3.jpg" alt="network内容"></p>
+<p>可以看到，这里有两个字体请求，选择后可以预览字体</p>
+<p><img src="images/4.jpg" alt="字体预览"></p>
+<p>很明显，数字有点问题，被改过了，上面那一个请求的字体文件是正常的字体（下图），可以拿来做比较，以便于我们分析</p>
+<p><img src="images/5.jpg" alt="正常字体"></p>
+<p>一般来说字体文件的数字就是这样的顺序 <strong>1 2 3 4 5 6 7 8 9 0</strong> ，以这个为模板，被<strong>修改后的字体</strong>中的数字 <strong>2</strong> 处与 <strong>正常字体</strong> 中 <strong>9</strong> 的位置。回到网页源码和内容，网页上显示 <strong>274</strong> ，实际源码中是 <strong>920</strong>（下图），用上面的字体做替换我们会发现，<strong>2</strong> 在被 <strong>修改过的字体</strong> 中的位置是 <strong>8</strong> ，而 <strong>8</strong> 在 <strong>正常字体</strong> 中就是 8，由此可得结论：我们只要把这 <strong>修改过的字体</strong> 搞到手，然后把网页上显示的内容逐个拆分为单个数字，然后从字体中匹配出正常字体就行了，不过，根据题目，我们需要反着来做，也就是从源码入手，获取到内容后拆分为单个字体，接着从字体中获取网页上显示的内容。</p>
+<p><img src="images/6.jpg" alt="对比"></p>
+<p>我自己写的时候都觉得头晕，直接写代码，这样能更好的表达我要说什么，不过，这里要说一点，据我分析，这个网页有1000页，每一页的字体都是不同的，就需要每获取一个网页就得重新获取被修改的字体。我这里用的是 <strong>scrapy</strong> 框架。</p>
+<h3 id="二、代码阶段"><a href="#二、代码阶段" class="headerlink" title="二、代码阶段"></a>二、代码阶段</h3><p>首先新建一个<strong>scrapy</strong>项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ scrapy startproject glidedsky</span><br><span class="line">New Scrapy project 'glidedsky', using template directory '/usr/local/lib/python3.7/site-packages/scrapy/templates/project', created in:</span><br><span class="line">    /Users/zhonglizhen/glidedsky</span><br><span class="line"></span><br><span class="line">You can start your first spider with:</span><br><span class="line">    cd glidedsky</span><br><span class="line">    scrapy genspider example example.com</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure>
+<p>接着创建一个<strong>Spider</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ cd glidedsky </span><br><span class="line">➜  ~ glidedsky scrapy genspider glidedsky glidesky.com</span><br><span class="line">Cannot create a spider with the same name as your project</span><br><span class="line">➜  ~ glidedsky</span><br></pre></td></tr></table></figure>
+<h5 id="scrapy-怎么用我就不说了，直接看代码"><a href="#scrapy-怎么用我就不说了，直接看代码" class="headerlink" title="scrapy 怎么用我就不说了，直接看代码"></a>scrapy 怎么用我就不说了，直接看代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># glidedsky.py</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> glidedsky.items <span class="keyword">import</span> GlidedskyItem</span><br><span class="line"><span class="keyword">from</span> glidedsky.spiders.config <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GlidedskySpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'glidedsky'</span></span><br><span class="line">    start_urls = [<span class="string">'http://glidedsky.com/level/web/crawler-font-puzzle-1'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__int__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(self, url, callback)</span>:</span></span><br><span class="line">        request = scrapy.Request(url=url, callback=callback)</span><br><span class="line">        <span class="comment"># 添加 cookies</span></span><br><span class="line">        request.cookies[<span class="string">'XSRF-TOKEN'</span>] = XSRF_TOKEN</span><br><span class="line">        request.cookies[<span class="string">'glidedsky_session'</span>] = glidedsky_session</span><br><span class="line">        <span class="comment"># 添加 headers</span></span><br><span class="line">        request.headers[<span class="string">'User-Agent'</span>] = <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span></span><br><span class="line">        <span class="keyword">return</span> request</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i, url <span class="keyword">in</span> enumerate(self.start_urls):</span><br><span class="line">            <span class="keyword">yield</span> self.request(url, self.parse_item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        解析numbers</span></span><br><span class="line"><span class="string">        :param response:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        body = response.css(<span class="string">'html'</span>).get()</span><br><span class="line">        self.save_font(body)</span><br><span class="line">        col_md_nums = response.css(<span class="string">'.col-md-1::text'</span>).extract()</span><br><span class="line">        items = GlidedskyItem()</span><br><span class="line">        <span class="keyword">for</span> col_md_num <span class="keyword">in</span> col_md_nums:</span><br><span class="line">          	<span class="comment"># 这里获取到的是源码中的内容，并不是我们在网页上看到的内容，需要去数据管道进一步处理</span></span><br><span class="line">            items[<span class="string">'numbers'</span>] = col_md_num.replace(<span class="string">'\n'</span>, <span class="string">''</span>).replace(<span class="string">' '</span>, <span class="string">''</span>)</span><br><span class="line">            <span class="keyword">yield</span> items</span><br><span class="line">        <span class="comment"># 获取下一页</span></span><br><span class="line">        next = response.xpath(<span class="string">'//li/a[@rel="next"]'</span>)</span><br><span class="line">        <span class="comment"># 判断是否有下一页</span></span><br><span class="line">        <span class="keyword">if</span> len(next) &gt; <span class="number">0</span>:</span><br><span class="line">            next_page = next[<span class="number">0</span>].attrib[<span class="string">'href'</span>]</span><br><span class="line">            <span class="comment"># response.urljoin 可以帮我们构造下一页的链接</span></span><br><span class="line">            url = response.urljoin(next_page)</span><br><span class="line">            <span class="keyword">yield</span> self.request(url=url, callback=self.parse_item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_font</span><span class="params">(self, body)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        保存字体到本地</span></span><br><span class="line"><span class="string">        :param response: 网页源代码</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        pattern = <span class="string">r'src:.url\("(.*?)"\).format\("woff"\)'</span></span><br><span class="line">        woff_font_url = re.findall(pattern, body, re.S)</span><br><span class="line">        print(woff_font_url)</span><br><span class="line">        resp = requests.get(woff_font_url[<span class="number">0</span>], headers=&#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36'</span>&#125;)</span><br><span class="line">        <span class="keyword">with</span> open(WOFF_FONT_FILENAME, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(resp.content)</span><br></pre></td></tr></table></figure>
+<p>在解析字体之前先分析一下字体文件的内容，因为这里面有坑（起码我这个站点是这样），下载好字体后，用python的 <strong>fontTools</strong> 库把 <strong>woff格式</strong> 转成 <strong>xml文件</strong>，然后打开；或者用 <strong>font-creator</strong> 直接打开，但是这个工具只有windows上有，所以这里就用第一种方法。</p>
+<p>1、先把 <strong>woff格式</strong> 转成 <strong>xml格式</strong> 文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> fontTools.ttLib <span class="keyword">import</span> TTFont</span><br><span class="line"></span><br><span class="line"><span class="comment"># 先把字体文件下载下来</span></span><br><span class="line">url = <span class="string">"https://guyujiezi.com/fonts/LQ1K9/1A7s3D.woff"</span></span><br><span class="line">filename = url.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line">resp = requests.get(url)</span><br><span class="line"><span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(resp.content)</span><br><span class="line"><span class="comment"># 接着用 TTFont 打开文件</span></span><br><span class="line">font = TTFont(filename)</span><br><span class="line"><span class="comment"># TTFont 中有一个 saveXML 的方法</span></span><br><span class="line">font.saveXML(filename.replace(filename.split(<span class="string">'.'</span>)[<span class="number">-1</span>], <span class="string">'xml'</span>))</span><br></pre></td></tr></table></figure>
+<p>2、用文本编辑器打开</p>
+<p>只需要看 <strong>GlyphOrder</strong> 项就行了，其实直接看 <strong>GlyphOrder</strong> 一个屁都看不出来，完全和之前做的分析不一样，不过仔细观察后发现这里面也被人做了手脚，<strong>1703589624</strong> 这跟电话号码一样的就是上面看到的 <strong>修改后的字体</strong> 预览到的，可能这样还是看不出什么；其中 <strong>id</strong> 属性的值为 <strong>修改后的字体</strong> 中的数字，<strong>name</strong> 属性为 <strong>正常字体</strong>，但是根本不对，之前算过，网页中的 <strong>274</strong>，正常内容是 <strong>920</strong>，而下面，<strong>2</strong> 明显对应着 <strong>one</strong> ，其实我在这里被坑了，如果把 <strong>2+1=3</strong> ，<strong>3</strong> 不就是对应着 <strong>nine</strong> 了吗，然后发现后面 <strong>74</strong> 也是对应着 <strong>20</strong>，有 <strong>12</strong> 项 <strong>GlyphID</strong> 的目的就是坑我们的（我猜的），不过这确实挺坑的。分析过后可以开始写代码了</p>
+<p><img src="images/7.jpg" alt="GlyphOrder"></p>
+<p>3、代码如下，这是 <strong>pipelines.py</strong> 文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pipelines.py</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define your item pipelines here</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Don't forget to add your pipeline to the ITEM_PIPELINES setting</span></span><br><span class="line"><span class="comment"># See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html</span></span><br><span class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DropItem</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fontTools.ttLib <span class="keyword">import</span> TTFont</span><br><span class="line"><span class="keyword">from</span> glidedsky.spiders.config <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GlidedskyPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    result = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> item[<span class="string">'numbers'</span>]:</span><br><span class="line">            numbers = item[<span class="string">'numbers'</span>]</span><br><span class="line">            <span class="comment">#print("@@@@@ 假数字: %s \n" % numbers)</span></span><br><span class="line">            font = TTFont(WOFF_FONT_FILENAME) <span class="comment"># 首先创建一个TTFont对象，参数为字体文件的路径</span></span><br><span class="line">            true_number = <span class="string">""</span> </span><br><span class="line">            <span class="keyword">for</span> num <span class="keyword">in</span> range(len(numbers)):</span><br><span class="line">                fn = NUMBER_TEMP[numbers[num]] <span class="comment"># 从模版中获取数字对应着的英语单词</span></span><br><span class="line">                glyph_id = int(font.getGlyphID(fn)) - <span class="number">1</span> <span class="comment"># font.getGlyphID 方法是根据GlyphID name属性获取id属性的值，参数传入name值，最后减一</span></span><br><span class="line">                true_number += str(glyph_id)</span><br><span class="line">            self.result += int(true_number)</span><br><span class="line">            print(<span class="string">"@@@@@ 计算结果: %d"</span> % self.result)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> DropItem(<span class="string">'Missing Number.'</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>config.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DATA_PATH = <span class="string">'/Volumes/HDD500G/Documents/Python/Scrapy/glidedsky/glidedsky/data'</span> <span class="comment"># 这是我为了存储字体文件新建的文件夹</span></span><br><span class="line">WOFF_FONT_FILENAME = DATA_PATH + <span class="string">'/woff-font.woff'</span></span><br><span class="line">XSRF_TOKEN = <span class="string">''</span></span><br><span class="line">glidedsky_session = <span class="string">''</span></span><br><span class="line">NUMBER_TEMP = &#123;<span class="string">'1'</span>: <span class="string">'one'</span>, <span class="string">'2'</span>: <span class="string">'two'</span>, <span class="string">'3'</span>: <span class="string">'three'</span>, <span class="string">'4'</span>: <span class="string">'four'</span>, <span class="string">'5'</span>: <span class="string">'five'</span>, <span class="string">'6'</span>: <span class="string">'six'</span>, <span class="string">'7'</span>: <span class="string">'seven'</span>, <span class="string">'8'</span>: <span class="string">'eight'</span>, <span class="string">'9'</span>: <span class="string">'nine'</span>, <span class="string">'0'</span>: <span class="string">'zero'</span>&#125; <span class="comment"># 这个模版是为了方便我计算，题目需要</span></span><br></pre></td></tr></table></figure>
+<p><strong>items.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://doc.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GlidedskyItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    numbers = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<p><strong>settings.py</strong>，设置我就不全部贴了，只贴需要改的部分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这本来是注释掉了的</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">   <span class="string">'glidedsky.pipelines.GlidedskyPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着直接运行即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ cd /你项目存储地址/glidedsky/</span><br><span class="line">➜ scrapy startpoject glidedsky</span><br></pre></td></tr></table></figure>
+<p>输出结果就不展示了，贼鸡儿多</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>这种反爬虫手段是我第一次遇到，以前遇到的也就验证码和ip限制，不过也算是涨了知识，最后结果是我解决了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="zck wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="zck 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zck 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/字体反爬/" rel="tag"># 字体反爬</a>
+          
+            <a href="/tags/反爬虫/" rel="tag"># 反爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/19/python-crawler-cctvnews-19-04-19/" rel="next" title="Python爬虫 - 抓取央视网新闻要闻-新手向（第一篇）">
+                <i class="fa fa-chevron-left"></i> Python爬虫 - 抓取央视网新闻要闻-新手向（第一篇）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/27/numpy-dot-function-19-04-27/" rel="prev" title="python - numpy 中 dot 方法的理解">
+                python - numpy 中 dot 方法的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zck">
+            
+              <p class="site-author-name" itemprop="name">zck</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、站点分析"><span class="nav-number">2.1.</span> <span class="nav-text">一、站点分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、代码阶段"><span class="nav-number">2.2.</span> <span class="nav-text">二、代码阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scrapy-怎么用我就不说了，直接看代码"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">scrapy 怎么用我就不说了，直接看代码</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zck</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GVIJFftzvEgNsaeqkNjSu7Pe-gzGzoHsz',
+        appKey: 'W24IblK4zTwnaryWCov0Ql9j',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

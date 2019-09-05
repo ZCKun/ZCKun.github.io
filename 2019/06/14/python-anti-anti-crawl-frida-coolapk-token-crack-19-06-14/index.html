@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,反反爬虫,frida,爬虫,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 不多逼逼，这个安卓社区就是酷安，以前想过要爬这软件，但是都忘了，几天前抓了下它的包，发现请求 headers 里有一个 token 验证，果断就给破了">
+<meta name="keywords" content="python,反反爬虫,frida,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python反反爬虫 - Frida破解某安卓社区token反爬虫">
+<meta property="og:url" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="前言 不多逼逼，这个安卓社区就是酷安，以前想过要爬这软件，但是都忘了，几天前抓了下它的包，发现请求 headers 里有一个 token 验证，果断就给破了">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/zhuabao.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_analysis_home.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_search_keyword_x-app-token.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_have_fond-x-app-token.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_lock_value.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_value_from.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_native_func.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_lock_deviceid_from.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_find_application_class.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/jeb_find_hook_func.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_open_so.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_search_keyword_getAS.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_not_found.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_ida_view_search.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_ida_view_have_found.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_func_win_search_again.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_string_splice_1.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_md5_1.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_base64_1.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_string_splice_2.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_md5_2.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/ida_code_draw_line_analysis.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/terminal_print_1.jpg">
+<meta property="og:updated_time" content="2019-06-15T03:07:21.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python反反爬虫 - Frida破解某安卓社区token反爬虫">
+<meta name="twitter:description" content="前言 不多逼逼，这个安卓社区就是酷安，以前想过要爬这软件，但是都忘了，几天前抓了下它的包，发现请求 headers 里有一个 token 验证，果断就给破了">
+<meta name="twitter:image" content="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/images/zhuabao.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/">
+
+
+
+
+
+  <title>Python反反爬虫 - Frida破解某安卓社区token反爬虫 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python反反爬虫 - Frida破解某安卓社区token反爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T20:30:29+08:00">
+                2019-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/06/14/python-anti-anti-crawl-frida-coolapk-token-crack-19-06-14/" class="leancloud_visitors" data-flag-title="Python反反爬虫 - Frida破解某安卓社区token反爬虫">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>不多逼逼，这个安卓社区就是酷安，以前想过要爬这软件，但是都忘了，几天前抓了下它的包，发现请求 <strong>headers</strong> 里有一个 <strong>token</strong> 验证，果断就给破了</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><p>先抓个包<br><img src="images/zhuabao.jpg" alt=""><br>可以看到其中有个请求头 <strong>X-App-Token</strong>，这就是验证，至于<strong>X-App-Device</strong>这玩意儿应该是获取你手机信息的，不管它，先看看软件源代码，找到请求方法</p>
+<h4 id="1、jeb分析"><a href="#1、jeb分析" class="headerlink" title="1、jeb分析"></a>1、jeb分析</h4><p>没加固，好像也没混淆，舒服</p>
+<p><img src="images/jeb_analysis_home.jpg" alt=""></p>
+<p>搜索关键字：<strong>X-App-Token</strong></p>
+<p><img src="images/jeb_search_keyword_x-app-token.jpg" alt=""></p>
+<p>很明显找到了我们要的东西了，(jeb3.0按tab键反编译)</p>
+<p><img src="images/jeb_have_fond-x-app-token.jpg" alt=""></p>
+<p>这个 X-App-Token 是变量 v2_1，v2_1是，一个<strong>AuthUtils</strong>类里的<strong>getAS</strong>方法返回的</p>
+<p><img src="images/jeb_lock_value.jpg" alt=""></p>
+<p><img src="images/jeb_value_from.jpg" alt=""></p>
+<p>跟进可以发现这是一个native方法，lib是native-lib</p>
+<p><img src="images/jeb_native_func.jpg" alt=""></p>
+<p>到这里就没法用jeb分析了，我们先看看参数2 deviceId 是个什么玩意儿</p>
+<p>可以看到是一个 <strong>SystemUtils</strong> 类里的 <strong>getDeviceID</strong>方法返回的，传入一个context参数</p>
+<p><img src="images/jeb_lock_deviceid_from.jpg" alt=""></p>
+<p>我们去app的application hook这个方法</p>
+<p><img src="images/jeb_find_application_class.jpg" alt=""></p>
+<p>我找到一个代码量最少的方法，这样可以帮助我们不破坏原逻辑的情况下hook</p>
+<p><img src="images/jeb_find_hook_func.jpg" alt=""></p>
+<p>hook的代码很简单<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> CoolMarket = Java.use(<span class="string">'com.coolapk.market.CoolMarketApplication'</span>);</span><br><span class="line">    CoolMarket.onLog.implementation = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> deviceId = Java.use(<span class="string">'com.coolapk.market.util.SystemUtils'</span>).getDeviceId(<span class="keyword">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Device Id: '</span>, deviceId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> app_token = Java.use(<span class="string">'com.coolapk.market.util.AuthUtils'</span>).getAS(<span class="keyword">this</span>, deviceId);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'App Token: '</span>, app_token);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'----------'</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>拿到 deviceId 后分析so</p>
+<h4 id="ida分析"><a href="#ida分析" class="headerlink" title="ida分析"></a>ida分析</h4><p>解压apk拿到 <strong>native-lib.so</strong>，用ida打开</p>
+<p><img src="images/ida_open_so.jpg" alt=""></p>
+<p>我们已知方法名和参数个数，那么就先搜索方法名</p>
+<p>在 <strong>Function Window</strong> 按 option+t 搜索 <strong>getAS</strong>，可以看到，毛都没有</p>
+<p><img src="images/ida_search_keyword_getAS.jpg" alt=""></p>
+<p><img src="images/ida_not_found.jpg" alt=""><br>那我们就到 <strong>IDA View</strong> 里搜索，快捷键一样</p>
+<p><img src="images/ida_ida_view_search.jpg" alt=""></p>
+<p>找到了这个，参数是两个，但这个不是方法，没法 F5 反编译</p>
+<p><img src="images/ida_ida_view_have_found.jpg" alt=""><br>不瞒你们，这个DCB是个什么玩意儿我也不知道.<br>但是我在 <strong>Function Window</strong> 瞎翻想找一些我能看得懂的方法名时看到了这个</p>
+<p><img src="images/ida_func_win_search_again.jpg" alt=""></p>
+<p>我一看，这个方法好像和 getAS 有点关系就顺手 F5 了</p>
+<p>简单看了看里面的代码,我估计我要找的是这个方法，为什么是这个方法而不是其他的</p>
+<p>我分析了 <strong>X-App-Token</strong> 这个验证的组成，它长这样：<strong>f2c29a109fde487e9350d3e6b881036a8513efac-09ea-3709-b214-95b366f1a1850x5d024391</strong></p>
+<p>我之前就获取到了我的 Device Id，我无意间看到了我的 device id就在里面，然后我把它拆分成了这样：</p>
+<blockquote>
+<ul>
+<li>f2c29a109fde487e9350d3e6b881036a</li>
+<li>8513efac-09ea-3709-b214-95b366f1a185</li>
+<li>0x5d024391</li>
+</ul>
+</blockquote>
+<p>第一项很明显是md5密文，第二部分就是device id，最后是一个十六进制，不知道什么玩意儿，但我在那个 <strong>getAuthString</strong> 代码里看到了这段</p>
+<p><img src="images/ida_code_string_splice_1.jpg" alt=""></p>
+<p>这是一个字符串拼接的过程，其中 <strong>v82</strong> 是md5密文，也是字符串的头部，后面接着是 <strong>v43</strong>（device id）、字符串0x、最后是 <strong>hex_time</strong> (这是我改了后的命名)，所以我就能确定这个方法就是我想要的；</p>
+<p>上面说的也就是接下来要分析的，其中那个十六进制的东西就是时间戳，我们只需要分析出md5是怎么来的就行了，我们知道md5是 <strong>v61</strong>，<strong>v61</strong> 的加密代码在这</p>
+<p><img src="images/ida_code_md5_1.jpg" alt=""><br>加密的内容是v58，v58是一个经过base64编码后的变量</p>
+<p><img src="images/ida_code_base64_1.jpg" alt=""></p>
+<p>我懒得去看它是什么了，我直接hook了md5加密类，有三个方法，一个是md5(应该是构造方法把)、update、finalize，hook 代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 这里算基址是学的四哥的</span></span><br><span class="line"><span class="keyword">var</span> JNI_LOAD_POINTER = Module.getExportByName(<span class="string">'libnative-lib.so'</span>, <span class="string">'JNI_OnLoad'</span>); <span class="comment">// 首先拿到 JNI_OnLoad方法的地址</span></span><br><span class="line"><span class="comment">// 这里减去的是从so中得到的JNI_OnLoad的地址 0x31A04</span></span><br><span class="line"><span class="keyword">var</span> BASE_ADDR = <span class="built_in">parseInt</span>(JNI_LOAD_POINTER) - <span class="built_in">parseInt</span>(<span class="string">'0x31A04'</span>); <span class="comment">// 用程序运行中JNI_OnLoad的绝对地址减去它的相对地址得到基址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MD5::MD5</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//  然后用基址 + 要hook的方法的相对地址就得到了绝对地址</span></span><br><span class="line">    <span class="keyword">var</span> hookpointer = <span class="string">'0x'</span> + <span class="built_in">parseInt</span>(BASE_ADDR + <span class="built_in">parseInt</span>(<span class="string">'0x32168'</span>)).toString(<span class="number">16</span>) <span class="comment">// 获取要hook方法的地址</span></span><br><span class="line">    <span class="keyword">var</span> pointer = <span class="keyword">new</span> NativePointer(hookpointer) <span class="comment">// 根据方法地址构建NativePointer</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[MD5::MD5] hook pointer: '</span>, pointer)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> arg0, arg1, arg2, arg3</span><br><span class="line">    Interceptor.attach(pointer, &#123;</span><br><span class="line">            onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">                arg0 = args[<span class="number">0</span>]</span><br><span class="line">                arg1 = args[<span class="number">1</span>]</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::MD5] -&gt; [方法调用前]'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0))) <span class="comment">// Memory.readCString 是读取地址为字符串，类似的还有readUtf8String、readUtf16String等</span></span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;,</span><br><span class="line">            onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::MD5] -&gt; [方法调用后]:'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'返回值: '</span>, retval)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// MD5::update</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hookpointer = <span class="string">'0x'</span> + <span class="built_in">parseInt</span>(BASE_ADDR + <span class="built_in">parseInt</span>(<span class="string">'0x329AC'</span>)).toString(<span class="number">16</span>) <span class="comment">// 获取要hook方法的地址</span></span><br><span class="line">    <span class="keyword">var</span> pointer = <span class="keyword">new</span> NativePointer(hookpointer) <span class="comment">// 根据方法地址构建NativePointer</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[MD5::update] hook pointer: '</span>, pointer)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> arg0, arg1, arg2, arg3</span><br><span class="line">    Interceptor.attach(pointer, &#123;</span><br><span class="line">            onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">                arg0 = args[<span class="number">0</span>]</span><br><span class="line">                arg1 = args[<span class="number">1</span>]</span><br><span class="line">                arg2 = args[<span class="number">2</span>]</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::update] -&gt; [方法调用前]'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数3: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg2, Memory.readCString(arg2)))</span><br><span class="line"></span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;,</span><br><span class="line">            onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::update] -&gt; [方法调用后]:'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'返回值: '</span>, retval)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数3: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg2, Memory.readCString(arg2)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// MD5::finalize</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hookpointer = <span class="string">'0x'</span> + <span class="built_in">parseInt</span>(BASE_ADDR + <span class="built_in">parseInt</span>(<span class="string">'0x321C4'</span>)).toString(<span class="number">16</span>) <span class="comment">// 获取要hook方法的地址</span></span><br><span class="line">    <span class="keyword">var</span> pointer = <span class="keyword">new</span> NativePointer(hookpointer) <span class="comment">// 根据方法地址构建NativePointer</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[MD5::finalize] hook pointer: '</span>, pointer)</span><br><span class="line">    <span class="keyword">var</span> arg0, arg1, arg2, arg3</span><br><span class="line">    Interceptor.attach(pointer, &#123;</span><br><span class="line">            onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">                arg0 = args[<span class="number">0</span>]</span><br><span class="line">                arg1 = args[<span class="number">1</span>]</span><br><span class="line">                arg2 = args[<span class="number">2</span>]</span><br><span class="line">                arg3 = args[<span class="number">3</span>]</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::finalize] -&gt; [方法调用前]'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数3: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg2, Memory.readCString(arg2)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数4: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg3, Memory.readCString(arg3)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;,</span><br><span class="line">            onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'=====&gt; [MD5::finalize] -&gt; [方法调用后]:'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'返回值: '</span>, retval)</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数1: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg0, Memory.readCString(arg0)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数2: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg1, Memory.readCString(arg1)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数3: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg2, Memory.readCString(arg2)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'参数4: &#123;0&#125; =&gt; &#123;1&#125;'</span>.format(arg3, Memory.readCString(arg3)))</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>运行后得到了那个base64编码过的内容：</p>
+<blockquote>
+<p>dG9rZW46Ly9jb20uY29vbGFway5tYXJrZXQvYzY3ZWY1OTQzNzg0ZDA5NzUwZGNmYmIzMTAyMGYwYWI/MzgyMzIxNWQ5MWQyOWQ5ODg3ZWJjMDVmMGQ3ZmQzMGQkODUxM2VmYWMtMDllYS0zNzA5LWIyMTQtOTViMzY2ZjFhMTg1JmNvbS5jb29sYXBrLm1hcmtldA==</p>
+</blockquote>
+<p>经过解码后：</p>
+<blockquote>
+<p>token://com.coolapk.market/c67ef5943784d09750dcfbb31020f0ab?3823215d91d29d9887ebc05f0d7fd30d$8513efac-09ea-3709-b214-95b366f1a185&amp;com.coolapk.market</p>
+</blockquote>
+<p>在我看到这段代码后</p>
+<p><img src="images/ida_code_string_splice_2.jpg" alt=""><br>上面解码后的内容可以拆分为：</p>
+<blockquote>
+<ul>
+<li>token://com.coolapk.market/c67ef5943784d09750dcfbb31020f0ab?</li>
+<li>3823215d91d29d9887ebc05f0d7fd30d</li>
+<li>$</li>
+<li>8513efac-09ea-3709-b214-95b366f1a185</li>
+<li>&amp;</li>
+<li>com.coolapk.market</li>
+</ul>
+</blockquote>
+<p>据我分析，只需要的到第二部分的md5加密的来历就行了，继续分析，找到了加密的地方</p>
+<p><img src="images/ida_code_md5_2.jpg" alt=""></p>
+<p>根据这图的画线，可以明确的知道这md5就是时间戳，在我hook的输出中也可以看到这个就是时间戳</p>
+<p><img src="images/ida_code_draw_line_analysis.jpg" alt=""></p>
+<p><img src="images/terminal_print_1.jpg" alt=""></p>
+<p>至于 token://com.coolapk.market/c67ef5943784d09750dcfbb31020f0ab? 这个是不变的</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p><strong>token://com.coolapk.market/c67ef5943784d09750dcfbb31020f0ab?</strong> + md5加密后的时间戳 + $ + <strong>device id</strong> + &amp; + <strong>com.coolapk.market</strong>(包名)，将其md5加密后得到 <strong>第一部分</strong></p>
+<p>token的来历就是：第一部分 + <strong>deivce id</strong> + 0x + 十六进制转换后的时间戳</p>
+<p>简单的测试代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DEVICE_ID = <span class="string">"8513efac-09ea-3709-b214-95b366f1a185"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_app_token</span><span class="params">()</span>:</span></span><br><span class="line">    t = int(time.time())</span><br><span class="line">    hex_t = hex(t)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 时间戳加密</span></span><br><span class="line">    md5_t = hashlib.md5(str(t).encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 不知道什么鬼字符串拼接</span></span><br><span class="line">    a = <span class="string">'token://com.coolapk.market/c67ef5943784d09750dcfbb31020f0ab?&#123;&#125;$&#123;&#125;&amp;com.coolapk.market'</span> \</span><br><span class="line">        .format(md5_t, DEVICE_ID)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 不知道什么鬼字符串拼接 后的字符串再次加密</span></span><br><span class="line">    md5_a = hashlib.md5(base64.b64encode(a.encode(<span class="string">'utf-8'</span>))).hexdigest()</span><br><span class="line"></span><br><span class="line">    token = <span class="string">'&#123;&#125;&#123;&#125;&#123;&#125;'</span>.format(md5_a, DEVICE_ID, hex_t)</span><br><span class="line">    print(token)</span><br><span class="line">    <span class="keyword">return</span> token</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">()</span>:</span></span><br><span class="line">    url = <span class="string">"https://api.coolapk.com/v6/main/indexV8?page=1"</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">"User-Agent"</span>: <span class="string">"Dalvik/2.1.0 (Linux; U; Android 9; MI 8 SE MIUI/9.5.9) (#Build; Xiaomi; MI 8 SE; PKQ1.181121.001; 9) +CoolMarket/9.2.2-1905301"</span></span><br><span class="line">    &#125;</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">"User-Agent"</span>: <span class="string">"Dalvik/2.1.0 (Linux; U; Android 9; MI 8 SE MIUI/9.5.9) (#Build; Xiaomi; MI 8 SE; PKQ1.181121.001; 9) +CoolMarket/9.2.2-1905301"</span>,</span><br><span class="line">        <span class="string">"X-App-Id"</span>: <span class="string">"com.coolapk.market"</span>,</span><br><span class="line">        <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span>,</span><br><span class="line">        <span class="string">"X-Sdk-Int"</span>: <span class="string">"28"</span>,</span><br><span class="line">        <span class="string">"X-Sdk-Locale"</span>: <span class="string">"zh-CN"</span>,</span><br><span class="line">        <span class="string">"X-Api-Version"</span>: <span class="string">"9"</span>,</span><br><span class="line">        <span class="string">"X-App-Version"</span>: <span class="string">"9.2.2"</span>,</span><br><span class="line">        <span class="string">"X-App-Code"</span>: <span class="string">"1903501"</span>,</span><br><span class="line">        <span class="string">"X-App-Device"</span>: <span class="string">"QRTBCOgkUTgsTat9WYphFI7kWbvFWaYByO1YjOCdjOxAjOxEkOFJjODlDI7ATNxMjM5MTOxcjMwAjN0AyOxEjNwgDNxITM2kDMzcTOgsTZzkTZlJ2MwUDNhJ2MyYzM"</span>,</span><br><span class="line">        <span class="string">"Host"</span>: <span class="string">"api.coolapk.com"</span>,</span><br><span class="line">        <span class="string">"X-Dark-Mode"</span>: <span class="string">"0"</span>,</span><br><span class="line">        <span class="string">"X-App-Token"</span>: get_app_token(),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    print(resp.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    request()</span><br></pre></td></tr></table></figure></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>代码啥的都提交到Github了，<a href="https://github.com/ZCKun/CoolapkTokenCrack" target="_blank" rel="noopener">CoolapkTokenCrack</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="zck wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="zck 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zck 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/反反爬虫/" rel="tag"># 反反爬虫</a>
+          
+            <a href="/tags/frida/" rel="tag"># frida</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/08/python-frida-hook-quick-start-19-06-08/" rel="next" title="Frida - Hook 快速开始">
+                <i class="fa fa-chevron-left"></i> Frida - Hook 快速开始
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/26/python-renrendai-crawler/" rel="prev" title="Python爬虫 - 人人贷散标">
+                Python爬虫 - 人人贷散标 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zck">
+            
+              <p class="site-author-name" itemprop="name">zck</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析过程"><span class="nav-number">2.</span> <span class="nav-text">分析过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、jeb分析"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、jeb分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ida分析"><span class="nav-number">2.0.2.</span> <span class="nav-text">ida分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">2.0.3.</span> <span class="nav-text">结论</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zck</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GVIJFftzvEgNsaeqkNjSu7Pe-gzGzoHsz',
+        appKey: 'W24IblK4zTwnaryWCov0Ql9j',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

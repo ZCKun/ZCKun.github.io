@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python - 字体反爬 - 反爬虫 - 爬虫,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
+<meta name="keywords" content="python - 字体反爬 - 反爬虫 - 爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫 - 简单抓取百度指数">
+<meta property="og:url" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/1.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/2.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/3.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/4.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/5.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/6.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/7.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/8.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/9.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/10.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/11.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/12.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/13.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/14.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/15.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/16.png">
+<meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/17.png">
+<meta property="og:updated_time" content="2019-09-05T18:51:39.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫 - 简单抓取百度指数">
+<meta name="twitter:description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
+<meta name="twitter:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/08/18/python-spider-baidu-index/">
+
+
+
+
+
+  <title>Python爬虫 - 简单抓取百度指数 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/08/18/python-spider-baidu-index/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬虫 - 简单抓取百度指数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T02:43:08+08:00">
+                2019-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/18/python-spider-baidu-index/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/18/python-spider-baidu-index/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/18/python-spider-baidu-index/" class="leancloud_visitors" data-flag-title="Python爬虫 - 简单抓取百度指数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>有点忙，没空写东西，这是之前写的，加了些配图而已</p>
+<p>这次要爬的网站是百度指数<br><a id="more"></a></p>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h4 id="一、分析"><a href="#一、分析" class="headerlink" title="一、分析"></a>一、分析</h4><p> 打开网站<a href="http://index.baidu.com/v2/index.html" target="_blank" rel="noopener">百度指数</a>，呈现出来是这样的</p>
+<p><img src="images/1.png" alt="主页"></p>
+<p>如果搜索的话就需要登陆了，如果没有什么特别频繁的请求的话，直接登陆复制Cookie就完事了</p>
+<p><img src="images/2.png" alt="登陆"></p>
+<p>这里以 <strong>酷安</strong> 为例搜索</p>
+<p><img src="images/3.png" alt=""></p>
+<p>这一栏是选择时间范围的，拖拽它能将范围选择更广</p>
+<p><img src="images/4.png" alt=""></p>
+<p>我将其拖拽至2011，调试窗口可以看到请求，是个GET请求，参数有四个，除了 <strong>area</strong> 其他的都很好理解</p>
+<p><img src="images/5.png" alt=""></p>
+<p>切换到 Preview 预览窗口，通过分析，个人认为比较可疑的几个Key有这些：uniqid、all、pc、wise、data</p>
+<p><img src="images/6.png" alt=""></p>
+<p>其中data可以看到应该是加密了的，all是表示全部数据，pc是指pc端，wise是移动端，这些可以在js文件里找到；首先先搞清楚这个像加密了的data是怎么解密的；我们现在知道这个数据是json格式，那么它处理肯定要从中取出这些data，所以，重新刷新一下网页，目的是为了让所有js都能加载出来，然后利用搜索功能从中找。搜索过程就不上图了，我是搜索 decrypt找到的；首先，我用decrypt找到了一个js文件，其中有一个名为decrypt的方法</p>
+<p><img src="images/7.png" alt=""><br>这个js文件中有很多decrypt的搜索结果，在不知道多少行处找到了一个名为 <strong>fetchThrendIndexLive</strong> 的方法，这个方法用我工地英语翻译为<strong>获取趋势指数</strong><br><img src="images/8.png" alt=""></p>
+<p>这里调用了名为decrypt的方法，是不是上面那个我不知道<br><img src="images/9.png" alt=""><br>这次我不打算用charles的替换js文件功能了，直接用浏览器的调试功能+console就行了<br>右键js的请求，<strong>Open in Sources panel</strong></p>
+<p><img src="images/10.png" alt=""><br>直接在这里下断点，然后刷新页面</p>
+<p><img src="images/11.png" alt=""></p>
+<p>在这停顿后可以看到两个参数的内容</p>
+<p><img src="images/12.png" alt=""></p>
+<p>想要知道这两个参数是什么很简单，回到Network看请求里的json；其中e参数是data，t参数不太清楚是什么。</p>
+<blockquote>
+<p>for循环里第一步是先将t字符串按单个字符分割，返回的列表保存在n变量里；<br>然后将e也按单字符分割，保存到i变量里<br>a是一个字典，r是一个列表</p>
+</blockquote>
+<p>从右边的 <strong>Scope</strong> 中可以看到</p>
+<p><img src="images/13.png" alt=""></p>
+<p>以t的字符长度遍历，a中key为t遍历的字符，a中value为：从t中按索引取的值，其中索引为：t的字符长度除2后加上当前遍历的索引（a[n[o] = n[n.length/2 + o])</p>
+<p>这里始终没有用到i，也就是我们能获取到的data，这个i在第二个循环中才被用到；<br>第二个循环是遍历e，结果保存在r列表里，这里的遍历很容易就看得懂。。我就不分析了，自己都头晕，直接用python抄一遍就行了；</p>
+<p>最后是将r列表里的内容合并为一个字符串然后返回；</p>
+<h4 id="二、整理思路"><a href="#二、整理思路" class="headerlink" title="二、整理思路"></a>二、整理思路</h4><p>解密方法对应python代码为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(t,e)</span>:</span></span><br><span class="line">    n = list(t)</span><br><span class="line">    i = list(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = int(len(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> zip(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(result)</span><br></pre></td></tr></table></figure></p>
+<p>完全照搬。。可能有写地方可以简化，但我懒得去处理了，最后返回的是这个玩意儿</p>
+<p><img src="images/14.png" alt=""></p>
+<p>python运行结果</p>
+<p><img src="images/15.png" alt=""></p>
+<p>到这可能都觉得已经解决了，可你不知道t这个参数是什么，怎么来的，这里我就不带各位分析了，你么可以自己尝试分析分析，我直接说结果，之前我就指出了几个可疑的东西，其中uniqid在获取t参数需要用到，这个t其实是叫ptbk，获取这个ptbk的url：<a href="http://index.baidu.com/Interface/ptbk?uniqid=" target="_blank" rel="noopener">http://index.baidu.com/Interface/ptbk?uniqid=</a> 有一个参数uniqid，GET请求，返回json内容</p>
+<p><img src="images/16.png" alt=""></p>
+<p>获取uniqid和data的url：<a href="http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=" target="_blank" rel="noopener">http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=</a> （如果要指定日期只需要在word后面追加&amp;startDate=、&amp;endDate=就行）</p>
+<p>所以可以明确一下思路：<br>1、通过url获取uniqid和data<br>2、通过uniqid获取ptbk<br>3、通过ptbk和data解密</p>
+<p>解密后的东西就是我们要的</p>
+<h4 id="三、代码部分"><a href="#三、代码部分" class="headerlink" title="三、代码部分"></a>三、代码部分</h4><p>完整代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">word_url = <span class="string">'http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=&#123;&#125;'</span></span><br><span class="line">COOKIES = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(t,e)</span>:</span></span><br><span class="line">    n = list(t)</span><br><span class="line">    i = list(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = int(len(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> zip(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(result)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_home</span><span class="params">(keyword)</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(word_url.format(keyword), headers=headers)</span><br><span class="line">    j = resp.json()</span><br><span class="line">    uniqid = j.get(<span class="string">'data'</span>).get(<span class="string">'uniqid'</span>)</span><br><span class="line">    <span class="keyword">return</span> get_ptbk(uniqid)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ptbk</span><span class="params">(uniqid)</span>:</span></span><br><span class="line">    url = <span class="string">'http://index.baidu.com/Interface/ptbk?uniqid=&#123;&#125;'</span></span><br><span class="line">    ptbk_headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        <span class="string">'Cache-Control'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES,</span><br><span class="line">        <span class="string">'DNT'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Host'</span>: <span class="string">'index.baidu.com'</span>,</span><br><span class="line">        <span class="string">'Pragma'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Proxy-Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'http://index.baidu.com/v2/main/index.html'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url.format(uniqid), headers=ptbk_headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        print(<span class="string">'获取uniqid失败'</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> resp.json().get(<span class="string">'data'</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_data</span><span class="params">(keyword, start=<span class="string">'2011-01-03'</span>, end=<span class="string">'2019-08-05'</span>)</span>:</span></span><br><span class="line">    url = <span class="string">f'http://index.baidu.com/api/SearchApi/index?word=<span class="subst">&#123;keyword&#125;</span>&amp;area=0&amp;startDate=<span class="subst">&#123;start&#125;</span>&amp;endDate=<span class="subst">&#123;end&#125;</span>'</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        <span class="string">'Cache-Control'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES,</span><br><span class="line">        <span class="string">'DNT'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Host'</span>: <span class="string">'index.baidu.com'</span>,</span><br><span class="line">        <span class="string">'Pragma'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Proxy-Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'http://index.baidu.com/v2/main/index.html'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        print(<span class="string">'获取指数失败'</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    data = resp.json().get(<span class="string">'data'</span>).get(<span class="string">'userIndexes'</span>)[<span class="number">0</span>]</span><br><span class="line">    uniqid = data.get(<span class="string">'uniqid'</span>)</span><br><span class="line">    ptbk = get_index_home(uniqid)</span><br><span class="line">    <span class="keyword">while</span> ptbk <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> ptbk == <span class="string">''</span>:</span><br><span class="line">        ptbk = get_index_home(uniqid)</span><br><span class="line">    all_data = data.get(<span class="string">'all'</span>).get(<span class="string">'data'</span>)</span><br><span class="line">    result = decrypt(ptbk, all_data)</span><br><span class="line">    result = result.split(<span class="string">','</span>)</span><br><span class="line">    print(result)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    get_index_data(<span class="string">'酷安'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出</p>
+<p><img src="images/17.png" alt=""></p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>转载请注明出处</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="zck wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="zck 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="zck 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python-字体反爬-反爬虫-爬虫/" rel="tag"># python - 字体反爬 - 反爬虫 - 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/26/python-renrendai-crawler/" rel="next" title="Python爬虫 - 人人贷散标">
+                <i class="fa fa-chevron-left"></i> Python爬虫 - 人人贷散标
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="zck">
+            
+              <p class="site-author-name" itemprop="name">zck</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、分析"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、整理思路"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、整理思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、代码部分"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、代码部分</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">3.</span> <span class="nav-text">END</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zck</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'GVIJFftzvEgNsaeqkNjSu7Pe-gzGzoHsz',
+        appKey: 'W24IblK4zTwnaryWCov0Ql9j',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
