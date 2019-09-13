@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/6.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/7.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/8.png">
-<meta property="og:updated_time" content="2019-09-12T20:37:21.613Z">
+<meta property="og:updated_time" content="2019-09-13T11:30:34.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美团外卖抓包分析">
 <meta name="twitter:description" content="前言博客：blog">
@@ -385,6 +385,8 @@
 <p><img src="images/3.png" alt=""></p>
 <p>Mac下没有iptables可以用 <strong>pfctl</strong>，首先写规则<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/pf.conf</span><br></pre></td></tr></table></figure></p>
 <p><img src="images/4.png" alt=""></p>
+<p>然后使其生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pfctl -evf /etc/pf.conf</span><br></pre></td></tr></table></figure>
 <p>接着就可以直接用 <strong>Charles</strong> 抓包了</p>
 <p><img src="images/5.png" alt=""></p>
 <h3 id="gt-Android"><a href="#gt-Android" class="headerlink" title="&gt;Android"></a>&gt;Android</h3><p>接下来我要说的是 Android 上，我抓mt是为了写爬虫，我在电脑上抓到了请求的连接但那些参数加密我需要hook，所以不得不在手机上弄，所以我就需要在手机上屏蔽ip。我先说在手机上抓长连接ip，目前手机上能抓tcp的除了tcpdump以外好像就只有 <strong>httpcanary</strong> 了，主要是它能显示请求的协议；</p>
