@@ -368,28 +368,28 @@
 <p>第一次写这。。。这叫什么来着？我给忘了，这不重要，我是来总体介绍下Android中的termux的，基本有了termux再也不用忍受busybox提供的那些仅有的功能。这里用编译一个C程序为例子。</p>
 </blockquote>
 <ul>
-<li>首先下载了termux后，先更新一下软件包:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt update</span><br></pre></td></tr></table></figure>
+<li>首先下载了termux后，先更新一下软件包:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt update</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
-<p>然后我习惯新建一个工作目录归纳<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir work</span><br><span class="line"><span class="meta">$</span> cd work</span><br></pre></td></tr></table></figure></p>
+<p>然后我习惯新建一个工作目录归纳<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir work</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> work</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <ul>
-<li>然后用vim写代码之前要安装vim包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt install vim</span><br></pre></td></tr></table></figure>
+<li>然后用vim写代码之前要安装vim包<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt install vim</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>当然你也可以用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt list</span><br></pre></td></tr></table></figure></p>
+<p>当然你也可以用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt list</span></span><br></pre></td></tr></table></figure></p>
 <p>来查看termux提供的包</p>
 <ul>
-<li>然后用vim建立并打开test.c<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim test.c</span><br></pre></td></tr></table></figure>
+<li>然后用vim建立并打开test.c<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim test.c</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>我也就写了一个hello world<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接着用<strong>gcc编译</strong>，在这之前得先安装<strong>clang</strong>这个包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt install clang</span><br></pre></td></tr></table></figure></p>
-<p>然后就可以编译了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> gcc -o test test.c</span><br></pre></td></tr></table></figure></p>
-<p>编译后并不能直接运行<br>需要给一个权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> chmod 777 test</span><br></pre></td></tr></table></figure></p>
+<p>接着用<strong>gcc编译</strong>，在这之前得先安装<strong>clang</strong>这个包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt install clang</span></span><br></pre></td></tr></table></figure></p>
+<p>然后就可以编译了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gcc -o <span class="built_in">test</span> test.c</span></span><br></pre></td></tr></table></figure></p>
+<p>编译后并不能直接运行<br>需要给一个权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chmod 777 <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure></p>
 <p>我试了<strong>chmod -x test</strong>没什么用（<label style="color:red">从这里就能看出我有多菜。。。。</label>）</p>
-<p>然后运行即可<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./test</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure></p>
+<p>然后运行即可<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./<span class="built_in">test</span></span></span><br><span class="line">hello world</span><br></pre></td></tr></table></figure></p>
 <p>目测<strong>termux</strong>可以用<strong>ssh</strong>，但是我没有试过</p>
 <p><strong>termux</strong>目前我用过的有<strong>java c php js</strong>可以编译，当然也有缺陷，只好期待作者的下次更新了</p>
 <p>第一次写哦。</p>
@@ -554,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

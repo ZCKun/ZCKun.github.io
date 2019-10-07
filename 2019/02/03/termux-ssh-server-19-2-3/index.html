@@ -376,12 +376,12 @@
 2. android手机
 </code></pre></blockquote>
 <ul>
-<li>首先在你的<strong>termux</strong>中需要安装<strong>openssl</strong><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt-get install openssh -y</span><br></pre></td></tr></table></figure>
+<li>首先在你的<strong>termux</strong>中需要安装<strong>openssl</strong><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install openssh -y</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8GAGUqkAACwsYBtp-A460.png" alt=""></p>
 <ul>
-<li>接着需要在你要连接<strong>termux</strong>的电脑上创建秘钥，也就是你要在哪台电脑上连接<strong>termux</strong>就在那电脑上创建<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen</span><br></pre></td></tr></table></figure>
+<li>接着需要在你要连接<strong>termux</strong>的电脑上创建秘钥，也就是你要在哪台电脑上连接<strong>termux</strong>就在那电脑上创建<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -389,21 +389,21 @@
 </blockquote>
 <ul>
 <li>之后会在指定路径生成两个文件，一个是<strong>没有后缀的私钥文件</strong>，一个是<strong>后缀为pub的公钥文件</strong>，把<strong>公钥文件发送到手机</strong>里，或者复制里面的内容也行<img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8KAZ8siAAEBXAUGxmE024.png" alt=""></li>
-<li>打开手机，比如我从电脑把文件发送到了手机的存储目录，那么我需要复制到<strong>termux</strong>的<strong>home</strong>目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cp /sdcard/公钥文件名.pub ~</span><br></pre></td></tr></table></figure>
+<li>打开手机，比如我从电脑把文件发送到了手机的存储目录，那么我需要复制到<strong>termux</strong>的<strong>home</strong>目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cp /sdcard/公钥文件名.pub ~</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>接着还需要把里面的内容写入<strong>~/.ssh/authorized_keys</strong>文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat 公钥文件名.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
-<p>如果直接复制的公钥文件内容，那就不需要复制文件到<strong>home目录</strong>，直接编辑<strong>~/.ssh/authorized_keys</strong>文件即可，把复制的内容粘贴到<strong>authorized_keys</strong>文件里就可以了，接着启动ssh服务<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sshd</span><br></pre></td></tr></table></figure></p>
+<p>接着还需要把里面的内容写入<strong>~/.ssh/authorized_keys</strong>文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat 公钥文件名.pub &gt;&gt; ~/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure></p>
+<p>如果直接复制的公钥文件内容，那就不需要复制文件到<strong>home目录</strong>，直接编辑<strong>~/.ssh/authorized_keys</strong>文件即可，把复制的内容粘贴到<strong>authorized_keys</strong>文件里就可以了，接着启动ssh服务<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sshd</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAek3iAAE8Y8dd_q0998.png" alt=""></p>
 <ul>
 <li><p>接着就是在电脑上连接了，不过还需要做两件事，首先在<strong>termux</strong>上获取用户名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> whoami</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> whoami</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接着还需要获取手机的局域网ip</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ifconfig -a</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ifconfig -a</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接着就是在电脑上连接了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh 用户名@局域网ip -p 8022</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh 用户名@局域网ip -p 8022</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -575,7 +575,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +588,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

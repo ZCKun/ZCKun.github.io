@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="douyin,frida,hook,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="douyin,frida,hook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抖音分析 - 篇一">
+<meta property="og:url" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/main.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/httpcanary.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_main.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_iid.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_iid_done.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_iid_dec.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_as.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_as_done.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_search_with_as_dec.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/jeb_userinfo_class.png">
+<meta property="og:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/frida_hook_cls_b_a.png">
+<meta property="og:updated_time" content="2019-10-07T10:10:46.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抖音分析 - 篇一">
+<meta name="twitter:image" content="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/images/main.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/">
+
+
+
+
+
+  <title>抖音分析 - 篇一 | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/10/07/douyin-cn-java-analysis-191007/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2h0n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">抖音分析 - 篇一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-07T18:02:26+08:00">
+                2019-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/07/douyin-cn-java-analysis-191007/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/07/douyin-cn-java-analysis-191007/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/07/douyin-cn-java-analysis-191007/" class="leancloud_visitors" data-flag-title="抖音分析 - 篇一">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="images/main.jpg" alt=""></p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>这篇文章没什么技术性，非常简单。</p>
+</blockquote>
+<blockquote>
+<p>android最新版本v8.1.1抓包请求的api是v2版本，返回的json被稍微加密了，虽然能看出一些内容，但是中文几乎&gt; 全部被加密，本来想研究apk的，奈何我当年没好好学，很菜，所以我就想到其他版本，就好像写爬虫pc复杂转移&gt; &gt; 动端那样转其他版本，我找到一个v1版的api且能正常使用的版本1.6.6，该api返回的json内容很干净</p>
+</blockquote>
+<hr>
+<p><strong>所需工具:</strong></p>
+<blockquote>
+<p>jadx<br>jeb</p>
+</blockquote>
+<hr>
+<h1 id="一、分析"><a href="#一、分析" class="headerlink" title="一、分析"></a>一、分析</h1><h2 id="1-1-参数分析"><a href="#1-1-参数分析" class="headerlink" title="1.1 参数分析"></a>1.1 参数分析</h2><hr>
+<p>抓个包，别找错了请求url。。。我之前就找错了，有一条请求包很大，其实是你附近的视频列表</p>
+<p><img src="images/httpcanary.png" alt=""></p>
+<p>这里的url和请求<br>url：<a href="https://aweme-eagle.snssdk.com/aweme/v1/feed/" target="_blank" rel="noopener">https://aweme-eagle.snssdk.com/aweme/v1/feed/</a><br>params：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">'type'</span>: <span class="string">'0'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'max_cursor'</span>: <span class="string">'0'</span>, <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'min_cursor'</span>: <span class="string">'0'</span>, <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'count'</span>: <span class="string">'6'</span>, <span class="comment"># 个数</span></span><br><span class="line">    <span class="string">'volume'</span>: <span class="string">'0.2'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'retry_type'</span>: <span class="string">'no_retry'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'iid'</span>: <span class="string">'88263783316'</span>,  <span class="comment"># install id，固定即可</span></span><br><span class="line">    <span class="string">'device_id'</span>: <span class="string">'69143529399'</span>,  <span class="comment"># 设备id，固定即可</span></span><br><span class="line">    <span class="string">'ac'</span>: <span class="string">'wifi'</span>,  <span class="comment"># 网络类型</span></span><br><span class="line">    <span class="string">'channel'</span>: <span class="string">'wandoujia'</span>,  <span class="comment"># 安装渠道吧</span></span><br><span class="line">    <span class="string">'aid'</span>: <span class="string">'1128'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'app_name'</span>: <span class="string">'aweme'</span>,  <span class="comment"># appname</span></span><br><span class="line">    <span class="string">'version_code'</span>: <span class="string">'166'</span>,  <span class="comment"># 版本号</span></span><br><span class="line">    <span class="string">'version_name'</span>: <span class="string">'1.6.6'</span>,  <span class="comment"># 版本</span></span><br><span class="line">    <span class="string">'device_platform'</span>: <span class="string">'android'</span>,  <span class="comment"># 设备平台</span></span><br><span class="line">    <span class="string">'ssmix'</span>: <span class="string">'a'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'device_type'</span>: <span class="string">'MI+8+UD'</span>,  <span class="comment"># 设备类型</span></span><br><span class="line">    <span class="string">'device_brand'</span>: <span class="string">'Xiaomi'</span>,  <span class="comment"># 设备品牌</span></span><br><span class="line">    <span class="string">'language'</span>: <span class="string">'zh'</span>,  <span class="comment"># 系统语言</span></span><br><span class="line">    <span class="string">'os_api'</span>: <span class="string">'28'</span>,  <span class="comment"># android 版本号</span></span><br><span class="line">    <span class="string">'os_version'</span>: <span class="string">'9'</span>,  <span class="comment"># android 版本</span></span><br><span class="line">    <span class="string">'uuid'</span>: <span class="string">'868695035559432'</span>,  <span class="comment"># 多半和登陆账号有关</span></span><br><span class="line">    <span class="string">'openudid'</span>: <span class="string">'ffa82bd3b1106594'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'manifest_version_code'</span>: <span class="string">'166'</span>,  <span class="comment"># androidmanifest中的版本号</span></span><br><span class="line">    <span class="string">'resolution'</span>: <span class="string">'1080*2029'</span>,  <span class="comment"># 分辨率</span></span><br><span class="line">    <span class="string">'dpi'</span>: <span class="string">'440'</span>,  <span class="comment"># dpi</span></span><br><span class="line">    <span class="string">'update_version_code'</span>: <span class="string">'1662'</span>,  <span class="comment"># 更新版本号</span></span><br><span class="line">    <span class="string">'_rticket'</span>: <span class="string">'1570419542810'</span>,  <span class="comment"># 时间戳</span></span><br><span class="line">    <span class="string">'ts'</span>: <span class="string">'1570419542'</span>,  <span class="comment"># 时间戳</span></span><br><span class="line">    <span class="string">'as'</span>: <span class="string">'a185bba996d57d23ba'</span>,  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line">    <span class="string">'cp'</span>: <span class="string">'b357d1586da49f39e1'</span>  <span class="comment"># 不知道啥玩意儿</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>ok，简要分析了下各个参数大概是干嘛的，等我多抓几次包，看看哪些是不变的，或者哪些可以去除，骚等一会<br>…<br>第二次抓包与第一次对比变化的参数如下：</p>
+<blockquote>
+<p>_rticket、ts、as、cp</p>
+</blockquote>
+<p><strong>as</strong>、<strong>iid</strong>、<strong>_rticket</strong>、<strong>ts</strong> 是刚需，<strong>cp</strong> 可有可无，以及<strong>其他基本不变的参数</strong>也是基本都需要的，否则会返回类似这玩意儿的结果<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;'status_code': 2154,</span><br><span class="line"> 'aweme_list': [],</span><br><span class="line"> 'has_more': 1,</span><br><span class="line"> 'min_cursor': 0,</span><br><span class="line"> 'max_cursor': 0&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以，我们现在需要找到 as、cp 这俩参数加密的地方</p>
+<h2 id="1-2-JEB分析"><a href="#1-2-JEB分析" class="headerlink" title="1.2 JEB分析"></a>1.2 JEB分析</h2><hr>
+<p>打开jeb3.0，拽入apk<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">正在处理artifact...</span><br></pre></td></tr></table></figure></p>
+<p>dnmd，等一万年<br>加载完</p>
+<p><img src="images/jeb_main.png" alt=""></p>
+<p>先搜索iid，我在上面说了这个不变即可，但我还是要让各位搞明白这个是啥</p>
+<p><img src="images/jeb_search_with_iid.png" alt=""></p>
+<p>一会就找到了</p>
+<p><img src="images/jeb_search_with_iid_done.png" alt=""></p>
+<p>在Mac上jeb3.0反编译是按tab，</p>
+<p><img src="images/jeb_search_with_iid_dec.png" alt=""></p>
+<p>可以看到iid其实是叫 <strong>install_id</strong>，所以我猜测这个保持不变即可</p>
+<hr>
+<p>接着搜索<strong>“as”</strong>，记得把<strong>分大小写</strong>和<strong>环绕搜索</strong>勾上</p>
+<p><img src="images/jeb_search_with_as.png" alt=""></p>
+<p>在多次搜索-&gt;反编译分析-&gt;搜索之后，找到一个可疑的类</p>
+<p><img src="images/jeb_search_with_as_done.png" alt=""></p>
+<p>反编译</p>
+<p><img src="images/jeb_search_with_as_dec.png" alt=""></p>
+<p>我觉得这个对新手不太友好，所以我决定换jadx反编译，然后贴出关键部分代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先是通过UserInfo类的getUserInfo方法获取用户的信息...吧</span></span><br><span class="line">String userInfo = UserInfo.getUserInfo(NetworkUtils.getServerTime(), tVar.toString(), strArr);</span><br><span class="line"><span class="comment">// 这个我反编译看了下，代码有点长，懒得分析，不用管它了</span></span><br><span class="line">t.a q = tVar.q();</span><br><span class="line"><span class="comment">// 获取字符串长度</span></span><br><span class="line"><span class="keyword">int</span> length = userInfo.length();</span><br><span class="line"><span class="keyword">if</span> (TextUtils.isEmpty(userInfo)) &#123;  <span class="comment">// 如果userInfo为null或者长度为0</span></span><br><span class="line">    q.a(AdvanceSetting.ADVANCE_SETTING, <span class="string">"a1iosdfgh"</span>).a(<span class="string">"cp"</span>, <span class="string">"androide1"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0</span>) &#123;  <span class="comment">// 判断userInfo长度是不是2的倍数</span></span><br><span class="line">    q.a(AdvanceSetting.ADVANCE_SETTING, userInfo.substring(<span class="number">0</span>, length &gt;&gt; <span class="number">1</span>)).a(<span class="string">"cp"</span>, userInfo.substring(length &gt;&gt; <span class="number">1</span>, length));</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    q.a(AdvanceSetting.ADVANCE_SETTING, <span class="string">"a1qwert123"</span>).a(<span class="string">"cp"</span>, <span class="string">"cbfhckdckkde1"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>管它呢，先hook到<strong>getUserInfo</strong>返回的东西再说…emmm，当我点进UserInfo类后陷入了沉思</p>
+<p><img src="images/jeb_userinfo_class.png" alt=""></p>
+<p>OK，关于native下一篇再讲，先看看还有没有其他办法，毕竟刚刚的判断让我觉得还有希望；还是先hook到userinfo再说，既然本篇没法hook getUserInfo方法，那我们就直接hook当前方法。</p>
+<blockquote>
+<p>getUserInfo<br>第一个参数很明显是个时间，int类型<br>第二参数是我们这个方法的参数调用toString方法后，String类型<br>第三个参数也可以通过这个方法的参数算出来，String[]类型</p>
+</blockquote>
+<p>开始动手<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cls_b = Java.use(<span class="string">'com.ss.android.ugc.aweme.f.a.b'</span>);</span><br><span class="line">    <span class="comment">// var cls_NetworkUtils = Java.use('com.ss.android.common.util.NetworkUtils');</span></span><br><span class="line">    cls_b.a.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[hook] cls_b.a function...'</span>)</span><br><span class="line">        <span class="keyword">var</span> set_n = t.n().toArray();</span><br><span class="line">        <span class="comment">// console.log('[cls_b.a] server time:', cls_NetworkUtils.getServerTime())</span></span><br><span class="line">        set_n.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(a, <span class="string">'---'</span>, t.c(a), <span class="string">'\n'</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>输出如图</p>
+<p><img src="images/frida_hook_cls_b_a.png" alt=""></p>
+<p>应该很眼熟，就是请求的参数，然后那个getServerTime()返回的是时间戳，接着模拟调用一下getUserInfo。我已经成功获取到<strong>userInfo</strong>，所以我直接贴上所有代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---'</span>)</span><br><span class="line">    <span class="comment">// 首先拿到一些要用到的class的对象</span></span><br><span class="line">    <span class="keyword">var</span> cls_b = Java.use(<span class="string">'com.ss.android.ugc.aweme.f.a.b'</span>);</span><br><span class="line">    <span class="keyword">var</span> cls_UserInfo = Java.use(<span class="string">'com.ss.android.common.applog.UserInfo'</span>);</span><br><span class="line">    <span class="keyword">var</span> cls_NetworkUtils = Java.use(<span class="string">'com.ss.android.common.util.NetworkUtils'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'==='</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(cls_b);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 接着hook b.a 方法</span></span><br><span class="line">    cls_b.a.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[hook] cls_b.a function...'</span>)</span><br><span class="line">        <span class="keyword">var</span> set_n = t.n().toArray();  <span class="comment">// 这里是将t.n()返回的set类型数据转为array</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] set_n:'</span>, set_n);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] server time:'</span>, cls_NetworkUtils.getServerTime())</span><br><span class="line">        <span class="keyword">var</span> param3 = [] <span class="comment">// 这个是参数3</span></span><br><span class="line">        set_n.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">            param3.push(a);  <span class="comment">// 添加请求参数中的key</span></span><br><span class="line">            param3.push(t.c(a));  <span class="comment">// 添加请求参数中的values（t.c方法是获取value的)</span></span><br><span class="line">        &#125;);</span><br><span class="line">        param3 = Java.array(<span class="string">"java.lang.String"</span>, param3);  <span class="comment">// 将param3转为Java中的String[]类型</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] param3:'</span>, param3);</span><br><span class="line">        <span class="comment">// 调用getUserInfo</span></span><br><span class="line">        <span class="keyword">var</span> userInfo = cls_UserInfo.getUserInfo(<span class="built_in">Math</span>.round(<span class="built_in">Date</span>.now()*<span class="number">0.001</span>), t.toString(), param3);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] UserInfo:'</span>, userInfo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[*] Running CTF</span><br><span class="line">---</span><br><span class="line">===</span><br><span class="line">&lt;com.ss.android.ugc.aweme.f.a.b&gt;</span><br><span class="line">[hook] cls_b.a function...</span><br><span class="line">[cls_b.a] set_n: aweme_id,cursor,count,comment_style,ts,app_type,manifest_version_code,_rticket,ac,device_id,iid,os_version,channel,version_code,device_type,language,uuid,resolution,openudid,update_version_code,app_name,version_name,os_api,device_brand,ssmix,device_platform,dpi,aid</span><br><span class="line">[cls_b.a] server time: 1570438077</span><br><span class="line">[cls_b.a] param2: aweme_id,6744653984100846859,cursor,0,count,20,comment_style,2,ts,1570438077,app_type,normal,manifest_version_code,166,_rticket,1570438077547,ac,wifi,device_id,69143529399,iid,88263783316,os_version,9,channel,wandoujia,version_code,166,device_type,MI 8 UD,language,zh,uuid,868695035559432,resolution,1080*2029,openudid,ffa82bd3b1106594,update_version_code,1662,app_name,aweme,version_name,1.6.6,os_api,28,device_brand,Xiaomi,ssmix,a,device_platform,android,dpi,440,aid,1128</span><br><span class="line">[cls_b.a] UserInfo: a1157fa97e3b6dbb9af3b7d952e7ab93b7e1  # 这就是输出的UserInfo</span><br></pre></td></tr></table></figure></p>
+<p>接着就是上面java代码的后半段<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先是字符串userInfo</span></span><br><span class="line">String userInfo = <span class="string">'a1157fa97e3b6dbb9af3b7d952e7ab93b7e1'</span>;</span><br><span class="line"><span class="comment">// 获取下userInfo的长度</span></span><br><span class="line"><span class="keyword">int</span> uiLen = userInfo.length();</span><br><span class="line"><span class="comment">// 判断方面我就直接省略了</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// 通过t.q()获取a对象</span></span><br><span class="line">a q = t.q();</span><br><span class="line"><span class="comment">/** q.a(AdvanceSetting.ADVANCE_SETTING, userInfo.substring(0, length &gt;&gt; 1)).a("cp", userInfo.substring(length &gt;&gt; 1, length));</span></span><br><span class="line"><span class="comment"> * q先把它当作一个Map</span></span><br><span class="line"><span class="comment"> * a就是put方法</span></span><br><span class="line"><span class="comment"> * ADVANCE_SETTING其实就是字符串"as"，它是key</span></span><br><span class="line"><span class="comment"> * userInfo.substring(0, length&gt;&gt;1) 这是获取userInfo的前半部分，因为length&gt;&gt;1就是除以2</span></span><br><span class="line"><span class="comment"> * userInfo.substring(length &gt;&gt; 1, length) 这就是获取后半部分</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"> q.a(<span class="string">"as"</span>, userInfo.substring(<span class="number">0</span>, uiLen/<span class="number">2</span>))</span><br><span class="line">  .a(<span class="string">"cp"</span>, userInfo.substring(uiLen/<span class="number">2</span>, uiLen);</span><br><span class="line"><span class="keyword">return</span> q.c();</span><br></pre></td></tr></table></figure></p>
+<p>然后我改了改hook代码……<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cls_b = Java.use(<span class="string">'com.ss.android.ugc.aweme.f.a.b'</span>);</span><br><span class="line">    <span class="keyword">var</span> cls_UserInfo = Java.use(<span class="string">'com.ss.android.common.applog.UserInfo'</span>);</span><br><span class="line">    <span class="keyword">var</span> cls_NetworkUtils = Java.use(<span class="string">'com.ss.android.common.util.NetworkUtils'</span>);</span><br><span class="line">    </span><br><span class="line">    cls_b.a.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[hook] cls_b.a function...'</span>);</span><br><span class="line">        <span class="keyword">var</span> set_n = t.n().toArray();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] set_n:'</span>, set_n);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] server time:'</span>, cls_NetworkUtils.getServerTime());</span><br><span class="line">        <span class="keyword">var</span> param2 = [];</span><br><span class="line">        set_n.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">            param2.push(a);</span><br><span class="line">            param2.push(t.c(a));</span><br><span class="line">        &#125;);</span><br><span class="line">        param2 = Java.array(<span class="string">"java.lang.String"</span>, param2);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] param2:'</span>, param2);</span><br><span class="line">        <span class="keyword">var</span> userInfo = cls_UserInfo.getUserInfo(<span class="built_in">Math</span>.round(<span class="built_in">Date</span>.now()*<span class="number">0.001</span>), t.toString(), param2);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] UserInfo:'</span>, userInfo);</span><br><span class="line">        <span class="keyword">var</span> <span class="keyword">as</span> = userInfo.substring(<span class="number">0</span>, userInfo.length/<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">var</span> cp = userInfo.substring(userInfo.length/<span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] as:'</span>, <span class="keyword">as</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[cls_b.a] cp:'</span>, cp);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>output<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[cls_b.a] UserInfo: a19560291bd66dd68b0061d85db4b69963e1</span><br><span class="line">[cls_b.a] as: a19560291bd66dd68b</span><br><span class="line">[cls_b.a] cp: a19560291bd66dd68b</span><br></pre></td></tr></table></figure></p>
+<p>这样就能通过frida获取参数as、cp，但是就这种程度是不能用python写生成这俩参数的方法，所以我会在下一篇文章写出so的分析</p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>Code：<a href="https://github.com/ZCKun/douyin" target="_blank" rel="noopener">https://github.com/ZCKun/douyin</a><br>WeChat Official Account：the2h0Ng</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/douyin/" rel="tag"># douyin</a>
+          
+            <a href="/tags/frida/" rel="tag"># frida</a>
+          
+            <a href="/tags/hook/" rel="tag"># hook</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/13/python-mtwm-capture/" rel="next" title="美团外卖抓包分析">
+                <i class="fa fa-chevron-left"></i> 美团外卖抓包分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="2h0n9">
+            
+              <p class="site-author-name" itemprop="name">2h0n9</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、分析"><span class="nav-number">2.</span> <span class="nav-text">一、分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-参数分析"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 参数分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-JEB分析"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 JEB分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#END"><span class="nav-number">3.</span> <span class="nav-text">END</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">2h0n9</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz',
+        appKey: 'RQlyxX1TUDOXTSd7OKfh0n2w',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
