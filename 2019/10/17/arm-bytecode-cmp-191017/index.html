@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="arm,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta name="keywords" content="Java,Python,Android,开发者,编程,移动,APP,安卓,搞机">
-<meta property="og:type" content="website">
-<meta property="og:title" content="2h0n$2ck">
-<meta property="og:url" content="http://zckun.github.io/archives/2019/09/index.html">
+<meta name="description" content="CMP(compare)语法：CMP{cond} Rn, Operand2  cond 是一个可选的条件代码Rn 是存放第一个操作数的 ARM 寄存器Operand2 是一个灵活的第二操作数  第一个操作减去第二个操作数，但不会将结果存入任何寄存器中，它只会更新 FLAG 的 CF，ZF，OF，AF，PF 标志。">
+<meta name="keywords" content="arm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM - CMP">
+<meta property="og:url" content="http://zckun.github.io/2019/10/17/arm-bytecode-cmp-191017/index.html">
 <meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="CMP(compare)语法：CMP{cond} Rn, Operand2  cond 是一个可选的条件代码Rn 是存放第一个操作数的 ARM 寄存器Operand2 是一个灵活的第二操作数  第一个操作减去第二个操作数，但不会将结果存入任何寄存器中，它只会更新 FLAG 的 CF，ZF，OF，AF，PF 标志。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-17T10:22:36.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2h0n$2ck">
+<meta name="twitter:title" content="ARM - CMP">
+<meta name="twitter:description" content="CMP(compare)语法：CMP{cond} Rn, Operand2  cond 是一个可选的条件代码Rn 是存放第一个操作数的 ARM 寄存器Operand2 是一个灵活的第二操作数  第一个操作减去第二个操作数，但不会将结果存入任何寄存器中，它只会更新 FLAG 的 CF，ZF，OF，AF，PF 标志。">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zckun.github.io/archives/2019/09/">
+  <link rel="canonical" href="http://zckun.github.io/2019/10/17/arm-bytecode-cmp-191017/">
 
 
 
 
 
-  <title>归档 | 2h0n$2ck</title>
+  <title>ARM - CMP | 2h0n$2ck</title>
   
 
 
@@ -151,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -255,72 +259,228 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 23 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/10/17/arm-bytecode-cmp-191017/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2h0n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/13/python-mtwm-capture/" itemprop="url">
-              
-                <span itemprop="name">美团外卖抓包分析</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">ARM - CMP</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-13T04:26:30+08:00" content="2019-09-13">
-          09-13
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T17:59:23+08:00">
+                2019-10-17
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/17/arm-bytecode-cmp-191017/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/17/arm-bytecode-cmp-191017/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/10/17/arm-bytecode-cmp-191017/" class="leancloud_visitors" data-flag-title="ARM - CMP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h3 id="CMP-compare"><a href="#CMP-compare" class="headerlink" title="CMP(compare)"></a>CMP(compare)</h3><p>语法：<code>CMP{cond} Rn, Operand2</code></p>
+<blockquote>
+<p><code>cond</code> 是一个可选的条件代码<br><code>Rn</code> 是存放第一个操作数的 ARM 寄存器<br><code>Operand2</code> 是一个灵活的第二操作数</p>
+</blockquote>
+<p>第一个操作减去第二个操作数，但不会将结果存入任何寄存器中，它只会更新 <strong>FLAG</strong> 的 <strong>CF，ZF，OF，AF，PF</strong> 标志。</p>
+<a id="more"></a>
+<hr>
+<p>执行指令后：</p>
+<blockquote>
+<p><strong>ZF=1</strong> 则说明两个数相等，因为zero为1说明结果为0</p>
+</blockquote>
+<p>当无符号时：</p>
+<blockquote>
+<p><strong>CF=1</strong> 则说明了有进位或借位，cmp是进行的减操作，故可以看出为借位，所以，此时oprd1 &lt; oprd2<br><strong>CF=0</strong> 则说明了无借位，但此时要注意ZF是否为0，若为0，则说明结果不为0，故此时oprd1 &gt; oprd2</p>
+</blockquote>
+<p>当有符号时：</p>
+<blockquote>
+<p>若<strong>SF=0，OF=0</strong> 则说明了此时的值为正数，没有溢出，可以直观的看出，oprd1 &gt; oprd2<br>若<strong>SF=1，OF=0</strong> 则说明了此时的值为负数，没有溢出，则为oprd1 &lt; oprd2<br>若<strong>SF=0，OF=1</strong> 则说明了此时的值为正数，有溢出，可以看出oprd1 &lt; oprd2<br>若<strong>SF=1，OF=1</strong> 则说明了此时的值为负数，有溢出，可以看出oprd1 &gt; oprd2 </p>
+</blockquote>
+<hr>
+<h3 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h3><p>C代码:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (a &gt; b) a ++;</span><br><span class="line"><span class="keyword">else</span> b++;</span><br></pre></td></tr></table></figure></p>
+<p>对应arm汇编:</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MOV	R<span class="number">1</span>,<span class="attr">#0</span>xa		; R<span class="number">1</span><span class="comment">(a)</span> = <span class="number">10</span></span><br><span class="line">MOV	R<span class="number">2</span>,<span class="attr">#0</span>x<span class="number">0</span>		; R<span class="number">2</span><span class="comment">(b)</span> = <span class="number">0</span></span><br><span class="line">CMP	R<span class="number">1</span>,R<span class="number">2</span>		; R<span class="number">1</span><span class="comment">(a)</span> - R<span class="number">2</span><span class="comment">(b)</span></span><br><span class="line">ADDHI	R<span class="number">1</span>,R<span class="number">1</span>,<span class="attr">#1</span>	; HI表示无符号数大于high；如果R<span class="number">1</span><span class="comment">(a)</span> &gt; R<span class="number">2</span><span class="comment">(b)</span>，R<span class="number">1</span><span class="comment">(a)</span>=R<span class="number">1</span><span class="comment">(a)</span><span class="number">+1</span></span><br><span class="line">ADDLS	R<span class="number">2</span>,R<span class="number">2</span>,<span class="attr">#1</span>	; LS表示无符号数小鱼或者等于less；如果R<span class="number">2</span><span class="comment">(b)</span> &gt; R<span class="number">1</span><span class="comment">(a)</span>，R<span class="number">2</span><span class="comment">(b)</span>=R<span class="number">2</span><span class="comment">(b)</span><span class="number">+1</span></span><br></pre></td></tr></table></figure>
+<p>所以最后寄存器R1=0xb，R2=0x0</p>
+
+      
     </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/arm/" rel="tag"># arm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/07/douyin-cn-java-analysis-191007/" rel="next" title="抖音分析 - 篇一">
+                <i class="fa fa-chevron-left"></i> 抖音分析 - 篇一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -328,6 +488,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -348,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -442,6 +618,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMP-compare"><span class="nav-number">1.</span> <span class="nav-text">CMP(compare)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单例子"><span class="nav-number">2.</span> <span class="nav-text">简单例子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,6 +781,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
