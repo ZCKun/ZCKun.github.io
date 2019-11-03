@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="arm,assembly,">
 
 
 
@@ -79,15 +79,17 @@
 
 
 
-<meta name="keywords" content="Java,Python,Android,开发者,编程,移动,APP,安卓,搞机">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://zckun.github.io/about/index.html">
+<meta name="keywords" content="arm,assembly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM数据类型">
+<meta property="og:url" content="http://zckun.github.io/2019/11/03/arm-data-type-191103/index.html">
 <meta property="og:site_name" content="2h0n$2ck">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-07T14:22:23.770Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/11/3/16e30ee629dca101">
+<meta property="og:updated_time" content="2019-11-03T11:43:47.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="ARM数据类型">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/11/3/16e30ee629dca101">
 
 
 
@@ -117,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://zckun.github.io/about/">
+  <link rel="canonical" href="http://zckun.github.io/2019/11/03/arm-data-type-191103/">
 
 
 
 
 
-  <title>about | 2h0n$2ck</title>
+  <title>ARM数据类型 | 2h0n$2ck</title>
   
 
 
@@ -258,33 +260,402 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/11/03/arm-data-type-191103/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2h0n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">ARM数据类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-03T18:53:13+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/03/arm-data-type-191103/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/03/arm-data-type-191103/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/11/03/arm-data-type-191103/" class="leancloud_visitors" data-flag-title="ARM数据类型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2019/11/3/16e30ee629dca101" alt=""></p>
+<a id="more"></a>
+<h2 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h2><p>字节(bytes): 8位(bit)<br>字(word): 4字节: 32位<br>半字(half word): 2字节: 16位</p>
+<h2 id="ARM中表示"><a href="#ARM中表示" class="headerlink" title="ARM中表示:"></a>ARM中表示:</h2><p>字节用<code>-b</code>或<code>-sb</code>表示<br>半字用<code>-h</code>或<code>-sh</code>表示<br><strong>没有字的表示</strong><br>其中 <strong>无符号类型与有符号类型</strong> 的差别是:</p>
+<blockquote>
+<p>符号数据类型可以包含正负数所以数值范围上更低些<br>无符号数据类型可以放得下很大的正数但是放不了负数</p>
+</blockquote>
+<p>使用对应数据类型做存取操作的汇编指令示例：</p>
+<blockquote>
+<p>ldr: 加载字，宽度四字节<br>ldrh: 加载无符号的半字，宽度两字节<br>ldrsh: 加载有符号的半字，宽度两字节<br>ldrb: 加载无符号的字节<br>ldrsb: 加载有符号的字节</p>
+<p>str: 存储字，宽度四字节<br>strh: 存储无符号的半字，宽度两字节<br>strsh: 存储有符号的半字，宽度两字节<br>strb: 存储无符号的字节<br>strsb: 存储有符号的字节</p>
+</blockquote>
+<h2 id="字节序"><a href="#字节序" class="headerlink" title="字节序"></a>字节序</h2><p>主要理解内存中字节排序：大端(big endian)、小端(little endian)，还记得加密解密第4版第一章1.2.2结讲的就是这个，书中讲了endian的来历：《格列佛游记》小说中的小人国居民为了吃鸡蛋是从鸡蛋大的一端(big endian)还是从小的一端(little endian)剥开而争论。所以字节传送顺序的大端小端的由来就是这里。</p>
+<p><strong>大端(big endian)</strong>: 高位字节存入低地址，低位字节存入高地址;<br><strong>小端(little endian)</strong>: 低位字节存入低地址，高位字节存入高地址;</p>
+<p>下面以数据 <strong>0x12345678</strong> 为例，掩饰内存中大端小端存入方式:</p>
+<table>
+<thead>
+<tr>
+<th>存放顺序</th>
+<th>1001h</th>
+<th>1001h</th>
+<th>1002h</th>
+<th>1003h</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大端</td>
+<td>12h</td>
+<td>34h</td>
+<td>56h</td>
+<td>78h</td>
+</tr>
+<tr>
+<td>小端</td>
+<td>78h</td>
+<td>56h</td>
+<td>34h</td>
+<td>12h</td>
+</tr>
+</tbody>
+</table>
+<p>在ARMv3之前使用的是小端排序，之后使用的都是大端排序，但也允许切换回小端排序。例如在ARMv6中，指令固定使用的是小端排序，数据访问可以使用小端也可以使用大端排序，由程序寄存器(CPSR)的第9位(E位)控制。</p>
+<h2 id="ARM-寄存器"><a href="#ARM-寄存器" class="headerlink" title="ARM 寄存器"></a>ARM 寄存器</h2><p>根据 <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0473c/Babdfiih.html" target="_blank" rel="noopener">ARM参考手册</a> 可以了解，在 ARMv6-M 与 ARMv7-M 的处理器中均有30个32位宽度的通用寄存器 (General-purpose registers)。前16个寄存器是用户层可访问控制的，其他的寄存器在高权限进程中可以访问（但ARMv6-M与ARMv7-M除外）。这16个寄存器分为两组：通用寄存器与有特殊含义的寄存器:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>别名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R0</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>-</td>
+<td>通用寄存器</td>
+</tr>
+<tr>
+<td>R11</td>
+<td>FP</td>
+<td>栈帧指针</td>
+</tr>
+<tr>
+<td>特殊寄存器</td>
+</tr>
+<tr>
+<td>R12</td>
+<td>IP</td>
+<td>内部程序调用</td>
+</tr>
+<tr>
+<td>R13</td>
+<td>SP</td>
+<td>栈指针</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>LR</td>
+<td>链接寄存器(一般存放函数返回地址)</td>
+</tr>
+<tr>
+<td>R15</td>
+<td>PC</td>
+<td>程序计数寄存器</td>
+</tr>
+<tr>
+<td>CPSR</td>
+<td>-</td>
+<td>当前程序状态寄存器</td>
+</tr>
+</tbody>
+</table>
+<p>其中：</p>
+<blockquote>
+<p><strong>R0-R12:</strong> 用来在操作中存储临时的值、指针等；其中 <strong>R0</strong> 用来存储函数调用的返回值，<strong>R7</strong> 经常被用作存储系统调用号，<strong>R11</strong> 存放着帮助我们找到栈帧边界的指针。以及在函数的调用约定中，前四个参数按顺序存放在 <strong>R0-R3</strong> 寄存器中。</p>
+</blockquote>
+<blockquote>
+<p><strong>R13:</strong> 别名SP(栈指针)。栈指针寄存器用来指向当前的栈顶。堆栈是用于函数特定存储的内存区域，函数返回时将对其进行回收。可以通过在栈指针中减去我们需要分配的值 (以字节为单位) 来在堆栈中分配空间。换句话说，如果我们想分配一个32位的值，那就用栈指针减去4，然后将这个值从减去前栈指针所指向的位置才是存放；</p>
+<blockquote>
+<p><strong>Q</strong>: 为什么减去4？<br><strong>A</strong>: 因为栈指针所减的值是字节类型，一个字节等于8位，我们要存的是32位的值，所以是32/8=4字节<br>最后的意思打个比方来解释：比如现在栈指针指向0x12345678，存放32位值，减去4后等于0x12345674，然后从0x12345678开始存放那个32位值，直到0x12345674</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>R14:</strong> 别名LR(链接寄存器)。当一个函数调用发生时，链接寄存器 就被用来记录函数调用发生所在位置的下一条指针的所在地址。这么做允许我们快速的从子函数回到父函数。</p>
+</blockquote>
+<blockquote>
+<p><strong>R15:</strong> 别名PC(程序计数器)。程序计数器是一个在程序指令执行时自增的计数器。它的大小在ARM模式下总是4字节对齐，在Thumb模式下总是两字节对齐。当执行一个分支指令时，PC存储目的地址。在程序执行中，ARM模式下的PC存储着当前指令加8(两条ARM指令后)的位置，Thumb(v1)模式下的PC存储着当前指令加4(两条Thumb指令后)的位置。这也是X86与ARM在PC上的主要不同之处。</p>
+</blockquote>
+<blockquote>
+<p><strong>CPSR:</strong> 别名程序状态寄存器。别名及其含义如下表:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N(Negative)</td>
+<td>指令操作结果为负值时置1</td>
+</tr>
+<tr>
+<td>Z(Zero)</td>
+<td>指令操作结果为零值时置1</td>
+</tr>
+<tr>
+<td>C(Carry)</td>
+<td>可以有4种方法设置C的值:<br>        -加法运算（包括CMP）：当运算结果产生了进位时（无符号数溢出），C=1，否则C=0。<br> -减法运算（包括CMP）：当运算时产生了借位时（无符号数溢出），C=0，否则C=1。<br>     -对于包含移位操作的非加/减运算指令，C为移出值的最后一位。<br>      -对于其它的非加/减运算指令，C的值通常不会改变。</td>
+</tr>
+<tr>
+<td>V(Overflow)</td>
+<td>指令结果不能用32位的二进制补码存储，即发生了溢出时置1</td>
+</tr>
+<tr>
+<td>E(Endian)</td>
+<td>小端序置0，大端序置1</td>
+</tr>
+<tr>
+<td>T(Thumb)</td>
+<td>当为Thumb模式时置1，ARM模式置0</td>
+</tr>
+<tr>
+<td>M(Mode)</td>
+<td>当前的权限模式(用户态，内核态)</td>
+</tr>
+<tr>
+<td>J(Jazelle)</td>
+<td>允许ARM处理器去以硬件执行java字节码的状态标示</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
     
     
     
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/arm/" rel="tag"># arm</a>
+          
+            <a href="/tags/assembly/" rel="tag"># assembly</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/17/arm-bytecode-it-191017/" rel="next" title="ARM - IT">
+                <i class="fa fa-chevron-left"></i> ARM - IT
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -320,8 +691,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -414,6 +794,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识："><span class="nav-number">1.</span> <span class="nav-text">基础知识：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARM中表示"><span class="nav-number">2.</span> <span class="nav-text">ARM中表示:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节序"><span class="nav-number">3.</span> <span class="nav-text">字节序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARM-寄存器"><span class="nav-number">4.</span> <span class="nav-text">ARM 寄存器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
