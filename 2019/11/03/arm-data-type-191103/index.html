@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="2h0n$2ck">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://2h0n9.com/2019/11/03/arm-data-type-191103/images/main.jpg">
-<meta property="og:updated_time" content="2019-11-04T05:20:18.293Z">
+<meta property="og:updated_time" content="2019-11-06T03:17:41.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARM数据类型">
 <meta name="twitter:image" content="http://2h0n9.com/2019/11/03/arm-data-type-191103/images/main.jpg">
@@ -500,7 +500,10 @@
 </table>
 <p>其中：</p>
 <blockquote>
-<p><strong>R0-R12:</strong> 用来在操作中存储临时的值、指针等；其中 <strong>R0</strong> 用来存储函数调用的返回值，<strong>R7</strong> 经常被用作存储系统调用号，<strong>R11</strong> 存放着帮助我们找到栈帧边界的指针。以及在函数的调用约定中，前四个参数按顺序存放在 <strong>R0-R3</strong> 寄存器中。</p>
+<p><strong>R0-R12:</strong> 用来在操作中存储临时的值、指针等；其中 <strong>R0</strong> 用来存储函数调用的返回值，<strong>R7</strong> 经常被用作存储系统调用号；以及在函数的调用约定中，前四个参数按顺序存放在 <strong>R0-R3</strong> 寄存器中。</p>
+</blockquote>
+<blockquote>
+<p><strong>R11</strong> 别名FP(栈帧指针)。通常指向一个函数的栈帧底部，表示一个函数栈的开始位置。</p>
 </blockquote>
 <blockquote>
 <p><strong>R13:</strong> 别名SP(栈指针)。栈指针寄存器用来指向当前的栈顶。堆栈是用于函数特定存储的内存区域，函数返回时将对其进行回收。可以通过在栈指针中减去我们需要分配的值 (以字节为单位) 来在堆栈中分配空间。换句话说，如果我们想分配一个32位的值，那就用栈指针减去4，然后将这个值从减去前栈指针所指向的位置才是存放；</p>
