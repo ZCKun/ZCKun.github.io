@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,crawler,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
+<meta name="keywords" content="python,crawler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫－扒一扒百度贴吧里的email并保存到MySQL">
+<meta property="og:url" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/1.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/2.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/3.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/4.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/7.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/8.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/9.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/10.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/11.png">
+<meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/12.png">
+<meta property="og:updated_time" content="2019-11-09T16:06:05.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫－扒一扒百度贴吧里的email并保存到MySQL">
+<meta name="twitter:description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
+<meta name="twitter:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/">
+
+
+
+
+
+  <title>Python爬虫－扒一扒百度贴吧里的email并保存到MySQL | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2h0n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python爬虫－扒一扒百度贴吧里的email并保存到MySQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T22:40:00+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/17/python-web-crawler-tieba-170817/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/08/17/python-web-crawler-tieba-170817/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/17/python-web-crawler-tieba-170817/" class="leancloud_visitors" data-flag-title="Python爬虫－扒一扒百度贴吧里的email并保存到MySQL">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。</p>
+<a id="more"></a>
+<hr>
+<p>国际惯例，先上图 (:</p>
+<p><img src="images/1.png" alt=""></p>
+<p>还是看看数据把…输入命令</p>
+<p><img src="images/2.png" alt=""></p>
+<p>结果:</p>
+<p><img src="images/3.png" alt=""></p>
+<p>一共761条，看起来还不错，当然还是有些不正确的邮箱，代码在这<a href="https://github.com/ZCKun/CCCoding" target="_blank" rel="noopener">CCCoding</a><br>或者直接<code>wget https://raw.githubusercontent.com/ZCKun/CCCoding/master/tieba_email.py</code>下载到本地</p>
+<p>说一下要用到的模块</p>
+<blockquote>
+<p>requests<br>re<br>pymysq<br>可能有些刚入这行伙计没接触过MySQL，我就在这简单的说下如何安装和配置，我只有一台装了debian的机器，linux下操作都一样，mac应该也查不了多少，win的话可以百度</p>
+</blockquote>
+<blockquote>
+<h2 id="首先安装MySQL到你的机器上"><a href="#首先安装MySQL到你的机器上" class="headerlink" title="首先安装MySQL到你的机器上"></a>首先安装MySQL到你的机器上</h2><p>这是官网: <a href="http://www.mysql.com/" target="_blank" rel="noopener">www.mysql.com/</a><br>下载地址: <a href="http://www.mysql.com/downloads/" target="_blank" rel="noopener">www.mysql.com/downloads/</a><br>社区版本下载地址: dev.mysql.com/downloads/mysql/<br>考虑到有些人像我当年一样没电脑只有一部android手机也写了几个月的代码的情况下，在这里我也说下如何用手机安装</p>
+<blockquote>
+<p>1、MySQL（mariadb），请确认你的手机是android并且版本在5.x以上最好6.x<br>2、首先在你手机安装一个软件－termux，你可以百度或者去google play下载<br>3、安装好了打开后看到熟悉的终端，输入　<code>apt update &amp;&amp; apt upgrade</code><br>4、然后开始安装mariadb(mysql的那啥。。。)　<code>apt-get install mariadb</code><br>5、安装好了之后　输入　<code>mysqld</code>　开启服务<br>6、然后另开一个窗口输入　<code>mysql</code>　出错。。内心懵逼啊，　我这特么不是装好了么<br>7、别慌，termux上安装mariadb时不会要你设置密码，但是我们有办法<br>8、输入　<code>mysqladmin -u root password &lt;你的密码&gt;</code>　这样就设置了你的root用户的密码了<br>9、然后输入　<code>mysql -u root -p</code> 回车，要求输入密码，填写你刚刚设置的密码就ok了<br>10、然后开始配置用户的host，以便于你在电脑／手机上可以方便的用python连接，我这里用电脑示范，确保你手机后台在运行服务，在你的计算机上登录你手机上的mariadb时可以用　<code>mysql -h host -P port -u user -p</code> 这里的host是指你手机的ip(局域网的)，port端口mysql／mariadb默认是3306，user就是登录的用户<br>11、在你登录成功后，出现如下界面:<br><img src="images/4.png" alt=""><br>12、手机上:<br><img src="images/7.png" alt=""></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>之后输入的命令啥的都一样，我就不再一一截图了。。。<br>输入　<code>SHOW DATABASES;</code>　或者　<code>show databases;</code>　查看有哪些数据库</p>
+</blockquote>
+<p><img src="images/8.png" alt=""></p>
+<blockquote>
+<p>可能和我的不一样，很正常，你只要确认有mysql这个数据库就可以了<br>接着输入　<code>USE mysql</code>　或　<code>use mysql</code>　相当于进入该数据库</p>
+</blockquote>
+<p><img src="images/9.png" alt=""></p>
+<blockquote>
+<p>看到和我的提示差不多一样就没毛病</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>你可以用　<code>SHOW TABLES;</code>　查看有哪些数据表，但是我这里就不瞎弄了</p>
+</blockquote>
+<blockquote>
+<p>在这里我们新建一个用户，并让其他机器可以连接到来方便我们开发<br>输入　<code>INSERT INTO user (Host, User, Password) VALUES (&quot;%&quot;, &quot;用户名&quot;, &quot;密码&quot;);</code><br>解释一下“％”这玩意儿，如果你想让别处的机器也可以连接当前数据库的话，就这样写，“％”是ＭySQL里的通配符</p>
+</blockquote>
+<blockquote>
+<p>如过用上面的命令出错了，那么你还是。。。。。。。别慌，我有办法<br>输入　<code>CREATE USER &quot;用户名&quot;@&quot;%&quot; IDENTIFIED BY &quot;密码&quot;;</code></p>
+</blockquote>
+<blockquote>
+<p>但是这还不够，接着先为刚刚创建的用户新建一个数据库，比如叫：testDB<br>输入　<code>CREATE DATABASE testDB;</code></p>
+</blockquote>
+<blockquote>
+<p>然后给它这个数据库的所有权限，接着输入 <code>GRANT ALL PRIVILEGES ON testDB.* TO &quot;刚刚创建的用户名&quot;@&quot;%&quot; IDENTIFIED BY &quot;密码&quot;;</code></p>
+</blockquote>
+<blockquote>
+<p>创建完了，然后检查一下是否成功，输入 <code>SELECT Host, User, Password, Select_priv, Insert_priv, Update_priv, Create_priv FROM user WHERE User = &quot;你刚刚创建的用户名&quot;;</code></p>
+</blockquote>
+</blockquote>
+<p><img src="images/10.png" alt=""></p>
+<blockquote>
+<p>出现如上图显示有东西就是创建成功，password是经过加密的，还有一点忘说了，这操作只能在root用户下才可以</p>
+</blockquote>
+<blockquote>
+<p>linux的直接 <code>sudo apt-get install mysql-server</code>　就搞定了，当然不闲麻烦的去官网下载<br>在安装期间会要求你设置root密码，这是mysql的root用户密码，最好别忘记<br>在Windows上，安装时请选择UTF-8编码，以便正确地处理中文<br>在Mac或Linux上，需要编辑MySQL的配置文件，把数据库默认的编码全部改为UTF-8。MySQL的配置文件默认存放在<code>/etc/my.cnf</code>或者<code>/etc/mysql/my.cnf</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"></span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line"></span><br><span class="line">character-set-server = utf8</span><br><span class="line"></span><br><span class="line">collation-server = utf8_general_ci</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后一切妥了，测试是否安装成功，终端下输入 mysql -u root -p　然后会车输入你的root密码，出现这样的界面就是ok了</p>
+</blockquote>
+<p><img src="images/11.png" alt=""></p>
+<blockquote>
+<p>对了，忘了创建数据表了，，，</p>
+<blockquote>
+<p>输入　<code>CREATE TABLE email (email VARCHAR(30));</code><br>这里第一个email是数据表的名称，第二个email是列的名称，30的意思就是限制大小30字符以内，不一定要用VARCHAR，你也可以用CHAR、DATA来表示，主要看你要存啥东西</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>终于开始讲爬虫了，我日，码了一个多小时的字。。。<br>本次的目标网址<a href="http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615，我们得到他&quot;?&quot;前面的那串数字就可以了" target="_blank" rel="noopener">http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615，我们得到他&quot;?&quot;前面的那串数字就可以了</a></p>
+<p><img src="images/12.png" alt=""></p>
+<p>一共13页，思路来了</p>
+<blockquote>
+<p>１、获取爬取的帖子的页数，然后生成链接列表<br>２、迭代链接列表请求，之后解析<br>３、连接mysql数据库，然后存储</p>
+</blockquote>
+<p>获取帖子页码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">'''获取帖子有多少页'''</span></span><br><span class="line">    resp = requests.get(self.tmp_url, headers=self.headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != requests.code.OK:</span><br><span class="line">        print(<span class="string">"Request Error ):"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        page = int(re.findall(<span class="string">'共&lt;span class="red"&gt;(.*?)&lt;/span&gt;页'</span>, resp.text, re.S)[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">"Error:"</span>, e)</span><br><span class="line">        sys.exit()</span><br><span class="line">    </span><br><span class="line">    _ = <span class="string">"http://tieba.baidu.com/p/%s?pn=&#123;&#125;"</span> % self.id</span><br><span class="line">    self.urls = [_.format(pn) <span class="keyword">for</span> pn <span class="keyword">in</span> range(<span class="number">1</span>, page+<span class="number">1</span>)]</span><br></pre></td></tr></table></figure></p>
+<p>连接数据库并保存:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connection_mysql</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">'''保存到MySQL数据库'''</span></span><br><span class="line">    db = pymysql.connect(<span class="string">'地址'</span>, <span class="string">'用户名'</span>, <span class="string">'数据库密码'</span>, <span class="string">'连接的表名'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> self.content:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            cursor.execute(<span class="string">f'INSERT INTO email VALUES ("<span class="subst">&#123;i&#125;</span>")'</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">'\033[1;31mERROR\033[0m: \033[0;31m%s\033[0m ):'</span> % e)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    db.commit()</span><br><span class="line">    cursor.close()</span><br><span class="line">    db.close()</span><br><span class="line">    print(<span class="string">'DONE! (:'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>详细代码可以在这里看到 <a href="https://github.com/ZCKun/CCCoding" target="_blank" rel="noopener">CCCoding</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/crawler/" rel="tag"># crawler</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/01/python-web-crawler-sogou-index-170801/" rel="next" title="Python爬虫－抓取搜狗指数">
+                <i class="fa fa-chevron-left"></i> Python爬虫－抓取搜狗指数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/10/android-linux-deploy-170910/" rel="prev" title="手机也可以渗透？来，开始你的表演">
+                手机也可以渗透？来，开始你的表演 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="2h0n9">
+            
+              <p class="site-author-name" itemprop="name">2h0n9</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先安装MySQL到你的机器上"><span class="nav-number">1.</span> <span class="nav-text">首先安装MySQL到你的机器上</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">2h0n9</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz',
+        appKey: 'RQlyxX1TUDOXTSd7OKfh0n2w',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
