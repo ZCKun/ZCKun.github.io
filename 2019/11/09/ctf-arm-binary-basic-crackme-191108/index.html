@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="arm,ctf,crackme,">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="arm,ctf,crackme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Challenge - ARM Basic Crackme">
+<meta property="og:url" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/index.html">
+<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/main.jpg">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/graph_first_block.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_begin.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_chage_fp_addr.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_chage_sp_save_local_value.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_any_01.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/graph_two_block.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/graph_three_block.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_any_01.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/arm-demo-hex-01.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/cutter_if_else_blocks.png">
+<meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/result.png">
+<meta property="og:updated_time" content="2019-11-09T08:35:45.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTF Challenge - ARM Basic Crackme">
+<meta name="twitter:image" content="http://www.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/main.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/">
+
+
+
+
+
+  <title>CTF Challenge - ARM Basic Crackme | 2h0n$2ck</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2h0n$2ck</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">深自缄默，如云漂泊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="2h0n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2h0n$2ck">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CTF Challenge - ARM Basic Crackme</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T13:09:51+08:00">
+                2019-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/09/ctf-arm-binary-basic-crackme-191108/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/09/ctf-arm-binary-basic-crackme-191108/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/11/09/ctf-arm-binary-basic-crackme-191108/" class="leancloud_visitors" data-flag-title="CTF Challenge - ARM Basic Crackme">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://www.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/main.jpg" alt=""></p>
+<a id="more"></a>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
+<p>这是一个arm32的程序，<a href="https://www.root-me.org/en/Challenges/Cracking/ELF-ARM-basic-crackme" target="_blank" rel="noopener">ELF ARM - Basic Crackme</a></p>
+<p>你可以直接从这<a href="files/ch23.bin">下载</a>程序</p>
+</blockquote>
+<hr>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>看向流程图，第一个块我一开始以为没什么好看的，后来越发觉得这里面做了很多工作，忽略这个块就会搞得你看后面的一头雾水。</p>
+<p>就是获取argc的长度，看是不是小于2，小于2说明没有输入password，直接puts信息提示输入。</p>
+<p><img src="images/graph_first_block.png" alt=""></p>
+<p>一行一行的分析，这里我会用到画图的方式来更好的理解堆栈</p>
+<blockquote>
+<p>1、首先是往栈中放些东西，注意这里用的不是push，因为push指令只在thumb模式中有，而这个程序是arm模式的；r11是栈帧指针，lr是链接寄存器，具体可以看我之前的文章 <a href="http://www.2h0n9.com/2019/11/03/arm-data-type-191103" target="_blank" rel="noopener">ARM数据类型</a>；这条指令首先会减少sp的值，也就是扩大堆栈的空间，然后将r4,r11,r14寄存器以<code>从右往左的顺序</code>放到分配好的栈里(LR -&gt; R11(FP) -&gt; R4)<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STMFD </span>  <span class="built_in">SP</span>!, &#123;<span class="built_in">R4</span>,<span class="built_in">R11</span>,<span class="built_in">LR</span>&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>堆栈情况如图<br><img src="images/stack_begin.png" alt=""><br>2、这条指令就是改变了下fp的位置，即指向刚刚放入堆栈的LR寄存器(<code>记住一个寄存器32位，也就是32/8=4个字节</code>)<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R11</span>, <span class="built_in">SP</span>, <span class="number">#8</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><img src="images/stack_chage_fp_addr.png" alt=""><br>3、我们都知道arm有个函数调用约定 (<a href="http://www.2h0n9.com/2019/11/03/arm-data-type-191103/" target="_blank" rel="noopener">ARM数据类型</a>)，就是r0-r3用作函数的前4个参数，这里用到的是r0和r1；在arm中，有30个32位的通用寄存器，这意味着每个寄存器的大小都是4个字节；<br>这条指令的主要作用是分配28个字节的栈空间来存放局部变量<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SUB </span>    <span class="built_in">SP</span>, <span class="built_in">SP</span>, <span class="number">#0x1C</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>所以此时的堆栈应该是这样的<br><img src="images/stack_chage_sp_save_local_value.png" alt=""><br>4、分配了栈空间，那肯定要放东西了；这条指令就是在 <code>r11 + (-0x20)</code> 也就是 <code>0xbefff13c + (-0x20) = 0xbefff11c</code> 处存放参数1，这个地址是在sp指针的下面那个栈<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R0</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_20</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>(因为这里改变不大，我就懒得上堆栈图了，结合下面的几条指令一起上图)<br>这条指令是把R1(参数2)存放到 <code>r11 + (-0x24) = 0xbefff118</code> 也就是栈顶SP处<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R1</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_24</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后分别存放0x6、0x0到0xbefff12c、0xbefff128处<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MOV </span>    <span class="built_in">R3</span>, <span class="number">#6</span></span><br><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>]</span><br><span class="line"><span class="keyword">MOV </span>    <span class="built_in">R3</span>, <span class="number">#0</span></span><br><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_14</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>假设我们什么也没输入，此时R0=1，如果要问为什么等于1，那你需要去补充下C语言的知识，因为main方法的第一个参数是第二参数的长度，第二个参数是从命令行接收的用户输入；结合上面的多条指令，所以此时堆栈应该长这样<br><img src="images/stack_any_01.png" alt=""><br>5、接着就是取出参数1，然后比较是否等于2，如果等于就跳转到0x84B0，否则就输入loser…，然后exit 并传个1<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_20</span>]</span><br><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R3</span>, <span class="number">#2</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_84B0</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<p>直接看true执行的块</p>
+<p><img src="images/graph_two_block.png" alt=""></p>
+<p>来一行一行分析</p>
+<blockquote>
+<p>首先是从<code>fp+0x24</code>处获取数据到r3寄存器，这个地址存的是参数2，自己看上面的代码就知道了<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_24</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后是从<code>fp+0x24+0x4</code>处获取数据到r3寄存器，这个地址是我们在命令行运行该程序输入的内容；因为r3的地址就是参数2，再因为这是32位的程序，char*的大小为4个字节，所以偏移量是+0x4<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R3</span>,<span class="number">#4</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着看，这行的意思是把r3又存到 <code>fp+0x18</code> 地址处<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后是加载格式化字符串，放在r3寄存器<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, <span class="symbol">=aCheckingSForPa</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后又移动到r0寄存器来用作printf的第一个参数<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">MOV </span>    <span class="built_in">R0</span>, <span class="built_in">R3</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着取出输入的内容，放在r1寄存器用作printf的第二参数<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R1</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后就是调用printf<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BL </span>     printf</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着又从 <code>fp+0x18</code> 取出输入内容，因为刚刚调用了printf<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R0</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后调用strlen，参数是r0，获取输入内容的长度并把长度放在r3寄存器，记住r0在每个方法执行结束后就是该方法的返回值<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BL </span>     <span class="keyword">strlen</span></span><br><span class="line"><span class="keyword">MOV </span>    <span class="built_in">R3</span>, <span class="built_in">R0</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后把长度r3存到 <code>fp+0x1c</code> 地址，接着又取出来放在r3寄存器。。。<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#status</span>]</span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#status</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后判断长度是否小于6，如果小于就跳转执行puts输出”Loser…” (受到了作者的嘲讽<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R3</span>, <span class="number">#6</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_84F8</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>接着看 fasle 块</p>
+<p><img src="images/graph_three_block.png" alt=""></p>
+<p>还是一行一行分析</p>
+<blockquote>
+<p>我们知道r11至始至终都没变过，所以这里还是取 <code>0xbefff13c+(-0x10)=0xbefff12c</code> 处的数据，这个地址在第一个块也就是我们最开始分析的时候存过一个数据，那就是0x6，方便更好的理解，我把上面的堆栈图再上一次<br><img src="images/stack_any_01.png" alt=""><br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R4</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后又是获取输入的字符串，并获取它的长度放在R3<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R0</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>] </span><br><span class="line"><span class="keyword">BL </span>     <span class="keyword">strlen</span></span><br><span class="line"><span class="keyword">MOV </span>    <span class="built_in">R3</span>, <span class="built_in">R0</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>紧接着这里有个反转减法运算操作，反转减法就是把两个要算的数调换位置算，比如这条指令就是 <code>r3 = r4 - r3</code>，这里开始我们需要仔细分析，因为这里到了算法部分，这的反转减法是用 <code>6 - 字符串长度</code><br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RSB </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="built_in">R4</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着把运算结果存到刚刚取出0x6的地址<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后又把输入的字符串取出来，我先在这说明一下，这里 <code>r11+#s</code> 的地址的数据还是一个地址，在这个地址中的数据才是输入的字符串，我也觉得绕，所以我有个办法能帮助我们更好理解<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>首先写个仿照这部分简单写个程序，关于字符串定义啥玩意儿的可以看这里<a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0774i/czt1510589813860.html" target="_blank" rel="noopener">String definition directives</a><br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">.global</span> main               <span class="comment">;程序入口</span></span><br><span class="line"><span class="symbol">main</span>:                      </span><br><span class="line"><span class="number">0x00000000</span>    <span class="keyword">MOV </span>       <span class="built_in">R1</span>,<span class="number">#0xa</span>         <span class="comment">; E3A0100A</span></span><br><span class="line"><span class="number">0x00000004</span>    <span class="keyword">MOV </span>       <span class="built_in">R2</span>,<span class="number">#5</span>           <span class="comment">; E30A2005</span></span><br><span class="line"><span class="number">0x00000008</span>    <span class="keyword">ADD </span>       <span class="built_in">R3</span>,<span class="built_in">R1</span>,<span class="built_in">R2</span>        <span class="comment">; E0813002</span></span><br><span class="line"><span class="number">0x0000000c</span>    <span class="keyword">LDR </span>       <span class="built_in">R3</span>,<span class="symbol">=pass</span>        <span class="comment">; E59F3008</span></span><br><span class="line"><span class="number">0x00000010</span>    <span class="keyword">LDRB </span>      <span class="built_in">R2</span>,[<span class="built_in">R3</span>]         <span class="comment">; E5D32000</span></span><br><span class="line"><span class="number">0x00000014</span>    <span class="keyword">LDR </span>       <span class="built_in">R3</span>,<span class="symbol">=pass</span>        <span class="comment">; E51F3000</span></span><br><span class="line"><span class="number">0x00000018</span>    <span class="keyword">ADD </span>       <span class="built_in">R3</span>,<span class="built_in">R3</span>,<span class="number">#5</span>        <span class="comment">; E2833005</span></span><br><span class="line"><span class="number">0x0000001c</span>    <span class="keyword">LDRB </span>      <span class="built_in">R3</span>, [<span class="built_in">R3</span>]        <span class="comment">; E5D33000</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">.text</span></span><br><span class="line"><span class="number">0x00000001c</span>   pass: <span class="meta">.asciz</span> <span class="string">"122923"</span>      <span class="comment">; 39323231</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>编译后用十六进制打开差不多是这样，我这里只获取了代码和字符串部分，其他的比如格式啥的就不看了；这里字符串存储用的小端序。<br><img src="images/arm-demo-hex-01.png" alt=""><br>当程序运行，pc会指向0x00000000，也就是第一条指令 <code>mov r1,#10</code> 的位置，然后直到0xc处，这里其实写成这样 <code>ldr r3, [pc, #16]</code>，就是当pc指向这条指令，那么就直接用pc的地址偏移16个字节，直接到字符串的地址，这里的r3的内容就是0x00000001c；接着就是<code>ldrb</code>，这个指令和ldr的最大区别就是它只获取8个字节的数据，比如这里就是获取的r3的地址所指向的字符串的8个字节数据，也就是0x31；然后这里的ldr可以这样写 <code>ldr r3, [pc,#8]</code>，接着就是r3在原地址上偏移0x5，然后再用ldrb获取8个字节的数据，那就是最后一个字符 “3” (0x33)</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>回到crackme，接下来是ldrb指令，这里就是获取第一个字符<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R2</span>, [<span class="built_in">R3</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后是获取最后一个字符<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]</span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#5</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>接着就是比较，用cmp来使两个字符的ascii码相减，根据结果改变cspr flag，beq是根据z flag来决定是否跳转的，z flag的条件是两个数相减为0时置1，也就是相等就跳转<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_8538</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>来看看如果相等会怎样；首先从 <code>r11+(-10)</code> 地址处取数据，这个地址存的是之前 <code>6-字符串长度</code> 的结果，然后自增1，接着存到原始地址；所以这里也就是自增1的作用<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>]</span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#1</span></span><br><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>从下图可以看出每个块的最后都有一次比较来看，这里应该是多个if else，然后再自增一个int变量，暂时不清楚这个变量有什么用。<br><img src="images/cutter_if_else_blocks.png" alt=""><br>直接看下一个判断块<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;获取第一个字符</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>, <span class="number">#1</span>    <span class="comment">;将字符ascii码加1</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#1</span>    <span class="comment">;将字符串地址偏移0x1；str: 0x0  34 33 32 31，r3最开始在0x0，偏移一个字节就到了0x1，也就是33</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;从偏移后的地址处取第一个字符</span></span><br><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>        <span class="comment">;然后用第一个字符的ascii+1与第二个字符的ascii比较</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_8564      <span class="comment">;如果相等就自增</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后看第三个判断块<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#3</span>    <span class="comment">;字符串地址偏移3个字节，可以写成r3[3]</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;取偏移后的第一个字符</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>, <span class="number">#1</span>    <span class="comment">;字符ascii+1</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;取第一个字符</span></span><br><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>        <span class="comment">;用字符的第四个字符ascii与第一个字符ascii比较</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_8590      <span class="comment">;相等就自增</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>第四个判断块<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#2</span>    <span class="comment">;将字符串地址便宜2个字节</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;取偏移后第一个字符</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>, <span class="number">#4</span>    <span class="comment">;字符ascii+4</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]  <span class="comment">;取字符</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#5</span>    <span class="comment">;字符串偏移0x5个字节，就到了`输入的`最后一个字符，要知道字符串最后一个字符是`\0`</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]      <span class="comment">;取偏移后第一个字符</span></span><br><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R2</span>, <span class="built_in">R3</span>        <span class="comment">;用输入的字符串中的第三个字符的ascii+4与输入的字符串中的最后一个字符的ascii比较</span></span><br><span class="line"><span class="keyword">BEQ </span>    loc_85C0      <span class="comment">;相等自增</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>if else块到这就完了，根据上面的逻辑我写了个c代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> args, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> *pass = argv[<span class="number">1</span>];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (args != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Checking %s for password...\n"</span>, pass);</span><br><span class="line">    len = <span class="built_in">strlen</span>(pass)</span><br><span class="line">    <span class="keyword">if</span> (len &lt; tmp) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    len = <span class="number">6</span> - len;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">0</span>] != pass[<span class="number">5</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">0</span>]+<span class="number">1</span> != pass[<span class="number">1</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">3</span>]+<span class="number">1</span> != pass[<span class="number">0</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">2</span>]+<span class="number">4</span> != pass[<span class="number">5</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">4</span>]+<span class="number">2</span> != pass[<span class="number">2</span>]) len++;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>然后分析最后一个判断块<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]      <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#3</span>        <span class="comment">;字符串地址偏移3个字节</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]          <span class="comment">;取r3[3]，第四个字符串</span></span><br><span class="line"><span class="keyword">EOR </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#0x72</span>     <span class="comment">;逻辑异或，就是二进制相同的为0；这里是第四个字符ascii与0x72逻辑异或运算</span></span><br><span class="line"><span class="keyword">AND </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#0xFF</span>     <span class="comment">;逻辑与，和异或相反；这里是将异或后的内容与0xff逻辑与运算</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R2</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>] <span class="comment">;应该没忘记，这个地址存的是那个自增的数</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R2</span>, <span class="built_in">R3</span>        <span class="comment">;自增的数据与运算后的R3相加，结果还是存在r3</span></span><br><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>] <span class="comment">;把结果存到自增变量的地址</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#s</span>]      <span class="comment">;取字符串</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R3</span>, <span class="number">#6</span>        <span class="comment">;偏移6个字节</span></span><br><span class="line"><span class="keyword">LDRB </span>   <span class="built_in">R3</span>, [<span class="built_in">R3</span>]          <span class="comment">;取最后一个字符终止符`\0`</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R2</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>] <span class="comment">;取运算结果</span></span><br><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R3</span>, <span class="built_in">R2</span>, <span class="built_in">R3</span>        <span class="comment">;相加，运算结果+0</span></span><br><span class="line"><span class="keyword">STR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>] <span class="comment">;存</span></span><br><span class="line"><span class="keyword">LDR </span>    <span class="built_in">R3</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_10</span>] <span class="comment">;取</span></span><br><span class="line"><span class="keyword">CMP </span>    <span class="built_in">R3</span>, <span class="number">#0</span>            <span class="comment">;比较</span></span><br><span class="line"><span class="keyword">BNE </span>    loc_8644          <span class="comment">;不相等跳转输出loser，相等输出Success, you rocks</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>现在可以明确我们需要最后的r3等于0，而r3=与或运算+0，所以我们需要之前的与或运算结果为0；</p>
+<blockquote>
+<p>首先是字符串的第四个字符与0x72(‘r’)异或，然后是与0xff逻辑与<br>逻辑与的运算是两个数的位为1结果才为1，那么我们就要两个数的没位都为0就行了，而能达成这个条件的的只有数字0；<br>而这里的逻辑与运算的第二个数0xff我们没法让它变化，所以从逻辑异或中入手<br>想要异或的结果为0，那么就需要两个数相等，也就是说字符串中的第四个字符串为r<br>然后后面还有一次运算，这个结果会与之前自增的那个数相加，所以我们还需要让那个自增数为0，也就是那些判断都为false</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>为了方便分析，我更新了下c代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> args, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> *pass = argv[<span class="number">1</span>];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (args != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Checking %s for password...\n"</span>, pass);</span><br><span class="line">    len = <span class="built_in">strlen</span>(pass);</span><br><span class="line">    <span class="keyword">if</span> (len &lt; tmp) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    len = <span class="number">6</span> - len;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">0</span>] != pass[<span class="number">5</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">0</span>]+<span class="number">1</span> != pass[<span class="number">1</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">3</span>]+<span class="number">1</span> != pass[<span class="number">0</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">2</span>]+<span class="number">4</span> != pass[<span class="number">5</span>]) len++;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">4</span>]+<span class="number">2</span> != pass[<span class="number">2</span>]) len++;</span><br><span class="line">    tmp = ((pass[<span class="number">3</span>]^<span class="number">0x72</span>)&amp;<span class="number">0xFF</span>) + len + pass[<span class="number">6</span>];</span><br><span class="line">    <span class="keyword">if</span> (tmp) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(len);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Success, you rocks!"</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>emm…写了两种<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> args, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> *pass = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (args != <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Checking %s for password...\n"</span>, pass);</span><br><span class="line">    len = <span class="built_in">strlen</span>(pass);</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">        <span class="built_in">exit</span>(len);</span><br><span class="line">    &#125;</span><br><span class="line">    len = <span class="number">6</span> - len;</span><br><span class="line">    <span class="keyword">if</span> (pass[<span class="number">0</span>] == pass[<span class="number">5</span>]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pass[<span class="number">0</span>]+<span class="number">1</span> == pass[<span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pass[<span class="number">3</span>]+<span class="number">1</span> == pass[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (pass[<span class="number">2</span>]+<span class="number">4</span> == pass[<span class="number">5</span>]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (pass[<span class="number">4</span>]+<span class="number">2</span> == pass[<span class="number">2</span>]) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (pass[<span class="number">3</span>] == <span class="number">0x72</span>) &#123;</span><br><span class="line">                            <span class="built_in">puts</span>(<span class="string">"Success, you rocks!"</span>);</span><br><span class="line">                            <span class="built_in">exit</span>(len);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Loser..."</span>);</span><br><span class="line">    <span class="built_in">exit</span>(len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>已知password长度为6，第四个字符为0x72，然后来分析判断，初始化 <code>pass = [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;0x72&#39;, &#39;&#39;, &#39;&#39;]</code></p>
+<blockquote>
+<p>从已知的地方开始，第四个字符+1等于第一个字符，那么 <code>pass = [&#39;0x73&#39;, &#39;&#39;, &#39;&#39;, &#39;0x72&#39;, &#39;&#39;, &#39;&#39;]</code><br>接着第一个字符等于第六个字符，<code>pass = [&#39;0x73&#39;, &#39;&#39;, &#39;&#39;, &#39;0x72&#39;, &#39;&#39;, &#39;0x73&#39;]</code><br>然后第一个字符+1等于第二个字符，<code>pass = [&#39;0x73&#39;, &#39;0x74&#39;, &#39;&#39;, &#39;0x72&#39;, &#39;&#39;, &#39;0x73&#39;]</code><br>第三个字符+4等于第六个字符，<code>pass = [&#39;0x73&#39;, &#39;0x74&#39;, &#39;&#39;, &#39;0x72&#39;, &#39;0x67&#39;, &#39;0x73&#39;]</code><br>最后第五个字符+2等于第三个字符，<code>pass = [&#39;0x73&#39;, &#39;0x74&#39;, &#39;0x6f&#39;, &#39;0x72&#39;, &#39;0x6d&#39;, &#39;0x73&#39;]</code></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>所以结果为 <code>storms</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span>.join([chr(int(i,<span class="number">16</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">'0x73'</span>, <span class="string">'0x74'</span>, <span class="string">'0x6f'</span>, <span class="string">'0x72'</span>, <span class="string">'0x6d'</span>, <span class="string">'0x73'</span>]]) <span class="comment"># storms</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><img src="images/result.png" alt=""></p>
+</blockquote>
+<hr>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>期间查的资料以及所用的到网页工具：</p>
+<p><a href="https://static.docs.arm.com/100076/0100/arm_instruction_set_reference_guide_100076_0100_00_en.pdf" target="_blank" rel="noopener">arm_instruction_set_reference_guide_100076_0100_00_en</a><br><a href="http://www.2h0n9.com/2019/11/03/arm-data-type-191103/#more" target="_blank" rel="noopener">ARM数据类型</a><br><a href="https://static.docs.arm.com/100067/0611/armclang_reference_guide_100067_0611_00_en.pdf" target="_blank" rel="noopener">armclang_reference_guide_100067_0611_00_en</a><br><a href="http://armconverter.com/" target="_blank" rel="noopener">armconverter</a><br><a href="https://onlinedisassembler.com/odaweb/" target="_blank" rel="noopener">onlinedisassembler</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>🙏</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/arm/" rel="tag"># arm</a>
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/crackme/" rel="tag"># crackme</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/03/arm-create-first-program-191103/" rel="next" title="构建第一个ARM程序">
+                <i class="fa fa-chevron-left"></i> 构建第一个ARM程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="2h0n9">
+            
+              <p class="site-author-name" itemprop="name">2h0n9</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
+                      
+                        <i class="fa fa-fw fa-television"></i>B站</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">2h0n9</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz',
+        appKey: 'RQlyxX1TUDOXTSd7OKfh0n2w',
+        placeholder: 'ヾﾉ≧∀≦)o',
+        avatar:'https://avatars0.githubusercontent.com/u/21230213',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
