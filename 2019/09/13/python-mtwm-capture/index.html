@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="前言博客：blog">
+<meta name="description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页） 不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “移动长连接“ 的技术导致我抓不到包； 接着我在网上找了关于该名词的解释以及mt发表">
 <meta name="keywords" content="-capture -meituan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="美团外卖抓包分析">
 <meta property="og:url" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/index.html">
 <meta property="og:site_name" content="2h0n$2ck">
-<meta property="og:description" content="前言博客：blog">
+<meta property="og:description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页） 不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “移动长连接“ 的技术导致我抓不到包； 接着我在网上找了关于该名词的解释以及mt发表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/2.png">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/6.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/7.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/8.png">
-<meta property="og:updated_time" content="2019-09-13T11:30:34.800Z">
+<meta property="og:updated_time" content="2019-11-19T13:25:07.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="美团外卖抓包分析">
-<meta name="twitter:description" content="前言博客：blog">
+<meta name="twitter:description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页） 不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “移动长连接“ 的技术导致我抓不到包； 接着我在网上找了关于该名词的解释以及mt发表">
 <meta name="twitter:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/1.png">
 
 
@@ -370,8 +370,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博客：<a href="http://2h0n9.com" target="_blank" rel="noopener">blog</a></p>
-<a id="more"></a>
+        <a id="more"></a>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="1、Charles抓包"><a href="#1、Charles抓包" class="headerlink" title="1、Charles抓包"></a>1、Charles抓包</h3><p>一开始爬 <strong>美团外卖App</strong> 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 <strong>美团外卖App</strong> 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）</p>
 <p>不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “<strong><a href="https://baike.baidu.com/item/%E9%95%BF%E8%BF%9E%E6%8E%A5/568486?fr=aladdin" target="_blank" rel="noopener">移动长连接</a></strong>“ 的技术导致我抓不到包；</p>
 <p>接着我在网上找了关于该名词的解释以及mt发表的一篇文章：<a href="https://tech.meituan.com/2017/03/17/shark-sdk.html" target="_blank" rel="noopener">移动网络优化实践</a>，用我所理解的话来说就是： <strong>打开APP的时候移动端和服务器建立起tcp连接后，这个连接就不断开了，后续的请求和接收都走该通道，这个tcp长连接一般都是会使用自定义的协议，而非http，所有普通的抓包软件都无法抓到这类请求（如有误请指正）</strong>。</p>
@@ -555,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -641,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Charles抓包"><span class="nav-number">2.1.</span> <span class="nav-text">1、Charles抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、长连接分析"><span class="nav-number">2.2.</span> <span class="nav-text">2、长连接分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ip筛选"><span class="nav-number">2.3.</span> <span class="nav-text">3、ip筛选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-PC端"><span class="nav-number">2.4.</span> <span class="nav-text">&gt;PC端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-Android"><span class="nav-number">2.5.</span> <span class="nav-text">&gt;Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Charles抓包"><span class="nav-number">1.1.</span> <span class="nav-text">1、Charles抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、长连接分析"><span class="nav-number">1.2.</span> <span class="nav-text">2、长连接分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、ip筛选"><span class="nav-number">1.3.</span> <span class="nav-text">3、ip筛选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-PC端"><span class="nav-number">1.4.</span> <span class="nav-text">&gt;PC端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-Android"><span class="nav-number">1.5.</span> <span class="nav-text">&gt;Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">2.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
