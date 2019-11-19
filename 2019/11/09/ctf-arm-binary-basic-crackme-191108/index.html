@@ -85,7 +85,7 @@
 <meta property="og:url" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/index.html">
 <meta property="og:site_name" content="2h0n$2ck">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png">
+<meta property="og:image" content="http://2h0n9.com:40302/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png">
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/graph_first_block.png">
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_begin.png">
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/stack_chage_fp_addr.png">
@@ -97,10 +97,10 @@
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/arm-demo-hex-01.png">
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/cutter_if_else_blocks.png">
 <meta property="og:image" content="http://zckun.github.io/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/result.png">
-<meta property="og:updated_time" content="2019-11-19T10:28:20.650Z">
+<meta property="og:updated_time" content="2019-11-19T13:18:36.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTF Challenge - ARM Basic Crackme">
-<meta name="twitter:image" content="http://blog.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png">
+<meta name="twitter:image" content="http://2h0n9.com:40302/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png">
 
 
 
@@ -371,7 +371,7 @@
       
 
       
-        <p><img src="http://blog.2h0n9.com/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png" alt=""></p>
+        <p><img src="http://2h0n9.com:40302/2019/11/09/ctf-arm-binary-basic-crackme-191108/images/main.png" alt=""></p>
 <a id="more"></a>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
 <p>这是一个arm32的程序，<a href="https://www.root-me.org/en/Challenges/Cracking/ELF-ARM-basic-crackme" target="_blank" rel="noopener">ELF ARM - Basic Crackme</a></p>
@@ -383,13 +383,13 @@
 <p><img src="images/graph_first_block.png" alt=""></p>
 <p>一行一行的分析，这里我会用到画图的方式来更好的理解堆栈</p>
 <blockquote>
-<p>1、首先是往栈中放些东西，注意这里用的不是push，因为push指令只在thumb模式中有，而这个程序是arm模式的；r11是栈帧指针，lr是链接寄存器，具体可以看我之前的文章 <a href="http://blog.2h0n9.com/2019/11/03/arm-data-type-191103" target="_blank" rel="noopener">ARM数据类型</a>；这条指令首先会减少sp的值，也就是扩大堆栈的空间，然后将r4,r11,r14寄存器以<code>从右往左的顺序</code>放到分配好的栈里(LR -&gt; R11(FP) -&gt; R4)<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STMFD </span>  <span class="built_in">SP</span>!, &#123;<span class="built_in">R4</span>,<span class="built_in">R11</span>,<span class="built_in">LR</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1、首先是往栈中放些东西，注意这里用的不是push，因为push指令只在thumb模式中有，而这个程序是arm模式的；r11是栈帧指针，lr是链接寄存器，具体可以看我之前的文章 <a href="http://2h0n9.com:40302/2019/11/03/arm-data-type-191103" target="_blank" rel="noopener">ARM数据类型</a>；这条指令首先会减少sp的值，也就是扩大堆栈的空间，然后将r4,r11,r14寄存器以<code>从右往左的顺序</code>放到分配好的栈里(LR -&gt; R11(FP) -&gt; R4)<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STMFD </span>  <span class="built_in">SP</span>!, &#123;<span class="built_in">R4</span>,<span class="built_in">R11</span>,<span class="built_in">LR</span>&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>堆栈情况如图<br><img src="images/stack_begin.png" alt=""><br>2、这条指令就是改变了下fp的位置，即指向刚刚放入堆栈的LR寄存器(<code>记住一个寄存器32位，也就是32/8=4个字节</code>)<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD </span>    <span class="built_in">R11</span>, <span class="built_in">SP</span>, <span class="number">#8</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p><img src="images/stack_chage_fp_addr.png" alt=""><br>3、我们都知道arm有个函数调用约定 (<a href="http://blog.2h0n9.com/2019/11/03/arm-data-type-191103/" target="_blank" rel="noopener">ARM数据类型</a>)，就是r0-r3用作函数的前4个参数，这里用到的是r0和r1；在arm中，有30个32位的通用寄存器，这意味着每个寄存器的大小都是4个字节；<br>这条指令的主要作用是分配28个字节的栈空间来存放局部变量<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SUB </span>    <span class="built_in">SP</span>, <span class="built_in">SP</span>, <span class="number">#0x1C</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="images/stack_chage_fp_addr.png" alt=""><br>3、我们都知道arm有个函数调用约定 (<a href="http://2h0n9.com:40302/2019/11/03/arm-data-type-191103/" target="_blank" rel="noopener">ARM数据类型</a>)，就是r0-r3用作函数的前4个参数，这里用到的是r0和r1；在arm中，有30个32位的通用寄存器，这意味着每个寄存器的大小都是4个字节；<br>这条指令的主要作用是分配28个字节的栈空间来存放局部变量<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SUB </span>    <span class="built_in">SP</span>, <span class="built_in">SP</span>, <span class="number">#0x1C</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>所以此时的堆栈应该是这样的<br><img src="images/stack_chage_sp_save_local_value.png" alt=""><br>4、分配了栈空间，那肯定要放东西了；这条指令就是在 <code>r11 + (-0x20)</code> 也就是 <code>0xbefff13c + (-0x20) = 0xbefff11c</code> 处存放参数1，这个地址是在sp指针的下面那个栈<br><figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STR </span>    <span class="built_in">R0</span>, [<span class="built_in">R11</span>,<span class="symbol">#var_20</span>]</span><br></pre></td></tr></table></figure></p>
@@ -521,7 +521,7 @@
 </blockquote>
 <hr>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>期间查的资料以及所用的到网页工具：</p>
-<p><a href="https://static.docs.arm.com/100076/0100/arm_instruction_set_reference_guide_100076_0100_00_en.pdf" target="_blank" rel="noopener">arm_instruction_set_reference_guide_100076_0100_00_en</a><br><a href="http://blog.2h0n9.com/2019/11/03/arm-data-type-191103/#more" target="_blank" rel="noopener">ARM数据类型</a><br><a href="https://static.docs.arm.com/100067/0611/armclang_reference_guide_100067_0611_00_en.pdf" target="_blank" rel="noopener">armclang_reference_guide_100067_0611_00_en</a><br><a href="http://armconverter.com/" target="_blank" rel="noopener">armconverter</a><br><a href="https://onlinedisassembler.com/odaweb/" target="_blank" rel="noopener">onlinedisassembler</a></p>
+<p><a href="https://static.docs.arm.com/100076/0100/arm_instruction_set_reference_guide_100076_0100_00_en.pdf" target="_blank" rel="noopener">arm_instruction_set_reference_guide_100076_0100_00_en</a><br><a href="http://2h0n9.com:40302/2019/11/03/arm-data-type-191103/#more" target="_blank" rel="noopener">ARM数据类型</a><br><a href="https://static.docs.arm.com/100067/0611/armclang_reference_guide_100067_0611_00_en.pdf" target="_blank" rel="noopener">armclang_reference_guide_100067_0611_00_en</a><br><a href="http://armconverter.com/" target="_blank" rel="noopener">armconverter</a><br><a href="https://onlinedisassembler.com/odaweb/" target="_blank" rel="noopener">onlinedisassembler</a></p>
 
       
     </div>
