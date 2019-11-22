@@ -1,367 +1,155 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html lang=zh>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="arm,">
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
 <meta name="keywords" content="arm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARM - IT">
 <meta property="og:url" content="http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/index.html">
-<meta property="og:site_name" content="2h0n$2ck">
+<meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-10-17T10:46:15.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARM - IT">
 <meta name="twitter:description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/">
-
-
-
-
-
-  <title>ARM - IT | 2h0n$2ck</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>ARM - IT</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body class="max-width mx-auto px3 ltr">
     
-  
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/03/arm-data-type-191103/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/10/17/arm-bytecode-cmp-191017/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ARM - IT&body=Check out this article: http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;{cond}&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">2h0n$2ck</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
     </div>
-      
-        <p class="site-subtitle">深自缄默，如云漂泊</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#体系结构"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
+    </div>
+  </span>
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-info"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="2h0n9">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="2h0n$2ck">
-    </span>
-
-    
-      <header class="post-header">
-
+    <div class="content index py4">
         
-        
-          <h1 class="post-title" itemprop="name headline">ARM - IT</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T18:31:25+08:00">
-                2019-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/17/arm-bytecode-it-191017/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/17/arm-bytecode-it-191017/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/10/17/arm-bytecode-it-191017/" class="leancloud_visitors" data-flag-title="ARM - IT">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
     
+    <h1 class="posttitle" itemprop="name headline">
+        ARM - IT
+    </h1>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">0x2h</span>
+      </span>
       
+    <div class="postdate">
+      
+        <time datetime="2019-10-17T10:31:25.000Z" itemprop="datePublished">2019-10-17</time>
+        
+      
+    </div>
+
+
       
 
       
-        <h3 id="IT"><a href="#IT" class="headerlink" title="IT"></a><strong>IT</strong></h3><blockquote>
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/arm/">arm</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="IT"><a href="#IT" class="headerlink" title="IT"></a><strong>IT</strong></h3><blockquote>
 <p>IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。<br>IT 块中的指令（包括跳转）还必须在语法的 <code>{cond}</code> 部分中指定条件。<br>无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。<br>编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。<br>在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令</p>
 </blockquote>
 <a id="more"></a>
@@ -461,602 +249,133 @@
 </tr>
 </tbody>
 </table>
-<p>下面这个例子，意思是，当条件“EQ”符合时，执行指令1、3、4的mov操作，否则执行指令2的mov操作。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ITETT </span>EQ</span><br><span class="line"><span class="keyword">MOVEQ </span><span class="built_in">R0</span>, <span class="number">#1</span> <span class="comment">;//指令1</span></span><br><span class="line"><span class="keyword">MOVNE </span><span class="built_in">R0</span>, <span class="number">#0</span> <span class="comment">;//指令2</span></span><br><span class="line"><span class="keyword">MOVEQ </span><span class="built_in">R1</span>, <span class="number">#0</span> <span class="comment">;//指令3</span></span><br><span class="line"><span class="keyword">MOVEQ </span><span class="built_in">R2</span>, <span class="number">#0</span> <span class="comment">;//指令4</span></span><br></pre></td></tr></table></figure></p>
-<p>这是刚刚一个程序的代码<br><figure class="highlight tp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LSLS    <span class="keyword">R</span><span class="number">2</span>,<span class="keyword">R</span><span class="number">1</span>,#<span class="number">1</span>    ;<span class="keyword">R</span><span class="number">1</span> &lt;&lt; <span class="number">1</span>，差不多就是<span class="keyword">R</span><span class="number">1</span>*<span class="number">2</span>，结果放在<span class="keyword">R</span><span class="number">2</span></span><br><span class="line">CMP     <span class="keyword">R</span><span class="number">4</span>,<span class="keyword">R</span><span class="number">2</span>       ;<span class="keyword">R</span><span class="number">4</span> - <span class="keyword">R</span><span class="number">2</span>，判断<span class="keyword">R</span><span class="number">4</span> &gt; <span class="keyword">R</span><span class="number">2</span></span><br><span class="line">IT CC               ;如果<span class="keyword">R</span><span class="number">4</span> &lt; <span class="keyword">R</span><span class="number">2</span>，就执行MOVCC，否则跳过MOVCC</span><br><span class="line">MOVCC   <span class="keyword">R</span><span class="number">4</span>,<span class="keyword">R</span><span class="number">2</span>       ;这里是将<span class="keyword">R</span><span class="number">1</span>*<span class="number">2</span>的值<span class="keyword">R</span><span class="number">2</span>给<span class="keyword">R</span><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>下面这个例子，意思是，当条件“EQ”符合时，执行指令1、3、4的mov操作，否则执行指令2的mov操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ITETT EQ</span><br><span class="line">MOVEQ R0, #1 ;//指令1</span><br><span class="line">MOVNE R0, #0 ;//指令2</span><br><span class="line">MOVEQ R1, #0 ;//指令3</span><br><span class="line">MOVEQ R2, #0 ;//指令4</span><br></pre></td></tr></table></figure></p>
+<p>这是刚刚一个程序的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LSLS    R2,R1,#1    ;R1 &lt;&lt; 1，差不多就是R1*2，结果放在R2</span><br><span class="line">CMP     R4,R2       ;R4 - R2，判断R4 &gt; R2</span><br><span class="line">IT CC               ;如果R4 &lt; R2，就执行MOVCC，否则跳过MOVCC</span><br><span class="line">MOVCC   R4,R2       ;这里是将R1*2的值R2给R4</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p><strong>不允许</strong> 在 IT 块中使用下面的指令：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">IT</span></span><br><span class="line"><span class="keyword">CBZ </span>和 <span class="keyword">CBNZ</span></span><br><span class="line"><span class="keyword">TBB </span>和 <span class="keyword">TBH</span></span><br><span class="line"><span class="keyword">CPS、CPSID </span>和 <span class="keyword">CPSIE</span></span><br><span class="line"><span class="keyword">SETEND</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p><strong>不允许</strong> 在 IT 块中使用下面的指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IT</span><br><span class="line">CBZ 和 CBNZ</span><br><span class="line">TBB 和 TBH</span><br><span class="line">CPS、CPSID 和 CPSIE</span><br><span class="line">SETEND</span><br></pre></td></tr></table></figure></p>
 <p>使用 IT 块时的其他限制有：</p>
 <blockquote>
 <p>跳转指令或修改 pc 的任何指令只能是 IT 块中的最后一个指令。<br>无法跳转到 IT 块中的任何指令，除非在从异常处理程序返回时。<br>不能在 IT 块中使用任何汇编器指令。</p>
 </blockquote>
 <h3 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h3><p>此 16 位 Thumb 指令可用于 <strong>ARMv6T2</strong> 及更高版本</p>
 
-      
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
     </div>
-    
-    
-    
 
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechat-public.jpg" alt="2h0n9 wechat" style="width: 200px; max-width: 100%;">
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的公众号！</div>
-</div>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#体系结构"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
+    </div>
 
-      </div>
-    
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ARM - IT&body=Check out this article: http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;{cond}&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>🙏</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
+    </div>
 
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="2h0n9 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="2h0n9 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
   </div>
 </div>
 
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/arm/" rel="tag"># arm</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/10/17/arm-bytecode-cmp-191017/" rel="next" title="ARM - CMP">
-                <i class="fa fa-chevron-left"></i> ARM - CMP
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/03/arm-data-type-191103/" rel="prev" title="ARM数据类型">
-                ARM数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 0x2h
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="2h0n9">
-            
-              <p class="site-author-name" itemprop="name">2h0n9</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">34</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/zckun" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:zckuna@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.zhihu.com/people/2h0n9-2ck/activities" target="_blank" title="知乎">
-                      
-                        <i class="fa fa-fw fa-coffee"></i>知乎</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://juejin.im/user/597771d1f265da6c483d1fdf" target="_blank" title="掘金">
-                      
-                        <i class="fa fa-fw fa-wpexplorer"></i>掘金</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/2fda20797846" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/387024058" target="_blank" title="B站">
-                      
-                        <i class="fa fa-fw fa-television"></i>B站</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#IT"><span class="nav-number">1.</span> <span class="nav-text">IT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制"><span class="nav-number">2.</span> <span class="nav-text">限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体系结构"><span class="nav-number">3.</span> <span class="nav-text">体系结构</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">2h0n9</span>
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
   <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz',
-        appKey: 'RQlyxX1TUDOXTSd7OKfh0n2w',
-        placeholder: 'ヾﾉ≧∀≦)o',
-        avatar:'https://avatars0.githubusercontent.com/u/21230213',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("uSWVtQt0QRrqumCaTPMlBPbQ-gzGzoHsz", "RQlyxX1TUDOXTSd7OKfh0n2w");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
       }
     });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
   </script>
 
+<script src="/js/main.js"></script>
+<!-- search -->
 
+<!-- Google Analytics -->
 
-  
+<!-- Baidu Analytics -->
 
-  
+<!-- Disqus Comments -->
 
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
