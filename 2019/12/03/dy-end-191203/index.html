@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取String">
-<meta name="keywords" content="android,python,dy,ida,reverse engineering">
+    <meta name="description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取Strin">
+<meta name="keywords" content="android,reverse engineering,python,dy,ida">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5a6J5Y2T5oqW6Z+z55+t6KeG6aKRdjHlroznu5M=">
 <meta property="og:url" content="http://zckun.github.io/2019/12/03/dy-end-191203/index.html">
 <meta property="og:site_name" content="0x2h">
-<meta property="og:description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取String">
+<meta property="og:description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取Strin">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://2h0n9.com:40302/2019/12/03/dy-end-191203/images/main.jpg">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/idapro_new_instance.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/find_app.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/app_dbgsrc.png">
@@ -32,11 +33,11 @@
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/dissembly_offset_4_addr.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator*_01.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator*_02.png">
-<meta property="og:updated_time" content="2019-12-02T17:27:53.776Z">
+<meta property="og:updated_time" content="2019-12-02T17:48:38.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5a6J5Y2T5oqW6Z+z55+t6KeG6aKRdjHlroznu5M=">
-<meta name="twitter:description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取String">
-<meta name="twitter:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/idapro_new_instance.png">
+<meta name="twitter:description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取Strin">
+<meta name="twitter:image" content="http://2h0n9.com:40302/2019/12/03/dy-end-191203/images/main.jpg">
     
     
         
@@ -164,7 +165,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <hr>
+    <p><img src="http://2h0n9.com:40302/2019/12/03/dy-end-191203/images/main.jpg" alt=""></p>
+<hr>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>先分析个<code>if</code>块，对应的c++伪代码如下<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( paramsArray )                            <span class="comment">// 如果String[]不为null</span></span><br><span class="line">&#123;</span><br><span class="line">  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);<span class="comment">// 获取String[]长度</span></span><br><span class="line">  <span class="keyword">if</span> ( !(pArrayLength &amp; <span class="number">1</span>) )                  <span class="comment">// 这里是判断String[]长度是不是2的倍数，目的应该是为了判断参数是否完整</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt; pArrayLength; j += <span class="number">2</span> )   <span class="comment">// 以2为间隔遍历String[]，其实就是为了获取key，因为key肯定在前面的，例如：0 2 4 6 8 10 都是key的索引</span></span><br><span class="line">    &#123;</span><br><span class="line">      key = _JNIEnv::GetObjectArrayElement((<span class="keyword">int</span>)env, (<span class="keyword">int</span>)paramsArray, j);<span class="comment">// GetObjectArrayElement这个方法是获取array元素，第一个参数是jnienv，参数二是array，参数三是索引</span></span><br><span class="line">      key_char = (<span class="keyword">const</span> <span class="keyword">char</span> *)_JNIEnv::GetStringUTFChars((<span class="keyword">int</span>)env, key, <span class="number">0</span>);<span class="comment">// 将array元素转为字符串</span></span><br><span class="line">      value = _JNIEnv::GetObjectArrayElement((<span class="keyword">int</span>)env, (<span class="keyword">int</span>)paramsArray, j + <span class="number">1</span>);<span class="comment">// 这个就是获取value了</span></span><br><span class="line">      v38_value = getUTF8(env, (<span class="keyword">int</span>)jcls, value);<span class="comment">// 转为字符串</span></span><br><span class="line">      nullsub_1();</span><br><span class="line">      sub_3FCC8(&amp;v46, key_char, (<span class="keyword">int</span>)&amp;v45);   <span class="comment">// 首先处理key，v45为key_char长度</span></span><br><span class="line">      v18 = <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::<span class="built_in">string</span>,<span class="built_in">std</span>::less&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;,<span class="built_in">std</span>::allocator&lt;<span class="built_in">std</span>::pair&lt;<span class="built_in">std</span>::<span class="built_in">string</span> <span class="keyword">const</span>,<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&gt;&gt;::<span class="keyword">operator</span>[](</span><br><span class="line">              (<span class="keyword">int</span>)&amp;v47,</span><br><span class="line">              (<span class="keyword">int</span>)&amp;v46);                     <span class="comment">// 将处理后的key添加到map</span></span><br><span class="line">      sub_3F044(v18, v38_value, v19, v18);    <span class="comment">// 接着处理value</span></span><br><span class="line">      sub_3EAE8(&amp;v46);</span><br><span class="line">      nullsub_2();</span><br><span class="line">      _JNIEnv::ReleaseStringUTFChars(env, key, key_char);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注释因为是很久以前写的了，仅供参考。<br>map这玩意儿类似 <code>Java 中的 map</code> 和 <code>python 中的 dict</code>，不过底层是啥玩意儿我就不太清楚，没怎么学过c++。<br>这里的逻辑应该看得明白：</p>
 <blockquote>
