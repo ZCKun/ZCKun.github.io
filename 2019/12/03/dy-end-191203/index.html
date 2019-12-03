@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取Strin">
-<meta name="keywords" content="android,python,dy,ida,reverse engineering">
+<meta name="keywords" content="android,reverse engineering,python,dy,ida">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5a6J5Y2T5oqW6Z+z55+t6KeG6aKRdjHlroznu5M=">
 <meta property="og:url" content="http://zckun.github.io/2019/12/03/dy-end-191203/index.html">
@@ -31,9 +31,9 @@
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/breakpoint.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/registers.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/dissembly_offset_4_addr.png">
-<meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator*_01.png">
-<meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator*_02.png">
-<meta property="og:updated_time" content="2019-12-03T03:01:57.566Z">
+<meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator-_01.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/03/dy-end-191203/images/operator-_02.png">
+<meta property="og:updated_time" content="2019-12-03T05:47:27.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5a6J5Y2T5oqW6Z+z55+t6KeG6aKRdjHlroznu5M=">
 <meta name="twitter:description" content="正文先分析个if块，对应的c++伪代码如下1234567891011121314151617181920212223if ( paramsArray )                            // 如果String[]不为null&amp;#123;  pArrayLength = _JNIEnv::GetArrayLength(env, paramsArray);// 获取Strin">
@@ -257,7 +257,7 @@
 </blockquote>
 <blockquote>
 <blockquote>
-<p>首先是在堆栈申请内存，然后将参数1放到刚刚申请的堆栈里，我画了个图<br><img src="images/operator*_01.png" alt=""><br>接着从 <code>SP+4</code> 处取出参数1的地址到R3，然后再从该地址取出存放的内容（hello）<br><img src="images/operator*_02.png" alt=""><br>然后将R3复制到R0，之后算是释放刚刚申请的堆栈内存，然后回到调用方法</p>
+<p>首先是在堆栈申请内存，然后将参数1放到刚刚申请的堆栈里，我画了个图<br><img src="images/operator-_01.png" alt=""><br>接着从 <code>SP+4</code> 处取出参数1的地址到R3，然后再从该地址取出存放的内容（hello）<br><img src="images/operator-_02.png" alt=""><br>然后将R3复制到R0，之后算是释放刚刚申请的堆栈内存，然后回到调用方法</p>
 </blockquote>
 </blockquote>
 <blockquote>
