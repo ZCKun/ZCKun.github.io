@@ -6,28 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 然后用frida-ls-devices工具获取 usb device id ；接着用frida-ps -U | grep xhs获取完整包名 然后根据id和package name用radare连接frida:1r2">
+    <meta name="description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
 <meta name="keywords" content="frida,r2frida,radare2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RADARE2+FRIDA=R2FRIDA Your Best Dynamic Debugging Tool">
 <meta property="og:url" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/index.html">
 <meta property="og:site_name" content="0x2h">
-<meta property="og:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 然后用frida-ls-devices工具获取 usb device id ；接着用frida-ps -U | grep xhs获取完整包名 然后根据id和package name用radare连接frida:1r2">
+<meta property="og:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_java_newCalculateS_01.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_newCalculateS.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getOriginalString.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getKeyString.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getIndex.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_sub_451c.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_mbedtls_decode_output.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_crypt_ecb_doc.png">
-<meta property="og:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_setkey_dec_doc.png">
-<meta property="og:updated_time" content="2019-12-21T11:03:54.295Z">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_ls_devices.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_java_newCalculateS_01.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_newCalculateS.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getOriginalString.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getKeyString.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getIndex.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_sub_451c.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_mbedtls_decode_output.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_crypt_ecb_doc.png">
+<meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_setkey_dec_doc.png">
+<meta property="og:updated_time" content="2019-12-21T11:11:52.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RADARE2+FRIDA=R2FRIDA Your Best Dynamic Debugging Tool">
-<meta name="twitter:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 然后用frida-ls-devices工具获取 usb device id ；接着用frida-ps -U | grep xhs获取完整包名 然后根据id和package name用radare连接frida:1r2">
-<meta name="twitter:image" content="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_java_newCalculateS_01.png">
+<meta name="twitter:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
+<meta name="twitter:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_ls_devices.png">
     
     
         
@@ -164,7 +165,10 @@
 <p>参考资料: <a href="https://r2wiki.readthedocs.io/en/latest/radare-plugins/frida/" target="_blank" rel="noopener">r2wiki</a>、<a href="https://github.com/enovella/r2frida-wiki" target="_blank" rel="noopener">enovella wiki</a></p>
 </blockquote>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="0x1-安装"><a href="#0x1-安装" class="headerlink" title="0x1 安装"></a>0x1 安装</h2><p>首先安装<a href="https://github.com/nowsecure/r2frida" target="_blank" rel="noopener">r2frida</a>，自行克隆安装</p>
-<p>然后用<code>frida-ls-devices</code>工具获取 <code>usb device id</code> ；接着用<code>frida-ps -U | grep xhs</code>获取完整包名</p>
+<p>Windows用户可以在这里<a href="https://radare.mikelloc.com/list" target="_blank" rel="noopener">下载</a>可执行文件安装</p>
+<p>然后用<code>frida-ls-devices</code>工具获取 <code>usb device id</code> </p>
+<p><img src="images/frida_ls_devices.png" alt=""></p>
+<p>接着用<code>frida-ps -U | grep xhs</code>获取完整包名</p>
 <p>然后根据<code>id</code>和<code>package name</code>用<code>radare</code>连接<code>frida</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r2 frida://c0e668cc/com.xingin.xhs</span><br></pre></td></tr></table></figure></p>
 <p>然后你会得到一个r2dare的交互模式<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">❯ r2 frida://c0e668cc/com.xingin.xhs</span><br><span class="line">WARNING: r_bin_open_buf: assertion '(st64)opt-&gt;sz &gt;= 0' failed (line 250)</span><br><span class="line"> -- SSAbotage from ISIL</span><br><span class="line"><span class="meta">[0x00000000]&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="0x2-使用"><a href="#0x2-使用" class="headerlink" title="0x2 使用"></a>0x2 使用</h2><h4 id="0x2-1-gt-help"><a href="#0x2-1-gt-help" class="headerlink" title="0x2.1&gt; help"></a>0x2.1&gt; help</h4><p>首先介绍怎么使用<code>help</code>；对了，要使用<code>r2frida</code>的命令，得在命令的前面加上 <code>\</code> 或 <code>=!</code>；比如获取<code>help</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> =!? or \?</span><br><span class="line"><span class="meta">[0x00000000]&gt;</span> =!?</span><br><span class="line">r2frida commands available via =! or \ prefix</span><br><span class="line">. script                   Run script</span><br><span class="line">  frida-expression         Run given expression inside the agent</span><br><span class="line">/[x][j] &lt;string|hexpairs&gt;  Search hex/string pattern in memory ranges (see search.in=?)</span><br><span class="line">/v[1248][j] value          Search for a value honoring `e cfg.bigendian` of given width</span><br><span class="line">/w[j] string               Search wide string</span><br><span class="line">&lt;space&gt; code..             Evaluate Cycript code</span><br><span class="line">?                          Show this help</span><br><span class="line">?V                         Show target Frida version</span><br><span class="line">chcon file                 Change SELinux context (dl might require this)</span><br><span class="line">d.                         Start the chrome tools debugger</span><br><span class="line">db (&lt;addr&gt;|&lt;sym&gt;)          List or place breakpoint</span><br><span class="line">db- (&lt;addr&gt;|&lt;sym&gt;)|*       Remove breakpoint(s)</span><br><span class="line">dc                         Continue breakpoints or resume a spawned process</span><br><span class="line">dd[j-][fd] ([newfd])       List, dup2 or close filedescriptors (ddj for JSON)</span><br><span class="line">di[0,1,-1] [addr]          Intercept and replace return value of address</span><br><span class="line">dk ([pid]) [sig]           Send specific signal to specific pid in the remote system</span><br><span class="line">dkr                        Print the crash report (if the app has crashed)</span><br><span class="line">dl libname                 Dlopen a library (Android see chcon)</span><br><span class="line">dl2 libname [main]         Inject library using Frida's &gt;= 8.2 new API</span><br><span class="line">dm[.|j|*]                  Show memory regions</span><br><span class="line">dma &lt;size&gt;                 Allocate &lt;size&gt; bytes on the heap, address is returned</span><br><span class="line">... 有点长</span><br></pre></td></tr></table></figure></p>
@@ -213,9 +217,9 @@
 <p>然后判断0xd0c8，这是一个char。</p>
 </blockquote>
 <p>下面的方法看了下有点复制，先看 <code>newCalculateS</code> 方法逻辑吧</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_java_newCalculateS_01.png" alt=""></p>
+<p><img src="images/ida_pro_java_newCalculateS_01.png" alt=""></p>
 <p>这个方法全貌如图</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_newCalculateS.png" alt=""></p>
+<p><img src="images/ida_pro_newCalculateS.png" alt=""></p>
 <p>整体逻辑是：</p>
 <blockquote>
 <p>1、通过调用<code>getOriginalString</code>用<code>uid</code>获取<code>key1</code></p>
@@ -224,7 +228,7 @@
 <p>4、然后通过这个<code>jintArray</code>对象从<code>key1</code>中获取对应索引的字符，并使用java的<code>StringBuilder</code>拼接成<code>jstring</code>对象</p>
 </blockquote>
 <h2 id="0x4-1-getOriginalString"><a href="#0x4-1-getOriginalString" class="headerlink" title="0x4.1 getOriginalString"></a>0x4.1 getOriginalString</h2><p>这个方法如图所示</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getOriginalString.png" alt=""></p>
+<p><img src="images/ida_pro_getOriginalString.png" alt=""></p>
 <p>很简单的几行代码，难处在<code>g_pin</code>和<code>g_from</code>这两个变量；</p>
 <p>可能刚打开到这个方法<code>CallObjectMethod</code>只有三个参数，并没有第四个参数；</p>
 <p>这里就是拼接字符串，<code>g_pin + uid + g_from</code>；</p>
@@ -233,9 +237,9 @@
 <p>输出<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CallObjectMethod(0xccb76780, 0x119, 0x70dd9e70, 5l0WXnhiY4pJ794KIJ7Rw5F45VXg9sjo)</span><br><span class="line">CallObjectMethod(0xccb76780, 0x119, 0x70dd9e70, 73586191xx)</span><br><span class="line">CallObjectMethod(0xccb76780, 0x119, 0x70dd9e70, 109C0950xx)</span><br></pre></td></tr></table></figure></p>
 <p>然后就是将拼接好的字符串进行<code>sha512</code>加密并返回</p>
 <h2 id="0x4-2-getKeyString"><a href="#0x4-2-getKeyString" class="headerlink" title="0x4.2 getKeyString"></a>0x4.2 getKeyString</h2><p>反编译如下</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getKeyString.png" alt=""></p>
+<p><img src="images/ida_pro_getKeyString.png" alt=""></p>
 <p>这里只append了<code>g_from</code>，然后用<code>sha512</code>加密后返回</p>
-<h2 id="0x4-3-getIndex"><a href="#0x4-3-getIndex" class="headerlink" title="0x4.3 getIndex"></a>0x4.3 getIndex</h2><p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_getIndex.png" alt=""></p>
+<h2 id="0x4-3-getIndex"><a href="#0x4-3-getIndex" class="headerlink" title="0x4.3 getIndex"></a>0x4.3 getIndex</h2><p><img src="images/ida_pro_getIndex.png" alt=""></p>
 <p>这里稍微复杂点的就是do while；前面是将十六进制的key2转为bytearray</p>
 <p>在do while里</p>
 <blockquote>
@@ -264,23 +268,23 @@
 <p>修改为0<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">[0x00000000]&gt;</span> x 16 @ 0xcddd0000+0xd0c4</span><br><span class="line">- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF</span><br><span class="line">0xcdddd0c4  a897 a1cb 0100 0000 0000 0000 0000 0000  ................</span><br><span class="line"><span class="meta">[0x00000000]&gt;</span> wx 000000000000 @ 0xcddd0000+0xd0c4</span><br><span class="line"><span class="meta">[0x00000000]&gt;</span> x 16 @ 0xcddd0000+0xd0c4</span><br><span class="line">- offset -   0 1  2 3  4 5  6 7  8 9  A B  C D  E F  0123456789ABCDEF</span><br><span class="line">0xcdddd0c4  0000 0000 0000 0000 0000 0000 0000 0000  ................</span><br><span class="line"><span class="meta">[0x00000000]&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后再hook一次<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF</span><br><span class="line">c768dd98  35 6c 30 57 58 6e 68 69 59 34 70 4a 37 39 34 4b  5l0WXnhiY4pJ794K</span><br><span class="line">c768dda8  49 4a 37 52 77 35 46 34 35 56 58 67 39 73 6a 6f  IJ7Rw5F45VXg9sjo</span><br><span class="line">c768ddb8  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">c768ddc8  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br></pre></td></tr></table></figure></p>
 <p>可以看到返回值就是g_from，既然不知道dword_D0C4是从哪赋值的那就自己生成吧</p>
-<h2 id="0x4-5-sub-451C"><a href="#0x4-5-sub-451C" class="headerlink" title="0x4.5 sub_451C"></a>0x4.5 sub_451C</h2><p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_sub_451c.png" alt=""></p>
+<h2 id="0x4-5-sub-451C"><a href="#0x4-5-sub-451C" class="headerlink" title="0x4.5 sub_451C"></a>0x4.5 sub_451C</h2><p><img src="images/ida_pro_sub_451c.png" alt=""></p>
 <p>这里有几个方法的调用，先不管，统统hook一遍；hook之前记得把<code>dword_D0C4</code>地址内容置00</p>
 <p>###<code>sub_4142</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> base = Module.getBaseAddress(<span class="string">"libwbutil.so"</span>);</span><br><span class="line">Interceptor.attach(ptr(base.add(<span class="number">0x4124</span>+<span class="number">1</span>)), &#123;</span><br><span class="line">    onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n'</span>);</span><br><span class="line">        sh(retval, <span class="number">64</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>output:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF</span><br><span class="line">c5f4f140  37 30 34 65 36 63 31 62 00 00 6f 00 0a 16 00 00  704e6c1b..o.....</span><br><span class="line">c5f4f150  61 73 73 65 74 73 2f 63 66 67 2e 6a 73 6f 6e 00  assets/cfg.json.</span><br><span class="line">c5f4f160  2e 64 65 62 75 67 5f 6c 69 6e 65 00 01 00 00 00  .debug_line.....</span><br><span class="line">c5f4f170  2e 64 65 62 75 67 5f 6c 69 6e 65 00 67 73 00 00  .debug_line.gs..</span><br></pre></td></tr></table></figure></p>
 <p><code>mbedtls_decode</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Interceptor.attach(Module.findExportByName(<span class="string">"libwbutil.so"</span>, <span class="string">"mbedtls_decode"</span>), &#123;</span><br><span class="line">    onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n'</span>)</span><br><span class="line">        <span class="built_in">console</span>.warn(<span class="string">'mbedtls_decode('</span>.concat(Memory.readCString(args[<span class="number">0</span>]))</span><br><span class="line">                    + <span class="string">", "</span>.concat(args[<span class="number">1</span>])</span><br><span class="line">                    + <span class="string">", "</span>.concat(args[<span class="number">2</span>])</span><br><span class="line">                    + <span class="string">", "</span>.concat(args[<span class="number">3</span>]) + <span class="string">")"</span>);</span><br><span class="line">        sh(args[<span class="number">2</span>], <span class="number">16</span>);</span><br><span class="line">        sh(args[<span class="number">3</span>], <span class="number">16</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>output:<br><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_mbedtls_decode_output.png" alt=""></p>
+<p>output:<br><img src="images/frida_mbedtls_decode_output.png" alt=""></p>
 <p>经过hook + 分析后可以断定这个方法的作用就是为了解密那串十六进制字符串；</p>
 <p>在<code>mbedtls_decode</code>方法中有一个行代码是des解密，使用的是mbedtls_des_crypt_ecb，这个方法在google一搜就能找到对应的<a href="https://tls.mbed.org/api/des_8h.html" target="_blank" rel="noopener">doc</a>，好像是mbedtls库里的一个方法，这个库没用过所以不熟悉。</p>
 <p>从api解释可以看出这是一个des ecb模式加解密方法</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_crypt_ecb_doc.png" alt=""></p>
+<p><img src="images/mbedtls_des_crypt_ecb_doc.png" alt=""></p>
 <blockquote>
 <p>第一个参数是des的上下文;</p>
 <p>第二个参数是8个字节(64bit)的输入;</p>
 <p>第三个参数是8个字节(64bit)的输出;</p>
 </blockquote>
 <p>是解密还是加密可以从上面的 <code>mbedtls_des_setkey_dec</code> 猜到，这是解密</p>
-<p><img src="http://2h0n9.com:40302/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_setkey_dec_doc.png" alt=""></p>
+<p><img src="images/mbedtls_des_setkey_dec_doc.png" alt=""></p>
 <p>那就需要获取到这个key了，从上图可以看出第二个参数就是key<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Interceptor.attach(Module.findExportByName(<span class="string">"libwbutil.so"</span>, <span class="string">"mbedtls_des_setkey_dec"</span>), &#123;</span><br><span class="line">    onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">        sh(args[<span class="number">1</span>], <span class="number">16</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>output:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF</span><br><span class="line">cea66290  37 30 34 65 36 63 31 62 00 a5 e0 46 d9 fc a6 bd  704e6c1b...F....</span><br></pre></td></tr></table></figure></p>
 <p>des的key长度是8个字节，所以key是<code>704e6c1b</code></p>
