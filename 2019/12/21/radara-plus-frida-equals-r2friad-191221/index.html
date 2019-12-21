@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
+    <meta name="description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装radare2，Windows用户可以在这里下载可执行文件安装 然后安装r2frida，自行克隆安装 用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根">
 <meta name="keywords" content="frida,r2frida,radare2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RADARE2+FRIDA=R2FRIDA Your Best Dynamic Debugging Tool">
 <meta property="og:url" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/index.html">
 <meta property="og:site_name" content="0x2h">
-<meta property="og:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
+<meta property="og:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装radare2，Windows用户可以在这里下载可执行文件安装 然后安装r2frida，自行克隆安装 用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_ls_devices.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/ida_pro_java_newCalculateS_01.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_mbedtls_decode_output.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_crypt_ecb_doc.png">
 <meta property="og:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/mbedtls_des_setkey_dec_doc.png">
-<meta property="og:updated_time" content="2019-12-21T11:11:52.611Z">
+<meta property="og:updated_time" content="2019-12-21T11:14:35.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RADARE2+FRIDA=R2FRIDA Your Best Dynamic Debugging Tool">
-<meta name="twitter:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装r2frida，自行克隆安装 Windows用户可以在这里下载可执行文件安装 然后用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根据id和packag">
+<meta name="twitter:description" content="前言 演示例子:   Sina Weibo Xiao Hongshu  参考资料: r2wiki、enovella wiki  正文0x1 安装首先安装radare2，Windows用户可以在这里下载可执行文件安装 然后安装r2frida，自行克隆安装 用frida-ls-devices工具获取 usb device id   接着用frida-ps -U | grep xhs获取完整包名 然后根">
 <meta name="twitter:image" content="http://zckun.github.io/2019/12/21/radara-plus-frida-equals-r2friad-191221/images/frida_ls_devices.png">
     
     
@@ -164,9 +164,9 @@
 </ul>
 <p>参考资料: <a href="https://r2wiki.readthedocs.io/en/latest/radare-plugins/frida/" target="_blank" rel="noopener">r2wiki</a>、<a href="https://github.com/enovella/r2frida-wiki" target="_blank" rel="noopener">enovella wiki</a></p>
 </blockquote>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="0x1-安装"><a href="#0x1-安装" class="headerlink" title="0x1 安装"></a>0x1 安装</h2><p>首先安装<a href="https://github.com/nowsecure/r2frida" target="_blank" rel="noopener">r2frida</a>，自行克隆安装</p>
-<p>Windows用户可以在这里<a href="https://radare.mikelloc.com/list" target="_blank" rel="noopener">下载</a>可执行文件安装</p>
-<p>然后用<code>frida-ls-devices</code>工具获取 <code>usb device id</code> </p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="0x1-安装"><a href="#0x1-安装" class="headerlink" title="0x1 安装"></a>0x1 安装</h2><p>首先安装<a href="https://github.com/radareorg/radare2" target="_blank" rel="noopener">radare2</a>，Windows用户可以在这里<a href="https://radare.mikelloc.com/list" target="_blank" rel="noopener">下载</a>可执行文件安装</p>
+<p>然后安装<a href="https://github.com/nowsecure/r2frida" target="_blank" rel="noopener">r2frida</a>，自行克隆安装</p>
+<p>用<code>frida-ls-devices</code>工具获取 <code>usb device id</code> </p>
 <p><img src="images/frida_ls_devices.png" alt=""></p>
 <p>接着用<code>frida-ps -U | grep xhs</code>获取完整包名</p>
 <p>然后根据<code>id</code>和<code>package name</code>用<code>radare</code>连接<code>frida</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r2 frida://c0e668cc/com.xingin.xhs</span><br></pre></td></tr></table></figure></p>
