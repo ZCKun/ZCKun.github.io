@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
-<meta name="keywords" content="arm">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 &amp;#123;cond&amp;#125; 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARM - IT">
 <meta property="og:url" content="http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/index.html">
 <meta property="og:site_name" content="0x2h">
-<meta property="og:description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-17T10:46:15.368Z">
+<meta property="og:description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 &amp;#123;cond&amp;#125; 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-10-17T10:31:25.000Z">
+<meta property="article:modified_time" content="2019-10-17T10:46:15.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="arm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ARM - IT">
-<meta name="twitter:description" content="IT IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。IT 块中的指令（包括跳转）还必须在语法的 {cond} 部分中指定条件。无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。编写 IT 指令">
     
     
         
@@ -39,15 +39,19 @@
     <!-- title -->
     <title>ARM - IT</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -69,7 +73,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -86,26 +90,26 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=ARM - IT&body=Check out this article: http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;{cond}&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;&amp;#123;cond&amp;#125;&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#体系结构"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,7 +117,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -123,7 +127,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -140,7 +144,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/arm/">arm</a>
+        <a class="tag-link-link" href="/tags/arm/" rel="tag">arm</a>
     </div>
 
 
@@ -150,10 +154,11 @@
 
   <div class="content" itemprop="articleBody">
     <h3 id="IT"><a href="#IT" class="headerlink" title="IT"></a><strong>IT</strong></h3><blockquote>
-<p>IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。<br>IT 块中的指令（包括跳转）还必须在语法的 <code>{cond}</code> 部分中指定条件。<br>无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。<br>编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。<br>在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令</p>
+<p>IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。<br>IT 块中的指令（包括跳转）还必须在语法的 <code>&#123;cond&#125;</code> 部分中指定条件。<br>无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。<br>编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。<br>在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令</p>
 </blockquote>
-<a id="more"></a>
-<p><strong>语法</strong>：<code>IT{x{y{z}}} {cond}</code></p>
+<span id="more"></span>
+
+<p><strong>语法</strong>：<code>IT&#123;x&#123;y&#123;z&#125;&#125;&#125; &#123;cond&#125;</code></p>
 <blockquote>
 <p><code>x</code>: 指定 IT 块中第二个指令的条件开关。<br><code>y</code>: 指定 IT 块中第三个指令的条件开关。<br><code>z</code>: 指定 IT 块中第四个指令的条件开关。<br><code>cond</code>: 指定 IT 块中第一个指令的条件。</p>
 </blockquote>
@@ -171,8 +176,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>EQ</td>
 <td>Z == 1</td>
 <td>等于</td>
@@ -247,12 +251,15 @@
 <td>任何</td>
 <td>始终。不可用于B{cond}中</td>
 </tr>
-</tbody>
-</table>
-<p>下面这个例子，意思是，当条件“EQ”符合时，执行指令1、3、4的mov操作，否则执行指令2的mov操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ITETT EQ</span><br><span class="line">MOVEQ R0, #1 ;//指令1</span><br><span class="line">MOVNE R0, #0 ;//指令2</span><br><span class="line">MOVEQ R1, #0 ;//指令3</span><br><span class="line">MOVEQ R2, #0 ;//指令4</span><br></pre></td></tr></table></figure></p>
-<p>这是刚刚一个程序的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LSLS    R2,R1,#1    ;R1 &lt;&lt; 1，差不多就是R1*2，结果放在R2</span><br><span class="line">CMP     R4,R2       ;R4 - R2，判断R4 &gt; R2</span><br><span class="line">IT CC               ;如果R4 &lt; R2，就执行MOVCC，否则跳过MOVCC</span><br><span class="line">MOVCC   R4,R2       ;这里是将R1*2的值R2给R4</span><br></pre></td></tr></table></figure></p>
+</tbody></table>
+<p>下面这个例子，意思是，当条件“EQ”符合时，执行指令1、3、4的mov操作，否则执行指令2的mov操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ITETT EQ</span><br><span class="line">MOVEQ R0, #1 ;&#x2F;&#x2F;指令1</span><br><span class="line">MOVNE R0, #0 ;&#x2F;&#x2F;指令2</span><br><span class="line">MOVEQ R1, #0 ;&#x2F;&#x2F;指令3</span><br><span class="line">MOVEQ R2, #0 ;&#x2F;&#x2F;指令4</span><br></pre></td></tr></table></figure>
+<p>这是刚刚一个程序的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LSLS    R2,R1,#1    ;R1 &lt;&lt; 1，差不多就是R1*2，结果放在R2</span><br><span class="line">CMP     R4,R2       ;R4 - R2，判断R4 &gt; R2</span><br><span class="line">IT CC               ;如果R4 &lt; R2，就执行MOVCC，否则跳过MOVCC</span><br><span class="line">MOVCC   R4,R2       ;这里是将R1*2的值R2给R4</span><br></pre></td></tr></table></figure>
+
 <hr>
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p><strong>不允许</strong> 在 IT 块中使用下面的指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IT</span><br><span class="line">CBZ 和 CBNZ</span><br><span class="line">TBB 和 TBH</span><br><span class="line">CPS、CPSID 和 CPSIE</span><br><span class="line">SETEND</span><br></pre></td></tr></table></figure></p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p><strong>不允许</strong> 在 IT 块中使用下面的指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IT</span><br><span class="line">CBZ 和 CBNZ</span><br><span class="line">TBB 和 TBH</span><br><span class="line">CPS、CPSID 和 CPSIE</span><br><span class="line">SETEND</span><br></pre></td></tr></table></figure>
 <p>使用 IT 块时的其他限制有：</p>
 <blockquote>
 <p>跳转指令或修改 pc 的任何指令只能是 IT 块中的最后一个指令。<br>无法跳转到 IT 块中的任何指令，除非在从异常处理程序返回时。<br>不能在 IT 块中使用任何汇编器指令。</p>
@@ -283,22 +290,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#体系结构"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IT"><span class="toc-number">1.</span> <span class="toc-text">IT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">体系结构</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&text=ARM - IT"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&is_video=false&description=ARM - IT"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=ARM - IT&body=Check out this article: http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;{cond}&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&title=ARM - IT"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/10/17/arm-bytecode-it-191017/&name=ARM - IT&description=&lt;h3 id=&#34;IT&#34;&gt;&lt;a href=&#34;#IT&#34; class=&#34;headerlink&#34; title=&#34;IT&#34;&gt;&lt;/a&gt;&lt;strong&gt;IT&lt;/strong&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;IT (If-Then) 指令由四条后续条件指令（IT 块）句组成。 这些条件可以完全相同，也可以互为逻辑反。&lt;br&gt;IT 块中的指令（包括跳转）还必须在语法的 &lt;code&gt;&amp;#123;cond&amp;#125;&lt;/code&gt; 部分中指定条件。&lt;br&gt;无需在代码中编写 IT 指令，因为汇编器会根据在后续指令中指定的条件为您自动生成这些指令。 不过，如果确实需要编写 IT 指令，则汇编器会根据后续指令中指定的条件对 IT 中指定的条件进行验证。&lt;br&gt;编写 IT 指令可确保您会考虑如何在代码设计中放置条件指令以及选择条件。&lt;br&gt;在汇编为 ARM 代码时，汇编器会执行相同的检查，但是不会生成任何 IT 指令&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -317,7 +324,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -338,15 +345,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -367,7 +384,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

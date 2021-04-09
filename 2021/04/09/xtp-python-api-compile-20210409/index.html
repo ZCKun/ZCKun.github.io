@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="XTP Python Api 接口编译下载xtp官方提供的python接口: https:&#x2F;&#x2F;github.com&#x2F;ztsec&#x2F;xtp_api_python 简单介绍一下各个文件夹的作用（虽然里面有文档介绍了）  bin: 编译好的python接口和对应的demo doc: 编译文档 source: 编译用到的代码 XTP_API_20200824_2.2.25.5: cxx xtp 接口  因为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XTP Python Api 接口编译">
+<meta property="og:url" content="http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/index.html">
+<meta property="og:site_name" content="0x2h">
+<meta property="og:description" content="XTP Python Api 接口编译下载xtp官方提供的python接口: https:&#x2F;&#x2F;github.com&#x2F;ztsec&#x2F;xtp_api_python 简单介绍一下各个文件夹的作用（虽然里面有文档介绍了）  bin: 编译好的python接口和对应的demo doc: 编译文档 source: 编译用到的代码 XTP_API_20200824_2.2.25.5: cxx xtp 接口  因为">
+<meta property="og:locale">
+<meta property="og:image" content="http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/images/changed_api_1.png">
+<meta property="article:published_time" content="2021-04-09T12:39:23.000Z">
+<meta property="article:modified_time" content="2021-04-09T12:43:05.110Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="xtp">
+<meta property="article:tag" content="quant">
+<meta property="article:tag" content="compile">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/images/changed_api_1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>XTP Python Api 接口编译</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/01/13/java-class-format-notes-200113/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&text=XTP Python Api 接口编译"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&is_video=false&description=XTP Python Api 接口编译"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XTP Python Api 接口编译&body=Check out this article: http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&name=XTP Python Api 接口编译&description=&lt;h1 id=&#34;XTP-Python-Api-接口编译&#34;&gt;&lt;a href=&#34;#XTP-Python-Api-接口编译&#34; class=&#34;headerlink&#34; title=&#34;XTP Python Api 接口编译&#34;&gt;&lt;/a&gt;XTP Python Api 接口编译&lt;/h1&gt;&lt;p&gt;下载xtp官方提供的python接口: &lt;a href=&#34;https://github.com/ztsec/xtp_api_python&#34;&gt;https://github.com/ztsec/xtp_api_python&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;简单介绍一下各个文件夹的作用（虽然里面有文档介绍了）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bin: 编译好的python接口和对应的demo&lt;/p&gt;
+&lt;p&gt;doc: 编译文档&lt;/p&gt;
+&lt;p&gt;source: 编译用到的代码&lt;/p&gt;
+&lt;p&gt;XTP_API_20200824_2.2.25.5: cxx xtp 接口&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因为我不喜欢官方对python api的命名，所以我要自己改，然后重新编译&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XTP-Python-Api-%E6%8E%A5%E5%8F%A3%E7%BC%96%E8%AF%91"><span class="toc-number">1.</span> <span class="toc-text">XTP Python Api 接口编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-boost-python"><span class="toc-number">1.2.</span> <span class="toc-text">编译 boost python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-xtp-python"><span class="toc-number">1.3.</span> <span class="toc-text">编译 xtp python</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91-CMakeLists-txt-%E4%BF%AE%E6%94%B9%E5%87%A0%E4%B8%AA%E5%9C%B0%E6%96%B9"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">编辑 CMakeLists.txt 修改几个地方</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">1.5.</span> <span class="toc-text">最后</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        XTP Python Api 接口编译
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">0x2h</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-09T12:39:23.000Z" itemprop="datePublished">2021-04-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/c/" rel="tag">c++</a>, <a class="tag-link-link" href="/tags/compile/" rel="tag">compile</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>, <a class="tag-link-link" href="/tags/quant/" rel="tag">quant</a>, <a class="tag-link-link" href="/tags/xtp/" rel="tag">xtp</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="XTP-Python-Api-接口编译"><a href="#XTP-Python-Api-接口编译" class="headerlink" title="XTP Python Api 接口编译"></a>XTP Python Api 接口编译</h1><p>下载xtp官方提供的python接口: <a target="_blank" rel="noopener" href="https://github.com/ztsec/xtp_api_python">https://github.com/ztsec/xtp_api_python</a></p>
+<p>简单介绍一下各个文件夹的作用（虽然里面有文档介绍了）</p>
+<blockquote>
+<p>bin: 编译好的python接口和对应的demo</p>
+<p>doc: 编译文档</p>
+<p>source: 编译用到的代码</p>
+<p>XTP_API_20200824_2.2.25.5: cxx xtp 接口</p>
+</blockquote>
+<p>因为我不喜欢官方对python api的命名，所以我要自己改，然后重新编译</p>
+<span id="more"></span>
+
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><hr>
+<blockquote>
+<p><strong>doc</strong> 文件夹里有对应操作系统的编译文档，虽然不是很详细，但是也能看懂</p>
+</blockquote>
+<p>我差不多把所有的 Python Api 都给修改了</p>
+<p><img src="images/changed_api_1.png"></p>
+<p><strong>对于非回调函数，只需要修改其def的函数名即可，如果是回调函数，则需要将C++中对应的函数也给修改了，否则会找不到这个函数</strong></p>
+<h2 id="编译-boost-python"><a href="#编译-boost-python" class="headerlink" title="编译 boost python"></a>编译 boost python</h2><p>按照文档所说的，首先要编译一份 boost python，直接去boost官网下载最新的boost源码，然后只编译python版本的。</p>
+<p>生成b2编译工具, 指定你python命令所在的路径, 如果你不知道的话可以用 <code>where python</code> 来找到</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./bootstrap.sh --with-libraries=/usr/bin/python3</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后编译. </p>
+<blockquote>
+<p> toolset: 这里用的gcc，没试过可不可以用clang</p>
+<p>include: 因为要用到Python.h，所以这里需要指定你在生成b2时设置的python对应的头文件路径，一般在你安装python的时候就会装好，如果没有装好，在ubuntu、debian系统你可以这样安装: sudo apt-get install python-dev -y</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./b2 --toolset=gcc-10.2.0 --with-python include=<span class="string">&quot;/usr/include/python3.9&quot;</span> --with-thread --with-date_time --with-chrono</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>不出意外就编译成功了，会在你stage文件夹里输出编译好的python lib</p>
+<p>boost 这一步就算完成了</p>
+<h2 id="编译-xtp-python"><a href="#编译-xtp-python" class="headerlink" title="编译 xtp python"></a>编译 xtp python</h2><p>在 <code>source</code> 文件夹里有编译用到的源码，使用对应你系统版本的即可</p>
+<h4 id="编辑-CMakeLists-txt-修改几个地方"><a href="#编辑-CMakeLists-txt-修改几个地方" class="headerlink" title="编辑 CMakeLists.txt 修改几个地方"></a>编辑 <code>CMakeLists.txt</code> 修改几个地方</h4><p>1、修改你python 的lib和头文件 所在目录，和上面编译boost时设置的一致</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置Python所在的目录</span></span><br><span class="line"><span class="keyword">set</span>(PYTHON_LIBRARY /usr/local/python389/lib/)</span><br><span class="line"><span class="keyword">set</span>(PYTHON_INCLUDE_PATH /usr/local/python389/<span class="keyword">include</span>/python3.<span class="number">8</span>/)</span><br></pre></td></tr></table></figure>
+
+<p>2、然后是boost配置，主要修改boost所在路径(BOOST_ROOT) 以及boost的版本(如find_package中的1.75.0)，以及find_package中的python版本</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 链接boost库，anaconda /python3用的是python3.6没有用Anaconda</span></span><br><span class="line"><span class="keyword">set</span>(BOOST_ROOT )</span><br><span class="line"><span class="keyword">set</span>(Boost_USE_MULTITHREADED      <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">set</span>(BOOST_ROOT   /home/x2h1z/Downloads/boost_1_75_0_py389/)</span><br><span class="line"><span class="keyword">find_package</span>(Boost <span class="number">1.75</span>.<span class="number">0</span> COMPONENTS python3 thread date_time system chrono REQUIRED) <span class="comment"># 如果boost库没有完全编译，需要将编译的库明确地指出，否者message($&#123;Boost_LIBRARIES&#125;)会出错</span></span><br><span class="line"><span class="keyword">if</span>(Boost_FOUND)</span><br><span class="line">    <span class="keyword">include_directories</span>(<span class="variable">$&#123;Boost_INCLUDE_DIRS&#125;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+
+<p>修改完cmake后，然后就直接编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir build &amp;&amp; <span class="built_in">cd</span> build</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cmake .. &amp;&amp; make - -j 8</span></span><br></pre></td></tr></table></figure>
+
+<p>不出意外就会在lib文件夹中输出编译好的so</p>
+<p>如果出意外了，那么就是find_package中python版本不对，或者你Boost版本不对之类的</p>
+<p>反正就这几个地方，一个个检查就行了</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>然后就写个demo测试一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> vnxtpquote <span class="keyword">import</span> QuoteApi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CONFIG = &#123;</span><br><span class="line">    <span class="string">&quot;ip&quot;</span>: <span class="string">&quot;120.27.164.138&quot;</span>,</span><br><span class="line">    <span class="string">&quot;port&quot;</span>: <span class="number">6002</span>,</span><br><span class="line">    <span class="string">&quot;user&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;password&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;local_ip&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;socket_type&quot;</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MdApi</span>(<span class="params">QuoteApi</span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(MdApi, self).__init__()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_disconnected</span>(<span class="params">self, error_id: <span class="built_in">int</span></span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_error</span>(<span class="params">self, error_info: <span class="built_in">dict</span></span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sub_market_data</span>(<span class="params">self, symbols: <span class="built_in">list</span>[<span class="built_in">dict</span>], exchange_id: <span class="built_in">int</span></span>):</span></span><br><span class="line">        <span class="keyword">assert</span>(exchange_id <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">        self.subscribe_market_data(symbols, <span class="built_in">len</span>(symbols), exchange_id)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_sub_market_data</span>(<span class="params">self, ticker: <span class="built_in">dict</span>, error_info: <span class="built_in">dict</span>, is_last: <span class="built_in">bool</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> error_info <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> error_info[<span class="string">&#x27;error_id&#x27;</span>] == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;subscribe success tickers: <span class="subst">&#123;ticker&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;subscribe error, id: <span class="subst">&#123;error_info[<span class="string">&#x27;error_id&#x27;</span>]&#125;</span>, msg: <span class="subst">&#123;error_info[<span class="string">&#x27;error_msg&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_depth_market_data</span>(<span class="params">self, data: <span class="built_in">dict</span>, bid1_qty_list: <span class="built_in">list</span>, bid1_counts: <span class="built_in">int</span>, max_bid1_count: <span class="built_in">int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                             ask1_qty_list: <span class="built_in">int</span>, ask1_count: <span class="built_in">int</span>, max_ask1_count: <span class="built_in">int</span></span>):</span></span><br><span class="line">        <span class="built_in">print</span>(data)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    md_api = MdApi()</span><br><span class="line">    md_api.create_quote_api(<span class="number">1</span>, os.getcwd(), <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置心跳检测时间间隔，单位为秒</span></span><br><span class="line">    md_api.set_heart_beat_interval(<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 设置采用UDP方式连接时的接收缓冲区大小</span></span><br><span class="line">    md_api.set_udp_buffer_size(<span class="number">128</span>)</span><br><span class="line">    <span class="comment"># 使用UDP接收行情时，设置接收行情线程绑定的cpu</span></span><br><span class="line">    md_api.set_udp_recv_thread_affinity(<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 使用UDP接收行情时，设置解析行情线程绑定的cpu</span></span><br><span class="line">    md_api.set_udp_parse_thread_affinity(<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 设定UDP收行情时是否输出异步日志</span></span><br><span class="line">    md_api.set_udp_seq_logout_put_flag(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    s = md_api.login(CONFIG[<span class="string">&#x27;ip&#x27;</span>], CONFIG[<span class="string">&#x27;port&#x27;</span>], CONFIG[<span class="string">&#x27;user&#x27;</span>], CONFIG[<span class="string">&#x27;password&#x27;</span>], CONFIG[<span class="string">&#x27;socket_type&#x27;</span>], CONFIG[<span class="string">&#x27;local_ip&#x27;</span>])</span><br><span class="line">    <span class="keyword">if</span> s != <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;login failed, status:<span class="subst">&#123;s&#125;</span>&quot;</span>, end=<span class="string">&quot;, &quot;</span>)</span><br><span class="line">        error = md_api.get_api_last_error()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;error: &quot;</span>, error)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">    api_version = md_api.get_api_version()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;login success. api version: <span class="subst">&#123;api_version&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 因为不明原因，合在一起订阅没收到推送的行情</span></span><br><span class="line">    md_api.subscribe_market_data([&#123;<span class="string">&quot;ticker&quot;</span>: <span class="string">&quot;000300&quot;</span>&#125;], <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    md_api.subscribe_market_data([&#123;<span class="string">&quot;ticker&quot;</span>: <span class="string">&quot;399905&quot;</span>&#125;], <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    md_api.subscribe_market_data([&#123;<span class="string">&quot;ticker&quot;</span>: <span class="string">&quot;000016&quot;</span>&#125;], <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># sleep为了删除接口对象前将回调数据输出，不sleep直接删除回调对象会自动析构，无法返回回调的数据</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        md_api.release()</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>你只需要把编译好的so放在demo.py一起即可</p>
+<p>你可能会疑惑，为什么python可以import so，那是因为编译的时候使用到了Python.h</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>blog: <a href="https://zckun.github.io/">https://zckun.github.io/</a></p>
+<p>公众号: the2hcode</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XTP-Python-Api-%E6%8E%A5%E5%8F%A3%E7%BC%96%E8%AF%91"><span class="toc-number">1.</span> <span class="toc-text">XTP Python Api 接口编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-boost-python"><span class="toc-number">1.2.</span> <span class="toc-text">编译 boost python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-xtp-python"><span class="toc-number">1.3.</span> <span class="toc-text">编译 xtp python</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91-CMakeLists-txt-%E4%BF%AE%E6%94%B9%E5%87%A0%E4%B8%AA%E5%9C%B0%E6%96%B9"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">编辑 CMakeLists.txt 修改几个地方</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">1.5.</span> <span class="toc-text">最后</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&text=XTP Python Api 接口编译"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&is_video=false&description=XTP Python Api 接口编译"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XTP Python Api 接口编译&body=Check out this article: http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&title=XTP Python Api 接口编译"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2021/04/09/xtp-python-api-compile-20210409/&name=XTP Python Api 接口编译&description=&lt;h1 id=&#34;XTP-Python-Api-接口编译&#34;&gt;&lt;a href=&#34;#XTP-Python-Api-接口编译&#34; class=&#34;headerlink&#34; title=&#34;XTP Python Api 接口编译&#34;&gt;&lt;/a&gt;XTP Python Api 接口编译&lt;/h1&gt;&lt;p&gt;下载xtp官方提供的python接口: &lt;a href=&#34;https://github.com/ztsec/xtp_api_python&#34;&gt;https://github.com/ztsec/xtp_api_python&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;简单介绍一下各个文件夹的作用（虽然里面有文档介绍了）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bin: 编译好的python接口和对应的demo&lt;/p&gt;
+&lt;p&gt;doc: 编译文档&lt;/p&gt;
+&lt;p&gt;source: 编译用到的代码&lt;/p&gt;
+&lt;p&gt;XTP_API_20200824_2.2.25.5: cxx xtp 接口&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因为我不喜欢官方对python api的命名，所以我要自己改，然后重新编译&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 0x2h
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b1bcce32f51ad876ecf02282881e609b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

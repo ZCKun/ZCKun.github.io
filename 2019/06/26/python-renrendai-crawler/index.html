@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="前言 这次爬的网站 人人贷 - 散标 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 BeautifulSoup、Selenium，首先 BeautifulSoup 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 Selenium 可以直接放弃了，就一个原因，">
-<meta name="keywords" content="爬虫,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬虫 - 人人贷散标">
 <meta property="og:url" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="前言 这次爬的网站 人人贷 - 散标 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 BeautifulSoup、Selenium，首先 BeautifulSoup 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 Selenium 可以直接放弃了，就一个原因，">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/2.png">
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/3.png">
@@ -27,10 +26,12 @@
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/11.png">
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/12.png">
 <meta property="og:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/13.png">
-<meta property="og:updated_time" content="2019-06-26T10:27:57.595Z">
+<meta property="article:published_time" content="2019-06-26T10:15:22.000Z">
+<meta property="article:modified_time" content="2019-06-26T10:27:57.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫 - 人人贷散标">
-<meta name="twitter:description" content="前言 这次爬的网站 人人贷 - 散标 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 BeautifulSoup、Selenium，首先 BeautifulSoup 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 Selenium 可以直接放弃了，就一个原因，">
 <meta name="twitter:image" content="http://zckun.github.io/2019/06/26/python-renrendai-crawler/images/1.png">
     
     
@@ -53,15 +54,19 @@
     <!-- title -->
     <title>Python爬虫 - 人人贷散标</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -83,7 +88,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -100,26 +105,26 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&text=Python爬虫 - 人人贷散标"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&is_video=false&description=Python爬虫 - 人人贷散标"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&text=Python爬虫 - 人人贷散标"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&is_video=false&description=Python爬虫 - 人人贷散标"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫 - 人人贷散标&body=Check out this article: http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&name=Python爬虫 - 人人贷散标&description=&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;这次爬的网站 &lt;a href=&#34;https://www.renrendai.com/loan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;人人贷 - 散标&lt;/a&gt; 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 &lt;strong&gt;BeautifulSoup&lt;/strong&gt;、&lt;strong&gt;Selenium&lt;/strong&gt;，首先 &lt;strong&gt;BeautifulSoup&lt;/strong&gt; 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 &lt;strong&gt;Selenium&lt;/strong&gt; 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 &lt;strong&gt;Cookie&lt;/strong&gt;，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 &lt;a href=&#34;https://www.renrendai.com/loan-2996659.html）&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.renrendai.com/loan-2996659.html）&lt;/a&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&name=Python爬虫 - 人人贷散标&description=&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;这次爬的网站 &lt;a href=&#34;https://www.renrendai.com/loan.html&#34;&gt;人人贷 - 散标&lt;/a&gt; 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 &lt;strong&gt;BeautifulSoup&lt;/strong&gt;、&lt;strong&gt;Selenium&lt;/strong&gt;，首先 &lt;strong&gt;BeautifulSoup&lt;/strong&gt; 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 &lt;strong&gt;Selenium&lt;/strong&gt; 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 &lt;strong&gt;Cookie&lt;/strong&gt;，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 &lt;a href=&#34;https://www.renrendai.com/loan-2996659.html%EF%BC%89&#34;&gt;https://www.renrendai.com/loan-2996659.html）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、分析站点"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、分析站点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、代码"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、代码</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E6%9E%90%E7%AB%99%E7%82%B9"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、分析站点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、代码</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -127,7 +132,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -137,7 +142,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -154,7 +159,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/爬虫/">爬虫</a>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>, <a class="tag-link-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a>
     </div>
 
 
@@ -164,29 +169,34 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>这次爬的网站 <a href="https://www.renrendai.com/loan.html" target="_blank" rel="noopener">人人贷 - 散标</a> 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 <strong>BeautifulSoup</strong>、<strong>Selenium</strong>，首先 <strong>BeautifulSoup</strong> 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 <strong>Selenium</strong> 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 <strong>Cookie</strong>，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 <a href="https://www.renrendai.com/loan-2996659.html）" target="_blank" rel="noopener">https://www.renrendai.com/loan-2996659.html）</a></p>
+<p>这次爬的网站 <a target="_blank" rel="noopener" href="https://www.renrendai.com/loan.html">人人贷 - 散标</a> 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 <strong>BeautifulSoup</strong>、<strong>Selenium</strong>，首先 <strong>BeautifulSoup</strong> 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 <strong>Selenium</strong> 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 <strong>Cookie</strong>，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 <a target="_blank" rel="noopener" href="https://www.renrendai.com/loan-2996659.html%EF%BC%89">https://www.renrendai.com/loan-2996659.html）</a></p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
+
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h4 id="一、分析站点"><a href="#一、分析站点" class="headerlink" title="一、分析站点"></a>一、分析站点</h4><p>在抓取每个网站前肯定是需要分析它的结构的，我随便点了一个最新的散标网页，如下图可见没登陆仅能显示一小部分信息</p>
-<p><img src="images/1.png" alt=""></p>
+<p><img src="images/1.png"></p>
 <p>再看看其源码，毛都没有，只有登陆后才有内容，？</p>
-<p><img src="images/2.png" alt=""></p>
+<p><img src="images/2.png"></p>
 <p>那可不一定哦，切换到 <strong>Network</strong> 然后刷新网页，从中获取返回的response，翻到最下面的 js 代码部分，大概400行处</p>
-<p><img src="images/3.png" alt=""></p>
+<p><img src="images/3.png"></p>
 <p>可以看到有些js变量内容是unicode，然后还有用到了json解析方法，将这部分代码复制然后切换到 <strong>console</strong> 粘贴</p>
-<p><img src="images/4.png" alt=""></p>
-<p><img src="images/5.png" alt=""></p>
+<p><img src="images/4.png"></p>
+<p><img src="images/5.png"></p>
 <p>随便用一个变量让其弹出代码提示，可以看到有很多json key</p>
-<p><img src="images/6.png" alt=""></p>
+<p><img src="images/6.png"></p>
 <p>borrower 应该是借款人的意思，可以看到其内容就是借款人的信息</p>
-<p><img src="images/7.png" alt=""></p>
+<p><img src="images/7.png"></p>
 <p>那么只需要用正则获取到这些json然后解析就能获取其所有信息，不过目前还不知道哪些 key 代表哪部分信息，不过想了一想，既然所有信息都返回了那肯定有对应的js来解析，接着我从之前刷新的内容中发现一个js文件就是需要的</p>
-<p><img src="images/8.png" alt=""></p>
+<p><img src="images/8.png"></p>
 <p>将其下载下来便于之后写代码分析</p>
-<h4 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h4><p>1、首先获取js变量info、detail，这两个保存了所有信息，而上面保存的js文件就是对其解析用的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">html = resp.text</span><br><span class="line">pattern = <span class="string">"var.?info.?=.?'(.*?)';?\n+?var.?detail.?=.?'(.*?)';?\nvar isTransfer"</span></span><br><span class="line">info, detail = re.findall(pattern, html)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
-<p>2、接着用json.loads对其转换，不过在此之前先得把其中得unicode给转换一下，因为从requests获取到的都是直接转义过了的，所以我直接写了一个方法，其中的内容仅针对人人贷散标网页<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">de_unicode</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    unicode转换，因为从response获取到的内容无法直接decode</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="string">'\\u0022'</span>, <span class="string">'"'</span>).replace(<span class="string">'\\u005C'</span>, <span class="string">''</span>).replace(<span class="string">'\\u002D'</span>, <span class="string">'-'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>不过还不能用json.loads，因为其中 [] 中括号是加了双引号的原因会让其报错，所以我又写了一个方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">de_json_str</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    替换[]括号，直接json.loads会因为 "[，]" 的原因报错</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="string">'"['</span>, <span class="string">'['</span>).replace(<span class="string">']"'</span>, <span class="string">']'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>接着就能直接转换了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取info</span></span><br><span class="line">info = json.loads(de_json_str(de_unicode(info)))</span><br><span class="line"><span class="comment"># 获取detail</span></span><br><span class="line">detail = json.loads(de_json_str(de_unicode(info)))</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h4><p>1、首先获取js变量info、detail，这两个保存了所有信息，而上面保存的js文件就是对其解析用的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">html = resp.text</span><br><span class="line">pattern = <span class="string">&quot;var.?info.?=.?&#x27;(.*?)&#x27;;?\n+?var.?detail.?=.?&#x27;(.*?)&#x27;;?\nvar isTransfer&quot;</span></span><br><span class="line">info, detail = re.findall(pattern, html)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>2、接着用json.loads对其转换，不过在此之前先得把其中得unicode给转换一下，因为从requests获取到的都是直接转义过了的，所以我直接写了一个方法，其中的内容仅针对人人贷散标网页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">de_unicode</span>(<span class="params">text</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    unicode转换，因为从response获取到的内容无法直接decode</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="string">&#x27;\\u0022&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>).replace(<span class="string">&#x27;\\u005C&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;\\u002D&#x27;</span>, <span class="string">&#x27;-&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>不过还不能用json.loads，因为其中 [] 中括号是加了双引号的原因会让其报错，所以我又写了一个方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">de_json_str</span>(<span class="params">text</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    替换[]括号，直接json.loads会因为 &quot;[，]&quot; 的原因报错</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> text.replace(<span class="string">&#x27;&quot;[&#x27;</span>, <span class="string">&#x27;[&#x27;</span>).replace(<span class="string">&#x27;]&quot;&#x27;</span>, <span class="string">&#x27;]&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>接着就能直接转换了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取info</span></span><br><span class="line">info = json.loads(de_json_str(de_unicode(info)))</span><br><span class="line"><span class="comment"># 获取detail</span></span><br><span class="line">detail = json.loads(de_json_str(de_unicode(info)))</span><br></pre></td></tr></table></figure>
 <p>获取到json对象的info、detail后就开始解析，在此之前先分析一下直接下载的js解析文件</p>
 <blockquote>
 <p><strong>createLeftDom</strong> 方法解析的是我们没登陆看到的部分借款信息</p>
@@ -198,16 +208,16 @@
 <p><strong>getMarriage</strong> 方法是婚姻信息解析，因为你在info里获取到的婚姻状态是英语表示的</p>
 </blockquote>
 <p>还有想获取什么信息直接看那个js代码即可，我就不再分析了，不过我客户有个需求是获取散标状态，也就是散标是否还款完、违约等状态，不过那个信息是张图，所以我们需要接着分析js，这里是个switch（我不会js，ase应该是类似case）</p>
-<p><img src="images/9.png" alt=""></p>
+<p><img src="images/9.png"></p>
 <p>其中 <strong>OVERDUE</strong> 是表示逾期，<strong>BADDEBT</strong> 是坏账 应该是欠账的意思把，而其对应的图片关系到status这个变量，status这个变量就是所判断的值，status是从loan中获取的</p>
-<p><img src="images/10.png" alt=""></p>
+<p><img src="images/10.png"></p>
 <p>loan是在info中获取的，尝试获取，其内容是 <strong>IN_PROGRESS</strong></p>
-<p><img src="images/11.png" alt=""></p>
-<p>不过如果直接将 <strong>IN_PROGRESS</strong> 替换到那个图片链接中是没有这个图片的，status经过 <strong>utils.loanAllType</strong> 方法处理过，这个方法来源于 <a href="https://www.renrendai.com/ps/static/pkg/common_wdg_6fdbabe.js" target="_blank" rel="noopener">common_wdg_6fdbabe.js</a> 文件</p>
-<p><img src="images/12.png" alt=""></p>
+<p><img src="images/11.png"></p>
+<p>不过如果直接将 <strong>IN_PROGRESS</strong> 替换到那个图片链接中是没有这个图片的，status经过 <strong>utils.loanAllType</strong> 方法处理过，这个方法来源于 <a target="_blank" rel="noopener" href="https://www.renrendai.com/ps/static/pkg/common_wdg_6fdbabe.js">common_wdg_6fdbabe.js</a> 文件</p>
+<p><img src="images/12.png"></p>
 <p>从这可以看到如果 <strong>status == IN_PROGRESS</strong>，那么sta就等于 REPAYING，这个就是返回的内容，接着按照你的需求写代码即可</p>
-<p><img src="images/13.png" alt=""></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>项目：<a href="https://github.com/ZCKun/renrendai" target="_blank" rel="noopener">renrendai</a></p>
+<p><img src="images/13.png"></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>项目：<a target="_blank" rel="noopener" href="https://github.com/ZCKun/renrendai">renrendai</a></p>
 
   </div>
 </article>
@@ -233,22 +243,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、分析站点"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、分析站点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、代码"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、代码</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E6%9E%90%E7%AB%99%E7%82%B9"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、分析站点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、代码</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&text=Python爬虫 - 人人贷散标"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&is_video=false&description=Python爬虫 - 人人贷散标"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&text=Python爬虫 - 人人贷散标"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&is_video=false&description=Python爬虫 - 人人贷散标"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫 - 人人贷散标&body=Check out this article: http://zckun.github.io/2019/06/26/python-renrendai-crawler/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&name=Python爬虫 - 人人贷散标&description=&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;这次爬的网站 &lt;a href=&#34;https://www.renrendai.com/loan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;人人贷 - 散标&lt;/a&gt; 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 &lt;strong&gt;BeautifulSoup&lt;/strong&gt;、&lt;strong&gt;Selenium&lt;/strong&gt;，首先 &lt;strong&gt;BeautifulSoup&lt;/strong&gt; 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 &lt;strong&gt;Selenium&lt;/strong&gt; 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 &lt;strong&gt;Cookie&lt;/strong&gt;，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 &lt;a href=&#34;https://www.renrendai.com/loan-2996659.html）&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.renrendai.com/loan-2996659.html）&lt;/a&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&title=Python爬虫 - 人人贷散标"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/26/python-renrendai-crawler/&name=Python爬虫 - 人人贷散标&description=&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;这次爬的网站 &lt;a href=&#34;https://www.renrendai.com/loan.html&#34;&gt;人人贷 - 散标&lt;/a&gt; 是一个客户要求爬的，数据一共是148w多条，不过后来发现有绝大部分是无效数据，也就是那个页面不存在，不过我看网上很多人爬这个网站都是用什么 &lt;strong&gt;BeautifulSoup&lt;/strong&gt;、&lt;strong&gt;Selenium&lt;/strong&gt;，首先 &lt;strong&gt;BeautifulSoup&lt;/strong&gt; 提供 Cookie 应该是能爬，不过以前的页面和现在的页面有些不同，应该有点麻烦，我没试过；而 &lt;strong&gt;Selenium&lt;/strong&gt; 可以直接放弃了，就一个原因，慢，你如果是爬几十个、几百个页面你也许能忍；我这次用的方法有些不同，不需要 &lt;strong&gt;Cookie&lt;/strong&gt;，而且用 Scrapy 速度也挺快；（以下测试用到的网页都是 &lt;a href=&#34;https://www.renrendai.com/loan-2996659.html%EF%BC%89&#34;&gt;https://www.renrendai.com/loan-2996659.html）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -267,7 +277,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -288,15 +298,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -317,7 +337,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

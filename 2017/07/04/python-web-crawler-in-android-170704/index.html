@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="前言 首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解那么手机爬虫也就是和PC端一毛一样，除了工具以外那么开始吧～">
-<meta name="keywords" content="android,python,crawler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Python爬虫">
 <meta property="og:url" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="前言 首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解那么手机爬虫也就是和PC端一毛一样，除了工具以外那么开始吧～">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/2.png">
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/3.png">
@@ -23,10 +22,13 @@
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/7.png">
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/8.png">
 <meta property="og:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/9.png">
-<meta property="og:updated_time" content="2019-11-09T15:28:15.687Z">
+<meta property="article:published_time" content="2017-07-04T03:17:45.000Z">
+<meta property="article:modified_time" content="2019-11-09T15:28:15.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="crawler">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Python爬虫">
-<meta name="twitter:description" content="前言 首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解那么手机爬虫也就是和PC端一毛一样，除了工具以外那么开始吧～">
 <meta name="twitter:image" content="http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/images/1.png">
     
     
@@ -49,15 +51,19 @@
     <!-- title -->
     <title>Android Python爬虫</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -79,7 +85,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -96,26 +102,26 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&text=Android Python爬虫"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&is_video=false&description=Android Python爬虫"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&text=Android Python爬虫"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&is_video=false&description=Android Python爬虫"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Android Python爬虫&body=Check out this article: http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&name=Android Python爬虫&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&name=Android Python爬虫&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解&lt;br&gt;那么手机爬虫也就是和PC端一毛一样，除了工具以外&lt;br&gt;那么开始吧～&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -123,7 +129,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -133,7 +139,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -150,7 +156,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/crawler/">crawler</a>, <a class="tag-link" href="/tags/python/">python</a>
+        <a class="tag-link-link" href="/tags/android/" rel="tag">android</a>, <a class="tag-link-link" href="/tags/crawler/" rel="tag">crawler</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>
     </div>
 
 
@@ -162,7 +168,7 @@
     <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解<br>那么手机爬虫也就是和PC端一毛一样，除了工具以外<br>那么开始吧～</p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 <hr>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><blockquote>
 <p>我这里推荐三个手机app：</p>
@@ -172,27 +178,32 @@
 </blockquote>
 <p>这篇文章只用两个软件：termux和chrome浏览器即可</p>
 <p>我们要爬取的网站是著名的老司机网站：i.jandan.net，我们只抓取100页的图片（60-160）</p>
-<p>网址在这：<a href="http://i.jandan.net/ooxx/page-60" target="_blank" rel="noopener">jandan</a>，但是我们还不知道它网页的构造，在浏览器的网址栏上加上“view-source”，加在网址的最前面，也就成了这样</p>
-<p><img src="images/1.png" alt=""></p>
+<p>网址在这：<a target="_blank" rel="noopener" href="http://i.jandan.net/ooxx/page-60">jandan</a>，但是我们还不知道它网页的构造，在浏览器的网址栏上加上“view-source”，加在网址的最前面，也就成了这样</p>
+<p><img src="images/1.png"></p>
 <p>OK，现在该网页的源码已经呈现在我们眼前了，可能看着有点费劲，但还好有高亮，不算太坑爹</p>
-<p><img src="images/2.png" alt=""></p>
+<p><img src="images/2.png"></p>
 <p>一般情况下：我们找到图片的链接关键字，比如<code>href、jpg、png</code>之类的</p>
 <p>但是这，我们只需要找“查看原图”这四个字就可以了，找到之后，我们可以看到它的一个图片都是用一个div给包裹着，每个都是</p>
-<p><img src="images/3.png" alt=""></p>
+<p><img src="images/3.png"></p>
 <p>这个就好办了，可以开始写代码来</p>
 <p>那么开始把，打开termux，新建一个crawler.py文件，我这里是这个，你们随意</p>
-<p><img src="images/4.png" alt=""></p>
-<p>然后导入我们那需要的包<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure></p>
+<p><img src="images/4.png"></p>
+<p>然后导入我们那需要的包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
 <p>只需要这两个包即可</p>
-<p>然后分享一下我的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env  python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">()</span>:</span></span><br><span class="line">    url = <span class="string">"http://i.jandan.net/ooxx/page-&#123;&#125;"</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">60</span>, <span class="number">161</span>):</span><br><span class="line">        <span class="keyword">yield</span> requests.get(url.format(page))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span><span class="params">()</span>:</span></span><br><span class="line">    pattern = <span class="string">'&lt;div class="commenttext"&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src="(.*?)".*?/&gt;.*?&lt;/div&gt;'</span></span><br><span class="line">    pattern_ = <span class="string">'&lt;div class="commenttext"&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src="(.*?)".*?/&gt;.*?&lt;/div&gt;'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> request():</span><br><span class="line">        image_urls = re.findall(pattern, response.text, re.S)</span><br><span class="line">        image_names = re.findall(pattern_, response.text, re.S)</span><br><span class="line">        <span class="keyword">for</span> url, name <span class="keyword">in</span> zip(image_urls, image_names):</span><br><span class="line">            source = requests.get(<span class="string">f"http:<span class="subst">&#123;url&#125;</span>"</span>)</span><br><span class="line">        print(image_names)</span><br><span class="line">        print(image_urls)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    parser()</span><br></pre></td></tr></table></figure></p>
-<p><img src="images/5.png" alt=""></p>
-<p><img src="images/6.png" alt=""></p>
-<p>接下来，我们就只需要下载就可以完成了，看代码吧：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env  python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">()</span>:</span></span><br><span class="line">    url = <span class="string">"http://i.jandan.net/ooxx/page-&#123;&#125;"</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">60</span>, <span class="number">161</span>):</span><br><span class="line">        <span class="keyword">yield</span> requests.get(url.format(page))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span><span class="params">()</span>:</span></span><br><span class="line">    pattern = <span class="string">'&lt;div class="commenttext"&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src="(.*?)".*?/&gt;.*?&lt;/div&gt;'</span></span><br><span class="line">    pattern_ = <span class="string">'&lt;div class="commenttext"&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src="//wx.sinaimg.cn/.*?/(.*?)".*?/&gt;.*?&lt;/div&gt;'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> request():</span><br><span class="line">        image_urls = re.findall(pattern, response.text, re.S)</span><br><span class="line">        image_names = re.findall(pattern_, response.text, re.S)</span><br><span class="line">        <span class="keyword">for</span> url, name <span class="keyword">in</span> zip(image_urls, image_names):</span><br><span class="line">            source = requests.get(<span class="string">f"http:<span class="subst">&#123;url&#125;</span>"</span>)</span><br><span class="line">            <span class="keyword">with</span> open(<span class="string">f'/sdcard/photos/<span class="subst">&#123;name&#125;</span>'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(source.content)</span><br><span class="line">                print(<span class="string">f'正在下载<span class="subst">&#123;name&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    parser()</span><br></pre></td></tr></table></figure></p>
-<p><img src="images/7.png" alt=""></p>
+<p>然后分享一下我的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env  python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span>():</span></span><br><span class="line">    url = <span class="string">&quot;http://i.jandan.net/ooxx/page-&#123;&#125;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>, <span class="number">161</span>):</span><br><span class="line">        <span class="keyword">yield</span> requests.get(url.<span class="built_in">format</span>(page))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span>():</span></span><br><span class="line">    pattern = <span class="string">&#x27;&lt;div class=&quot;commenttext&quot;&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src=&quot;(.*?)&quot;.*?/&gt;.*?&lt;/div&gt;&#x27;</span></span><br><span class="line">    pattern_ = <span class="string">&#x27;&lt;div class=&quot;commenttext&quot;&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src=&quot;(.*?)&quot;.*?/&gt;.*?&lt;/div&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> request():</span><br><span class="line">        image_urls = re.findall(pattern, response.text, re.S)</span><br><span class="line">        image_names = re.findall(pattern_, response.text, re.S)</span><br><span class="line">        <span class="keyword">for</span> url, name <span class="keyword">in</span> <span class="built_in">zip</span>(image_urls, image_names):</span><br><span class="line">            source = requests.get(<span class="string">f&quot;http:<span class="subst">&#123;url&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(image_names)</span><br><span class="line">        <span class="built_in">print</span>(image_urls)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parser()</span><br></pre></td></tr></table></figure>
+
+<p><img src="images/5.png"></p>
+<p><img src="images/6.png"></p>
+<p>接下来，我们就只需要下载就可以完成了，看代码吧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env  python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span>():</span></span><br><span class="line">    url = <span class="string">&quot;http://i.jandan.net/ooxx/page-&#123;&#125;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>, <span class="number">161</span>):</span><br><span class="line">        <span class="keyword">yield</span> requests.get(url.<span class="built_in">format</span>(page))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span>():</span></span><br><span class="line">    pattern = <span class="string">&#x27;&lt;div class=&quot;commenttext&quot;&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src=&quot;(.*?)&quot;.*?/&gt;.*?&lt;/div&gt;&#x27;</span></span><br><span class="line">    pattern_ = <span class="string">&#x27;&lt;div class=&quot;commenttext&quot;&gt;.*?[查看原图].*?&lt;br /&gt;.*?&lt;img src=&quot;//wx.sinaimg.cn/.*?/(.*?)&quot;.*?/&gt;.*?&lt;/div&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> response <span class="keyword">in</span> request():</span><br><span class="line">        image_urls = re.findall(pattern, response.text, re.S)</span><br><span class="line">        image_names = re.findall(pattern_, response.text, re.S)</span><br><span class="line">        <span class="keyword">for</span> url, name <span class="keyword">in</span> <span class="built_in">zip</span>(image_urls, image_names):</span><br><span class="line">            source = requests.get(<span class="string">f&quot;http:<span class="subst">&#123;url&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">f&#x27;/sdcard/photos/<span class="subst">&#123;name&#125;</span>&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(source.content)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;正在下载<span class="subst">&#123;name&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parser()</span><br></pre></td></tr></table></figure>
+
+<p><img src="images/7.png"></p>
 <p>下载过程：</p>
-<p><img src="images/8.png" alt=""></p>
+<p><img src="images/8.png"></p>
 <p>完成：</p>
-<p><img src="images/9.png" alt=""></p>
+<p><img src="images/9.png"></p>
 <hr>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>简单，代码量很少，有用的代码最多20行</p>
 <p>感谢观看，有错的地方别喷，指出来，我学习。</p>
@@ -221,21 +232,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&text=Android Python爬虫"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&is_video=false&description=Android Python爬虫"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&text=Android Python爬虫"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&is_video=false&description=Android Python爬虫"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Android Python爬虫&body=Check out this article: http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&name=Android Python爬虫&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&title=Android Python爬虫"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/07/04/python-web-crawler-in-android-170704/&name=Android Python爬虫&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;首先我个人认为一个小爬虫的步骤很简单，无非就是“找网站-分析网页源码-请求-分析-匹配-输出”，就这样，这是我个人理解&lt;br&gt;那么手机爬虫也就是和PC端一毛一样，除了工具以外&lt;br&gt;那么开始吧～&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
@@ -255,7 +266,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -276,15 +287,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -305,7 +326,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

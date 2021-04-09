@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="前言   我也不知道我多久没更新博客了   官网：frida.re   frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务   屁话就少说点吧，进入正题   E-mail：zckuna@163.com">
-<meta name="keywords" content="hook,frida,python">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前言   我也不知道我多久没更新博客了   官网：frida.re   frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务   屁话就少说点吧，进入正题   E-mail：&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Frida - Hook 快速开始">
 <meta property="og:url" content="http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/index.html">
 <meta property="og:site_name" content="0x2h">
-<meta property="og:description" content="前言   我也不知道我多久没更新博客了   官网：frida.re   frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务   屁话就少说点吧，进入正题   E-mail：zckuna@163.com">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="前言   我也不知道我多久没更新博客了   官网：frida.re   frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务   屁话就少说点吧，进入正题   E-mail：&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;">
+<meta property="og:locale">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/8/16b36dc13417677b?w=568&h=285&f=png&s=67429">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/8/16b36dbe3cae2ef9?w=854&h=319&f=png&s=67395">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/8/16b36db804bd83c0?w=819&h=1001&f=jpeg&s=152055">
-<meta property="og:updated_time" content="2019-06-08T11:37:49.881Z">
+<meta property="article:published_time" content="2019-06-08T11:22:03.000Z">
+<meta property="article:modified_time" content="2019-06-08T11:37:49.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="hook">
+<meta property="article:tag" content="frida">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Frida - Hook 快速开始">
-<meta name="twitter:description" content="前言   我也不知道我多久没更新博客了   官网：frida.re   frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务   屁话就少说点吧，进入正题   E-mail：zckuna@163.com">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/6/8/16b36dc13417677b?w=568&h=285&f=png&s=67429">
     
     
@@ -43,15 +45,19 @@
     <!-- title -->
     <title>Frida - Hook 快速开始</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -73,7 +79,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -90,30 +96,30 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&text=Frida - Hook 快速开始"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&is_video=false&description=Frida - Hook 快速开始"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&text=Frida - Hook 快速开始"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&is_video=false&description=Frida - Hook 快速开始"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Frida - Hook 快速开始&body=Check out this article: http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&name=Frida - Hook 快速开始&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&name=Frida - Hook 快速开始&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;  我也不知道我多久没更新博客了&lt;/p&gt;
 &lt;p&gt;  官网：frida.re&lt;/p&gt;
 &lt;p&gt;  frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务&lt;/p&gt;
 &lt;p&gt;  屁话就少说点吧，进入正题&lt;/p&gt;
-&lt;p&gt;  E-mail：&lt;a href=&#34;mailto:zckuna@163.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;zckuna@163.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  E-mail：&lt;a href=&#34;mailto:&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;&#34;&gt;&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、安装Frida"><span class="toc-number">2.1.</span> <span class="toc-text">一、安装Frida</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、运行"><span class="toc-number">2.2.</span> <span class="toc-text">二、运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Example"><span class="toc-number">2.3.</span> <span class="toc-text">三、Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85Frida"><span class="toc-number">2.1.</span> <span class="toc-text">一、安装Frida</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%BF%90%E8%A1%8C"><span class="toc-number">2.2.</span> <span class="toc-text">二、运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Example"><span class="toc-number">2.3.</span> <span class="toc-text">三、Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -121,7 +127,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -131,7 +137,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -148,7 +154,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/frida/">frida</a>, <a class="tag-link" href="/tags/hook/">hook</a>, <a class="tag-link" href="/tags/python/">python</a>
+        <a class="tag-link-link" href="/tags/frida/" rel="tag">frida</a>, <a class="tag-link-link" href="/tags/hook/" rel="tag">hook</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>
     </div>
 
 
@@ -162,28 +168,29 @@
 <p>  官网：frida.re</p>
 <p>  frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务</p>
 <p>  屁话就少说点吧，进入正题</p>
-<p>  E-mail：<a href="mailto:zckuna@163.com" target="_blank" rel="noopener">zckuna@163.com</a></p>
+<p>  E-mail：<a href="mailto:&#x7a;&#x63;&#107;&#x75;&#x6e;&#x61;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#x6f;&#x6d;">&#x7a;&#x63;&#107;&#x75;&#x6e;&#x61;&#x40;&#x31;&#x36;&#51;&#46;&#99;&#x6f;&#x6d;</a></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="一、安装Frida"><a href="#一、安装Frida" class="headerlink" title="一、安装Frida"></a>一、安装Frida</h3><p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36dc13417677b?w=568&amp;h=285&amp;f=png&amp;s=67429" alt=""></p>
+<span id="more"></span>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="一、安装Frida"><a href="#一、安装Frida" class="headerlink" title="一、安装Frida"></a>一、安装Frida</h3><p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36dc13417677b?w=568&h=285&f=png&s=67429"></p>
 <p>1、这是官网给的<strong>快速开始</strong>教程，就像安装一个python模块一样安装就好，安装就不多说了，这个没法自己解决不需要看下去了。</p>
-<p>2、然后你还需要去Frida Github官方开源项目处下载最新的 <strong>frida-server</strong>，这个玩意儿是关键，用来连接手机的一个服务，<a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener">点我下载</a>，打开页面有很多包，目前我看到的最新版本是12.6.5的版本</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36dbe3cae2ef9?w=854&amp;h=319&amp;f=png&amp;s=67395" alt=""></p>
-<p>你需要找到 <strong>frida-server-2.6.5-<system>-<version>.xz</version></system></strong>，其中</p>
+<p>2、然后你还需要去Frida Github官方开源项目处下载最新的 <strong>frida-server</strong>，这个玩意儿是关键，用来连接手机的一个服务，<a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">点我下载</a>，打开页面有很多包，目前我看到的最新版本是12.6.5的版本</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36dbe3cae2ef9?w=854&h=319&f=png&s=67395"></p>
+<p>你需要找到 <strong>frida-server-2.6.5-<system>-<version>.xz</strong>，其中</p>
 <ul>
-<li><strong>system</strong> 是指你手机的系统，比如Android、IOS，没错，frida支持ios，这个以后等我有ios手机再说（逃；、linux、windows。</li>
+<li>  <strong>system</strong> 是指你手机的系统，比如Android、IOS，没错，frida支持ios，这个以后等我有ios手机再说（逃；、linux、windows。</li>
 <li><strong>version</strong> 代表你手机处理器架构：<ul>
-<li>IOS有 <strong>arm</strong> 和 <strong>arm64</strong></li>
-<li>Android有 <strong>x86</strong>、<strong>x86_64</strong>、<strong>arm</strong>、<strong>arm64</strong></li>
-<li>Linux有 <strong>86</strong> 和 <strong>86_64</strong></li>
-<li>Windows有 <strong>86</strong> 和 <strong>86_64</strong></li>
+<li>  IOS有 <strong>arm</strong> 和 <strong>arm64</strong></li>
+<li>  Android有 <strong>x86</strong>、<strong>x86_64</strong>、<strong>arm</strong>、<strong>arm64</strong></li>
+<li>  Linux有 <strong>86</strong> 和 <strong>86_64</strong></li>
+<li>  Windows有 <strong>86</strong> 和 <strong>86_64</strong></li>
 </ul>
 </li>
 </ul>
 <p>3、下载好了后用adb或者其他方式弄到手机的 <strong>/data/local/tmp/</strong> 目录下，然后运行（别说你不解压直接运行）</p>
 <h3 id="二、运行"><a href="#二、运行" class="headerlink" title="二、运行"></a>二、运行</h3><p>​    下载好了，也运行了后打开终端使用命令 <strong>frida-ps -U</strong> 获取手机进程来测试是否正常，这一切的前提都是你运行了frida-server并且手机打开了开发者模式连接上了电脑，如果输出了进程信息就说明成功了，如果提示说frida没有连接（英文大概这么说：not connected，大概就这样，自己翻译吧）那就说明你下载的架构与你的手机不相符，或者你没有用数据线连接手机，再或者就是你没有打开开发者模式等等，实在没法解决可以百度、google，当然你也可以把问题已邮件的方式发给我（小声逼逼：我大概能帮你解决）。</p>
-<p>​    frida命令行有很多工具可以用，这些我都不会，因为我用不到。。。给你们个网站吧: <a href="http://www.frida.re，自己看文档，虽然文档不咋地" target="_blank" rel="noopener">www.frida.re，自己看文档，虽然文档不咋地</a></p>
-<h3 id="三、Example"><a href="#三、Example" class="headerlink" title="三、Example"></a>三、Example</h3><p>​    bb了那么多贼鸡儿聊，不弄点东西说的那些跟放屁一样，首先献上官网的一个例子：<a href="https://www.frida.re/docs/examples/android/" target="_blank" rel="noopener">我是例子</a>，直接 Ctrl C-V 完事…</p>
+<p>​    frida命令行有很多工具可以用，这些我都不会，因为我用不到。。。给你们个网站吧: <a target="_blank" rel="noopener" href="http://www.frida.re,自己看文档,虽然文档不咋地/">www.frida.re，自己看文档，虽然文档不咋地</a></p>
+<h3 id="三、Example"><a href="#三、Example" class="headerlink" title="三、Example"></a>三、Example</h3><p>​    bb了那么多贼鸡儿聊，不弄点东西说的那些跟放屁一样，首先献上官网的一个例子：<a target="_blank" rel="noopener" href="https://www.frida.re/docs/examples/android/">我是例子</a>，直接 Ctrl C-V 完事…</p>
 <p>​    我这里用mt管理器来示范一下，我来告诉你们为什么要用mt，因为mt的混淆看得我特么要把bin拖出来打一顿，mt目前就我所知，用了代码混淆、res混淆、字符串加密、id加密（这就是字符串加密），而且其中的字符串加密还特么用了好几种方式，我***。既然你要加密字符串，那我就非要把你字符串hook出来，虽然hook了也没什么屌用，因为你还是找不到是哪里加密的。</p>
 <p>​    不管你怎么加密，你总得用到 <strong>Stirng、StringBuilder、getString</strong> 等这些方法，怎么干，直接hook，新建一个py脚本，如下是我的项目结构：</p>
 <blockquote>
@@ -192,13 +199,16 @@
 </blockquote>
 <p>输入如下代码（我有注释来解释每一句代码的作用）：</p>
 <p><strong>mt.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PACKAGE = <span class="string">'bin.mt.plus'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    jscode = open(<span class="string">'script.js'</span>, <span class="string">'r'</span>).read() <span class="comment"># 获取js脚本内容</span></span><br><span class="line">    <span class="comment"># get_usb_device获取设备（就是你手机）</span></span><br><span class="line">    <span class="comment"># attach（翻译：链接）我所理解是连接给定包名的app的进程，为什么是我所理解，因为官网没有写</span></span><br><span class="line">    process = frida.get_usb_device().attach(PACKAGE) <span class="comment"># 获取给定包名的app进程</span></span><br><span class="line">    print(process) <span class="comment"># 打印看看是嘛玩意儿</span></span><br><span class="line">    script = process.create_script(jscode) <span class="comment"># 这里是把你的js脚本给塞进了process，源码在这https://github.com/frida/frida-python/blob/master/frida/core.py#L147</span></span><br><span class="line">    <span class="comment"># script.on('message', on_message)</span></span><br><span class="line">    print(<span class="string">'[*] Running CTF'</span>)</span><br><span class="line">    script.load() <span class="comment"># 加载脚本，https://github.com/frida/frida-python/blob/master/frida/core.py#L191</span></span><br><span class="line">    sys.stdin.read()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PACKAGE = <span class="string">&#x27;bin.mt.plus&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    jscode = <span class="built_in">open</span>(<span class="string">&#x27;script.js&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read() <span class="comment"># 获取js脚本内容</span></span><br><span class="line">    <span class="comment"># get_usb_device获取设备（就是你手机）</span></span><br><span class="line">    <span class="comment"># attach（翻译：链接）我所理解是连接给定包名的app的进程，为什么是我所理解，因为官网没有写</span></span><br><span class="line">    process = frida.get_usb_device().attach(PACKAGE) <span class="comment"># 获取给定包名的app进程</span></span><br><span class="line">    <span class="built_in">print</span>(process) <span class="comment"># 打印看看是嘛玩意儿</span></span><br><span class="line">    script = process.create_script(jscode) <span class="comment"># 这里是把你的js脚本给塞进了process，源码在这https://github.com/frida/frida-python/blob/master/frida/core.py#L147</span></span><br><span class="line">    <span class="comment"># script.on(&#x27;message&#x27;, on_message)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;[*] Running CTF&#x27;</span>)</span><br><span class="line">    script.load() <span class="comment"># 加载脚本，https://github.com/frida/frida-python/blob/master/frida/core.py#L191</span></span><br><span class="line">    sys.stdin.read()</span><br></pre></td></tr></table></figure>
+
 <p><strong>script.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个方法是为了辅助我输出用的，和python的字符串.format差不多的用法</span></span><br><span class="line"><span class="built_in">String</span>.prototype.format = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> values = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/\&#123;(\d+)\&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">match, index</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (values.length &gt; index) &#123;</span><br><span class="line">            <span class="keyword">return</span> values[index];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resources 类hook</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Resources = Java.use(<span class="string">'android.content.res.Resources'</span>); <span class="comment">// 获取Resources类</span></span><br><span class="line">    <span class="comment">// 因为getString方法重载，有几个我也没数，我只知道我需要用到的是接收一个id作为参数的方法</span></span><br><span class="line">    <span class="comment">//.overload填上你要hook的方法的参数类型，如果不知道直接不写，frida会报错提示你</span></span><br><span class="line">    Resources[<span class="string">'getString'</span>].overload(<span class="string">'int'</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123; <span class="comment">// id是接收到的参数</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n----- [Resources.getString] -----'</span>);</span><br><span class="line">        <span class="keyword">var</span> str = <span class="keyword">this</span>.getText(id); <span class="comment">// 这里通过this调用了Resources类中的getText方法</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'resId:&#123;0&#125; =&gt; string:&#123;1&#125;'</span>.format(id,str)); <span class="comment">// 输出</span></span><br><span class="line">        <span class="keyword">return</span> str <span class="comment">// 返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Toast 类hook，和上面一样</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Toast = Java.use(<span class="string">'android.widget.Toast'</span>);</span><br><span class="line">    Toast[<span class="string">'makeText'</span>].overload(<span class="string">'android.content.Context'</span>, <span class="string">'java.lang.CharSequence'</span>, <span class="string">'int'</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params">context, text, duration</span>) </span>&#123; <span class="comment">// 三个参数</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n----- [Toast.makeText] -----'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[Context]'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n\tContext:'</span>, context);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n\tClass:'</span>, context.getClass());</span><br><span class="line">        <span class="keyword">var</span> clazz = <span class="built_in">String</span>(context.getClass()).split(<span class="string">'.'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n\t\tClass Package:'</span>, clazz[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'\n\t\tClass Name:'</span>, clazz[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Text:'</span>, text);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Duration:'</span>, duration);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.makeText(context, <span class="literal">null</span>, text, duration);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个方法是为了辅助我输出用的，和python的字符串.format差不多的用法</span></span><br><span class="line"><span class="built_in">String</span>.prototype.format = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> values = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.replace(<span class="regexp">/\&#123;(\d+)\&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">match, index</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (values.length &gt; index) &#123;</span><br><span class="line">            <span class="keyword">return</span> values[index];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Resources 类hook</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Resources = Java.use(<span class="string">&#x27;android.content.res.Resources&#x27;</span>); <span class="comment">// 获取Resources类</span></span><br><span class="line">    <span class="comment">// 因为getString方法重载，有几个我也没数，我只知道我需要用到的是接收一个id作为参数的方法</span></span><br><span class="line">    <span class="comment">//.overload填上你要hook的方法的参数类型，如果不知道直接不写，frida会报错提示你</span></span><br><span class="line">    Resources[<span class="string">&#x27;getString&#x27;</span>].overload(<span class="string">&#x27;int&#x27;</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123; <span class="comment">// id是接收到的参数</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n----- [Resources.getString] -----&#x27;</span>);</span><br><span class="line">        <span class="keyword">var</span> str = <span class="built_in">this</span>.getText(id); <span class="comment">// 这里通过this调用了Resources类中的getText方法</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;resId:&#123;0&#125; =&gt; string:&#123;1&#125;&#x27;</span>.format(id,str)); <span class="comment">// 输出</span></span><br><span class="line">        <span class="keyword">return</span> str <span class="comment">// 返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Toast 类hook，和上面一样</span></span><br><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Toast = Java.use(<span class="string">&#x27;android.widget.Toast&#x27;</span>);</span><br><span class="line">    Toast[<span class="string">&#x27;makeText&#x27;</span>].overload(<span class="string">&#x27;android.content.Context&#x27;</span>, <span class="string">&#x27;java.lang.CharSequence&#x27;</span>, <span class="string">&#x27;int&#x27;</span>).implementation = <span class="function"><span class="keyword">function</span>(<span class="params">context, text, duration</span>) </span>&#123; <span class="comment">// 三个参数</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n----- [Toast.makeText] -----&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;[Context]&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n\tContext:&#x27;</span>, context);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n\tClass:&#x27;</span>, context.getClass());</span><br><span class="line">        <span class="keyword">var</span> clazz = <span class="built_in">String</span>(context.getClass()).split(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n\t\tClass Package:&#x27;</span>, clazz[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;\n\t\tClass Name:&#x27;</span>, clazz[<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Text:&#x27;</span>, text);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Duration:&#x27;</span>, duration);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.makeText(context, <span class="literal">null</span>, text, duration);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>运行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜  Mt python3 mt.py</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "mt.py", line 10, in &lt;module&gt;</span><br><span class="line">    process = frida.get_usb_device().attach(PACKAGE)</span><br><span class="line">  File "/usr/local/lib/python3.7/site-packages/frida/__init__.py", line 83, in get_usb_device</span><br><span class="line">    return get_device_matching(lambda device: device.type == 'usb', timeout)</span><br><span class="line">  File "/usr/local/lib/python3.7/site-packages/frida/__init__.py", line 113, in get_device_matching</span><br><span class="line">    raise InvalidArgumentError("device not found")</span><br><span class="line">frida.InvalidArgumentError: device not found</span><br><span class="line">➜  Mt</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜  Mt python3 mt.py</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;mt.py&quot;, line 10, in &lt;module&gt;</span><br><span class="line">    process = frida.get_usb_device().attach(PACKAGE)</span><br><span class="line">  File &quot;/usr/local/lib/python3.7/site-packages/frida/__init__.py&quot;, line 83, in get_usb_device</span><br><span class="line">    return get_device_matching(lambda device: device.type == &#x27;usb&#x27;, timeout)</span><br><span class="line">  File &quot;/usr/local/lib/python3.7/site-packages/frida/__init__.py&quot;, line 113, in get_device_matching</span><br><span class="line">    raise InvalidArgumentError(&quot;device not found&quot;)</span><br><span class="line">frida.InvalidArgumentError: device not found</span><br><span class="line">➜  Mt</span><br></pre></td></tr></table></figure>
+
 <p>报错，没找到设备，数据线连上电脑后把mt软件给打开，不然又要报错，我就不演示了，正常运行：</p>
-<p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36db804bd83c0?w=819&amp;h=1001&amp;f=jpeg&amp;s=152055" alt="run"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/6/8/16b36db804bd83c0?w=819&h=1001&f=jpeg&s=152055" alt="run"></p>
 <p>如果没东西输出，就检查代码，百分之99是你的问题</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结就算了，就到这吧，饿死我了</p>
 <p>下篇预定：frida使用技巧</p>
@@ -227,26 +237,26 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、安装Frida"><span class="toc-number">2.1.</span> <span class="toc-text">一、安装Frida</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、运行"><span class="toc-number">2.2.</span> <span class="toc-text">二、运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Example"><span class="toc-number">2.3.</span> <span class="toc-text">三、Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85Frida"><span class="toc-number">2.1.</span> <span class="toc-text">一、安装Frida</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%BF%90%E8%A1%8C"><span class="toc-number">2.2.</span> <span class="toc-text">二、运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Example"><span class="toc-number">2.3.</span> <span class="toc-text">三、Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&text=Frida - Hook 快速开始"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&is_video=false&description=Frida - Hook 快速开始"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&text=Frida - Hook 快速开始"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&is_video=false&description=Frida - Hook 快速开始"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Frida - Hook 快速开始&body=Check out this article: http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&name=Frida - Hook 快速开始&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&title=Frida - Hook 快速开始"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/06/08/python-frida-hook-quick-start-19-06-08/&name=Frida - Hook 快速开始&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;  我也不知道我多久没更新博客了&lt;/p&gt;
 &lt;p&gt;  官网：frida.re&lt;/p&gt;
 &lt;p&gt;  frida 是我用过最好用的hook框架没有之一，最喜欢的就是不需要重启手机，而且不会造成想xp框架那样手机开机很慢，因为frida在你手机上只运行了一个服务&lt;/p&gt;
 &lt;p&gt;  屁话就少说点吧，进入正题&lt;/p&gt;
-&lt;p&gt;  E-mail：&lt;a href=&#34;mailto:zckuna@163.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;zckuna@163.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  E-mail：&lt;a href=&#34;mailto:&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;&#34;&gt;&amp;#x7a;&amp;#x63;&amp;#107;&amp;#x75;&amp;#x6e;&amp;#x61;&amp;#x40;&amp;#x31;&amp;#x36;&amp;#51;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -265,7 +275,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -286,15 +296,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -315,7 +335,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

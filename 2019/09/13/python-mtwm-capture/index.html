@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）">
-<meta name="keywords" content="capture,meituan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="美团外卖抓包分析">
 <meta property="og:url" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/2.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/3.png">
@@ -22,10 +21,12 @@
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/6.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/7.png">
 <meta property="og:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/8.png">
-<meta property="og:updated_time" content="2019-11-19T14:28:04.179Z">
+<meta property="article:published_time" content="2019-09-12T20:26:30.000Z">
+<meta property="article:modified_time" content="2019-11-19T14:28:04.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="capture">
+<meta property="article:tag" content="meituan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="美团外卖抓包分析">
-<meta name="twitter:description" content="分析1、Charles抓包一开始爬 美团外卖App 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 美团外卖App 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）">
 <meta name="twitter:image" content="http://zckun.github.io/2019/09/13/python-mtwm-capture/images/1.png">
     
     
@@ -48,15 +49,19 @@
     <!-- title -->
     <title>美团外卖抓包分析</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -78,7 +83,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -95,24 +100,24 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&text=美团外卖抓包分析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&is_video=false&description=美团外卖抓包分析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&text=美团外卖抓包分析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&is_video=false&description=美团外卖抓包分析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=美团外卖抓包分析&body=Check out this article: http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&name=美团外卖抓包分析&description=&lt;h2 id=&#34;分析&#34;&gt;&lt;a href=&#34;#分析&#34; class=&#34;headerlink&#34; title=&#34;分析&#34;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;h3 id=&#34;1、Charles抓包&#34;&gt;&lt;a href=&#34;#1、Charles抓包&#34; class=&#34;headerlink&#34; title=&#34;1、Charles抓包&#34;&gt;&lt;/a&gt;1、Charles抓包&lt;/h3&gt;&lt;p&gt;一开始爬 &lt;strong&gt;美团外卖App&lt;/strong&gt; 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 &lt;strong&gt;美团外卖App&lt;/strong&gt; 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&name=美团外卖抓包分析&description=&lt;h2 id=&#34;分析&#34;&gt;&lt;a href=&#34;#分析&#34; class=&#34;headerlink&#34; title=&#34;分析&#34;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;h3 id=&#34;1、Charles抓包&#34;&gt;&lt;a href=&#34;#1、Charles抓包&#34; class=&#34;headerlink&#34; title=&#34;1、Charles抓包&#34;&gt;&lt;/a&gt;1、Charles抓包&lt;/h3&gt;&lt;p&gt;一开始爬 &lt;strong&gt;美团外卖App&lt;/strong&gt; 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 &lt;strong&gt;美团外卖App&lt;/strong&gt; 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Charles抓包"><span class="toc-number">1.1.</span> <span class="toc-text">1、Charles抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、长连接分析"><span class="toc-number">1.2.</span> <span class="toc-text">2、长连接分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、ip筛选"><span class="toc-number">1.3.</span> <span class="toc-text">3、ip筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-PC端"><span class="toc-number">1.4.</span> <span class="toc-text">&gt;PC端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Android"><span class="toc-number">1.5.</span> <span class="toc-text">&gt;Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">2.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Charles%E6%8A%93%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">1、Charles抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">2、长连接分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81ip%E7%AD%9B%E9%80%89"><span class="toc-number">1.3.</span> <span class="toc-text">3、ip筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-PC%E7%AB%AF"><span class="toc-number">1.4.</span> <span class="toc-text">&gt;PC端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Android"><span class="toc-number">1.5.</span> <span class="toc-text">&gt;Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">2.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +125,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -130,7 +135,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -147,7 +152,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/capture/">capture</a>, <a class="tag-link" href="/tags/meituan/">meituan</a>
+        <a class="tag-link-link" href="/tags/capture/" rel="tag">capture</a>, <a class="tag-link-link" href="/tags/meituan/" rel="tag">meituan</a>
     </div>
 
 
@@ -157,27 +162,32 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="1、Charles抓包"><a href="#1、Charles抓包" class="headerlink" title="1、Charles抓包"></a>1、Charles抓包</h3><p>一开始爬 <strong>美团外卖App</strong> 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 <strong>美团外卖App</strong> 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）</p>
-<a id="more"></a>
-<p>不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “<strong><a href="https://baike.baidu.com/item/%E9%95%BF%E8%BF%9E%E6%8E%A5/568486?fr=aladdin" target="_blank" rel="noopener">移动长连接</a></strong>“ 的技术导致我抓不到包；</p>
-<p>接着我在网上找了关于该名词的解释以及mt发表的一篇文章：<a href="https://tech.meituan.com/2017/03/17/shark-sdk.html" target="_blank" rel="noopener">移动网络优化实践</a>，用我所理解的话来说就是： <strong>打开APP的时候移动端和服务器建立起tcp连接后，这个连接就不断开了，后续的请求和接收都走该通道，这个tcp长连接一般都是会使用自定义的协议，而非http，所有普通的抓包软件都无法抓到这类请求（如有误请指正）</strong>。</p>
-<h3 id="2、长连接分析"><a href="#2、长连接分析" class="headerlink" title="2、长连接分析"></a>2、长连接分析</h3><p>文章里有这么一段：<br><strong>“当TCP通道无法建立或者发生故障时，可以使用UDP面向无连接的特性提供另一条请求通道，或者绕过代理长连服务器之间向业务服务器发起HTTP公网请求”</strong>；<br><img src="images/1.png" alt=""><br>也就是说，美团为了以防万一提供了降级方案，正是因为这个方案给了我们机会，既然tcp通道发生故障会切换到http请求，那么只要让这个条件成立就好了。这个可以通过屏蔽ip实现，随即有了一个新问题，怎么找到这个ip。</p>
-<p>首先移动端长连接与服务器的通信肯定是<a href="https://baike.baidu.com/item/TCP/33012" target="_blank" rel="noopener">TCP</a>协议；然后由于是长连接，那么移动端肯定不会轻易的去断开这个连接，也就是不会发送fin包，有了这两个特征就可以开始筛选ip了。</p>
-<h3 id="3、ip筛选"><a href="#3、ip筛选" class="headerlink" title="3、ip筛选"></a>3、ip筛选</h3><h3 id="gt-PC端"><a href="#gt-PC端" class="headerlink" title="&gt;PC端"></a>&gt;PC端</h3><p>pc端的话用 <a href="https://www.wireshark.org/" target="_blank" rel="noopener"><strong>wireshark</strong></a> 就完事了；</p>
+<span id="more"></span>
+
+
+<p>不过好在在我查找资料的过程也并非无任何收获，我得知美团使用了一种叫 “<strong><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%95%BF%E8%BF%9E%E6%8E%A5/568486?fr=aladdin">移动长连接</a></strong>“ 的技术导致我抓不到包；</p>
+<p>接着我在网上找了关于该名词的解释以及mt发表的一篇文章：<a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/03/17/shark-sdk.html">移动网络优化实践</a>，用我所理解的话来说就是： <strong>打开APP的时候移动端和服务器建立起tcp连接后，这个连接就不断开了，后续的请求和接收都走该通道，这个tcp长连接一般都是会使用自定义的协议，而非http，所有普通的抓包软件都无法抓到这类请求（如有误请指正）</strong>。</p>
+<h3 id="2、长连接分析"><a href="#2、长连接分析" class="headerlink" title="2、长连接分析"></a>2、长连接分析</h3><p>文章里有这么一段：<br><strong>“当TCP通道无法建立或者发生故障时，可以使用UDP面向无连接的特性提供另一条请求通道，或者绕过代理长连服务器之间向业务服务器发起HTTP公网请求”</strong>；<br><img src="images/1.png"><br>也就是说，美团为了以防万一提供了降级方案，正是因为这个方案给了我们机会，既然tcp通道发生故障会切换到http请求，那么只要让这个条件成立就好了。这个可以通过屏蔽ip实现，随即有了一个新问题，怎么找到这个ip。</p>
+<p>首先移动端长连接与服务器的通信肯定是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP/33012">TCP</a>协议；然后由于是长连接，那么移动端肯定不会轻易的去断开这个连接，也就是不会发送fin包，有了这两个特征就可以开始筛选ip了。</p>
+<h3 id="3、ip筛选"><a href="#3、ip筛选" class="headerlink" title="3、ip筛选"></a>3、ip筛选</h3><h3 id="gt-PC端"><a href="#gt-PC端" class="headerlink" title="&gt;PC端"></a>&gt;PC端</h3><p>pc端的话用 <a target="_blank" rel="noopener" href="https://www.wireshark.org/"><strong>wireshark</strong></a> 就完事了；</p>
 <p>首先打开模拟器，然后打开wireshark，选择网卡就开始抓包了，然后打开美团外卖App，搜索一个关键字；</p>
-<p>首先你搜索一个关键字肯定会得到很多结果，那么就可以断定返回的数据包应该比较大，而且根据上图还可以知道是加密过的，那么就很好找了，我这里找到了<img src="images/2.png" alt=""></p>
-<p>接着就是屏蔽它了，Linux直接用iptables就行，我没linux但我可以提供命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptable -A INPUT -s ***.**.***.181 -j DROP #屏蔽</span><br><span class="line">iptable -D INPUT -s ***.**.***.181 -j DROP #解除屏蔽</span><br></pre></td></tr></table></figure></p>
+<p>首先你搜索一个关键字肯定会得到很多结果，那么就可以断定返回的数据包应该比较大，而且根据上图还可以知道是加密过的，那么就很好找了，我这里找到了<img src="images/2.png"></p>
+<p>接着就是屏蔽它了，Linux直接用iptables就行，我没linux但我可以提供命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptable -A INPUT -s ***.**.***.181 -j DROP #屏蔽</span><br><span class="line">iptable -D INPUT -s ***.**.***.181 -j DROP #解除屏蔽</span><br></pre></td></tr></table></figure>
 <p>这命令可以在安卓上直接生效，linux可能需要 service iptables save 来生效</p>
-<p><img src="images/3.png" alt=""></p>
-<p>Mac下没有iptables可以用 <strong>pfctl</strong>，首先写规则<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/pf.conf</span><br></pre></td></tr></table></figure></p>
-<p><img src="images/4.png" alt=""></p>
+<p><img src="images/3.png"></p>
+<p>Mac下没有iptables可以用 <strong>pfctl</strong>，首先写规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/pf.conf</span><br></pre></td></tr></table></figure>
+<p><img src="images/4.png"></p>
 <p>然后使其生效</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pfctl -evf /etc/pf.conf</span><br></pre></td></tr></table></figure>
+
 <p>接着就可以直接用 <strong>Charles</strong> 抓包了</p>
-<p><img src="images/5.png" alt=""></p>
+<p><img src="images/5.png"></p>
 <h3 id="gt-Android"><a href="#gt-Android" class="headerlink" title="&gt;Android"></a>&gt;Android</h3><p>接下来我要说的是 Android 上，我抓mt是为了写爬虫，我在电脑上抓到了请求的连接但那些参数加密我需要hook，所以不得不在手机上弄，所以我就需要在手机上屏蔽ip。我先说在手机上抓长连接ip，目前手机上能抓tcp的除了tcpdump以外好像就只有 <strong>httpcanary</strong> 了，主要是它能显示请求的协议；</p>
-<p><img src="images/6.png" alt=""><br>找到ip后屏蔽即可，然后再次请求</p>
-<p><img src="images/7.png" alt=""><br>其中有一条80多k的请求，而且这个host之前没见过，点进去看response就得知成功了</p>
-<p><img src="images/8.png" alt=""></p>
+<p><img src="images/6.png"><br>找到ip后屏蔽即可，然后再次请求</p>
+<p><img src="images/7.png"><br>其中有一条80多k的请求，而且这个host之前没见过，点进去看response就得知成功了</p>
+<p><img src="images/8.png"></p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>就算你抓到了也没用，请求、POST参数一大堆，而且加密的有哪些还不太清楚，我试过直接照搬请求返回错误。。。<br>所以你们慢慢分析或者等我下篇文章吧</p>
 
   </div>
@@ -204,21 +214,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Charles抓包"><span class="toc-number">1.1.</span> <span class="toc-text">1、Charles抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、长连接分析"><span class="toc-number">1.2.</span> <span class="toc-text">2、长连接分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、ip筛选"><span class="toc-number">1.3.</span> <span class="toc-text">3、ip筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-PC端"><span class="toc-number">1.4.</span> <span class="toc-text">&gt;PC端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Android"><span class="toc-number">1.5.</span> <span class="toc-text">&gt;Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">2.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Charles%E6%8A%93%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">1、Charles抓包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">2、长连接分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81ip%E7%AD%9B%E9%80%89"><span class="toc-number">1.3.</span> <span class="toc-text">3、ip筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-PC%E7%AB%AF"><span class="toc-number">1.4.</span> <span class="toc-text">&gt;PC端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Android"><span class="toc-number">1.5.</span> <span class="toc-text">&gt;Android</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">2.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&text=美团外卖抓包分析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&is_video=false&description=美团外卖抓包分析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&text=美团外卖抓包分析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&is_video=false&description=美团外卖抓包分析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=美团外卖抓包分析&body=Check out this article: http://zckun.github.io/2019/09/13/python-mtwm-capture/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&name=美团外卖抓包分析&description=&lt;h2 id=&#34;分析&#34;&gt;&lt;a href=&#34;#分析&#34; class=&#34;headerlink&#34; title=&#34;分析&#34;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;h3 id=&#34;1、Charles抓包&#34;&gt;&lt;a href=&#34;#1、Charles抓包&#34; class=&#34;headerlink&#34; title=&#34;1、Charles抓包&#34;&gt;&lt;/a&gt;1、Charles抓包&lt;/h3&gt;&lt;p&gt;一开始爬 &lt;strong&gt;美团外卖App&lt;/strong&gt; 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 &lt;strong&gt;美团外卖App&lt;/strong&gt; 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&title=美团外卖抓包分析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/09/13/python-mtwm-capture/&name=美团外卖抓包分析&description=&lt;h2 id=&#34;分析&#34;&gt;&lt;a href=&#34;#分析&#34; class=&#34;headerlink&#34; title=&#34;分析&#34;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;h3 id=&#34;1、Charles抓包&#34;&gt;&lt;a href=&#34;#1、Charles抓包&#34; class=&#34;headerlink&#34; title=&#34;1、Charles抓包&#34;&gt;&lt;/a&gt;1、Charles抓包&lt;/h3&gt;&lt;p&gt;一开始爬 &lt;strong&gt;美团外卖App&lt;/strong&gt; 我是直接Charles上手就干的，但我抓了一天都没抓到有用的数据我就开始找资料，遗憾的是网上没有一篇关于 &lt;strong&gt;美团外卖App&lt;/strong&gt; 抓包分析的文章，我是真的一篇都没看到（这里指的是移动app，不是网页）&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -236,7 +246,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -257,15 +267,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -286,7 +306,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

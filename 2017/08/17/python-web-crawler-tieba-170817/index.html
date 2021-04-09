@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
-<meta name="keywords" content="python,crawler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬虫－扒一扒百度贴吧里的email并保存到MySQL">
 <meta property="og:url" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/2.png">
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/3.png">
@@ -24,10 +23,12 @@
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/10.png">
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/11.png">
 <meta property="og:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/12.png">
-<meta property="og:updated_time" content="2019-11-09T16:06:05.669Z">
+<meta property="article:published_time" content="2017-08-17T14:40:00.000Z">
+<meta property="article:modified_time" content="2019-11-09T16:06:05.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="crawler">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫－扒一扒百度贴吧里的email并保存到MySQL">
-<meta name="twitter:description" content="昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。">
 <meta name="twitter:image" content="http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/images/1.png">
     
     
@@ -50,15 +51,19 @@
     <!-- title -->
     <title>Python爬虫－扒一扒百度贴吧里的email并保存到MySQL</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -80,7 +85,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -97,24 +102,24 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&text=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&is_video=false&description=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&text=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&is_video=false&description=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&body=Check out this article: http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&name=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&description=&lt;p&gt;昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&name=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&description=&lt;p&gt;昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先安装MySQL到你的机器上"><span class="toc-number">1.</span> <span class="toc-text">首先安装MySQL到你的机器上</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85MySQL%E5%88%B0%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%B8%8A"><span class="toc-number">1.</span> <span class="toc-text">首先安装MySQL到你的机器上</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -122,7 +127,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -132,7 +137,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -149,7 +154,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/crawler/">crawler</a>, <a class="tag-link" href="/tags/python/">python</a>
+        <a class="tag-link-link" href="/tags/crawler/" rel="tag">crawler</a>, <a class="tag-link-link" href="/tags/python/" rel="tag">python</a>
     </div>
 
 
@@ -159,33 +164,34 @@
 
   <div class="content" itemprop="articleBody">
     <p>昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <hr>
 <p>国际惯例，先上图 (:</p>
-<p><img src="images/1.png" alt=""></p>
+<p><img src="images/1.png"></p>
 <p>还是看看数据把…输入命令</p>
-<p><img src="images/2.png" alt=""></p>
+<p><img src="images/2.png"></p>
 <p>结果:</p>
-<p><img src="images/3.png" alt=""></p>
-<p>一共761条，看起来还不错，当然还是有些不正确的邮箱，代码在这<a href="https://github.com/ZCKun/CCCoding" target="_blank" rel="noopener">CCCoding</a><br>或者直接<code>wget https://raw.githubusercontent.com/ZCKun/CCCoding/master/tieba_email.py</code>下载到本地</p>
+<p><img src="images/3.png"></p>
+<p>一共761条，看起来还不错，当然还是有些不正确的邮箱，代码在这<a target="_blank" rel="noopener" href="https://github.com/ZCKun/CCCoding">CCCoding</a><br>或者直接<code>wget https://raw.githubusercontent.com/ZCKun/CCCoding/master/tieba_email.py</code>下载到本地</p>
 <p>说一下要用到的模块</p>
 <blockquote>
 <p>requests<br>re<br>pymysq<br>可能有些刚入这行伙计没接触过MySQL，我就在这简单的说下如何安装和配置，我只有一台装了debian的机器，linux下操作都一样，mac应该也查不了多少，win的话可以百度</p>
 </blockquote>
 <blockquote>
-<h2 id="首先安装MySQL到你的机器上"><a href="#首先安装MySQL到你的机器上" class="headerlink" title="首先安装MySQL到你的机器上"></a>首先安装MySQL到你的机器上</h2><p>这是官网: <a href="http://www.mysql.com/" target="_blank" rel="noopener">www.mysql.com/</a><br>下载地址: <a href="http://www.mysql.com/downloads/" target="_blank" rel="noopener">www.mysql.com/downloads/</a><br>社区版本下载地址: dev.mysql.com/downloads/mysql/<br>考虑到有些人像我当年一样没电脑只有一部android手机也写了几个月的代码的情况下，在这里我也说下如何用手机安装</p>
+<h2 id="首先安装MySQL到你的机器上"><a href="#首先安装MySQL到你的机器上" class="headerlink" title="首先安装MySQL到你的机器上"></a>首先安装MySQL到你的机器上</h2><p>这是官网: <a target="_blank" rel="noopener" href="http://www.mysql.com/">www.mysql.com/</a><br>下载地址: <a target="_blank" rel="noopener" href="http://www.mysql.com/downloads/">www.mysql.com/downloads/</a><br>社区版本下载地址: dev.mysql.com/downloads/mysql/<br>考虑到有些人像我当年一样没电脑只有一部android手机也写了几个月的代码的情况下，在这里我也说下如何用手机安装</p>
 <blockquote>
-<p>1、MySQL（mariadb），请确认你的手机是android并且版本在5.x以上最好6.x<br>2、首先在你手机安装一个软件－termux，你可以百度或者去google play下载<br>3、安装好了打开后看到熟悉的终端，输入　<code>apt update &amp;&amp; apt upgrade</code><br>4、然后开始安装mariadb(mysql的那啥。。。)　<code>apt-get install mariadb</code><br>5、安装好了之后　输入　<code>mysqld</code>　开启服务<br>6、然后另开一个窗口输入　<code>mysql</code>　出错。。内心懵逼啊，　我这特么不是装好了么<br>7、别慌，termux上安装mariadb时不会要你设置密码，但是我们有办法<br>8、输入　<code>mysqladmin -u root password &lt;你的密码&gt;</code>　这样就设置了你的root用户的密码了<br>9、然后输入　<code>mysql -u root -p</code> 回车，要求输入密码，填写你刚刚设置的密码就ok了<br>10、然后开始配置用户的host，以便于你在电脑／手机上可以方便的用python连接，我这里用电脑示范，确保你手机后台在运行服务，在你的计算机上登录你手机上的mariadb时可以用　<code>mysql -h host -P port -u user -p</code> 这里的host是指你手机的ip(局域网的)，port端口mysql／mariadb默认是3306，user就是登录的用户<br>11、在你登录成功后，出现如下界面:<br><img src="images/4.png" alt=""><br>12、手机上:<br><img src="images/7.png" alt=""></p>
+<p>1、MySQL（mariadb），请确认你的手机是android并且版本在5.x以上最好6.x<br>2、首先在你手机安装一个软件－termux，你可以百度或者去google play下载<br>3、安装好了打开后看到熟悉的终端，输入　<code>apt update &amp;&amp; apt upgrade</code><br>4、然后开始安装mariadb(mysql的那啥。。。)　<code>apt-get install mariadb</code><br>5、安装好了之后　输入　<code>mysqld</code>　开启服务<br>6、然后另开一个窗口输入　<code>mysql</code>　出错。。内心懵逼啊，　我这特么不是装好了么<br>7、别慌，termux上安装mariadb时不会要你设置密码，但是我们有办法<br>8、输入　<code>mysqladmin -u root password &lt;你的密码&gt;</code>　这样就设置了你的root用户的密码了<br>9、然后输入　<code>mysql -u root -p</code> 回车，要求输入密码，填写你刚刚设置的密码就ok了<br>10、然后开始配置用户的host，以便于你在电脑／手机上可以方便的用python连接，我这里用电脑示范，确保你手机后台在运行服务，在你的计算机上登录你手机上的mariadb时可以用　<code>mysql -h host -P port -u user -p</code> 这里的host是指你手机的ip(局域网的)，port端口mysql／mariadb默认是3306，user就是登录的用户<br>11、在你登录成功后，出现如下界面:<br><img src="images/4.png"><br>12、手机上:<br><img src="images/7.png"></p>
 </blockquote>
 </blockquote>
 <blockquote>
 <p>之后输入的命令啥的都一样，我就不再一一截图了。。。<br>输入　<code>SHOW DATABASES;</code>　或者　<code>show databases;</code>　查看有哪些数据库</p>
 </blockquote>
-<p><img src="images/8.png" alt=""></p>
+<p><img src="images/8.png"></p>
 <blockquote>
 <p>可能和我的不一样，很正常，你只要确认有mysql这个数据库就可以了<br>接着输入　<code>USE mysql</code>　或　<code>use mysql</code>　相当于进入该数据库</p>
 </blockquote>
-<p><img src="images/9.png" alt=""></p>
+<p><img src="images/9.png"></p>
 <blockquote>
 <p>看到和我的提示差不多一样就没毛病</p>
 </blockquote>
@@ -206,20 +212,21 @@
 <p>然后给它这个数据库的所有权限，接着输入 <code>GRANT ALL PRIVILEGES ON testDB.* TO &quot;刚刚创建的用户名&quot;@&quot;%&quot; IDENTIFIED BY &quot;密码&quot;;</code></p>
 </blockquote>
 <blockquote>
-<p>创建完了，然后检查一下是否成功，输入 <code>SELECT Host, User, Password, Select_priv, Insert_priv, Update_priv, Create_priv FROM user WHERE User = &quot;你刚刚创建的用户名&quot;;</code></p>
+<p>创建完了，然后检查一下是否成功，输入 <code>SELECT Host, User, Password, Select_priv, Insert_priv, Update_priv, Create_priv FROM user WHERE User = &quot;你刚刚创建的用户名&quot;; </code></p>
 </blockquote>
 </blockquote>
-<p><img src="images/10.png" alt=""></p>
+<p><img src="images/10.png"></p>
 <blockquote>
 <p>出现如上图显示有东西就是创建成功，password是经过加密的，还有一点忘说了，这操作只能在root用户下才可以</p>
 </blockquote>
 <blockquote>
-<p>linux的直接 <code>sudo apt-get install mysql-server</code>　就搞定了，当然不闲麻烦的去官网下载<br>在安装期间会要求你设置root密码，这是mysql的root用户密码，最好别忘记<br>在Windows上，安装时请选择UTF-8编码，以便正确地处理中文<br>在Mac或Linux上，需要编辑MySQL的配置文件，把数据库默认的编码全部改为UTF-8。MySQL的配置文件默认存放在<code>/etc/my.cnf</code>或者<code>/etc/mysql/my.cnf</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"></span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line"></span><br><span class="line">character-set-server = utf8</span><br><span class="line"></span><br><span class="line">collation-server = utf8_general_ci</span><br></pre></td></tr></table></figure></p>
+<p>linux的直接 <code>sudo apt-get install mysql-server</code>　就搞定了，当然不闲麻烦的去官网下载<br>在安装期间会要求你设置root密码，这是mysql的root用户密码，最好别忘记<br>在Windows上，安装时请选择UTF-8编码，以便正确地处理中文<br>在Mac或Linux上，需要编辑MySQL的配置文件，把数据库默认的编码全部改为UTF-8。MySQL的配置文件默认存放在<code>/etc/my.cnf</code>或者<code>/etc/mysql/my.cnf</code>：</p>
 </blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line"></span><br><span class="line">default-character-set = utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line"></span><br><span class="line">character-set-server = utf8</span><br><span class="line"></span><br><span class="line">collation-server = utf8_general_ci</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>然后一切妥了，测试是否安装成功，终端下输入 mysql -u root -p　然后会车输入你的root密码，出现这样的界面就是ok了</p>
 </blockquote>
-<p><img src="images/11.png" alt=""></p>
+<p><img src="images/11.png"></p>
 <blockquote>
 <p>对了，忘了创建数据表了，，，</p>
 <blockquote>
@@ -227,15 +234,17 @@
 </blockquote>
 </blockquote>
 <hr>
-<p>终于开始讲爬虫了，我日，码了一个多小时的字。。。<br>本次的目标网址<a href="http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615，我们得到他&quot;?&quot;前面的那串数字就可以了" target="_blank" rel="noopener">http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615，我们得到他&quot;?&quot;前面的那串数字就可以了</a></p>
-<p><img src="images/12.png" alt=""></p>
+<p>终于开始讲爬虫了，我日，码了一个多小时的字。。。<br>本次的目标网址<a target="_blank" rel="noopener" href="http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615%EF%BC%8C%E6%88%91%E4%BB%AC%E5%BE%97%E5%88%B0%E4%BB%96&quot;?&quot;%E5%89%8D%E9%9D%A2%E7%9A%84%E9%82%A3%E4%B8%B2%E6%95%B0%E5%AD%97%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86">http://tieba.baidu.com/p/5178628955?pid=108443531615&amp;cid=0#108443531615，我们得到他&quot;?&quot;前面的那串数字就可以了</a></p>
+<p><img src="images/12.png"></p>
 <p>一共13页，思路来了</p>
 <blockquote>
 <p>１、获取爬取的帖子的页数，然后生成链接列表<br>２、迭代链接列表请求，之后解析<br>３、连接mysql数据库，然后存储</p>
 </blockquote>
-<p>获取帖子页码:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">'''获取帖子有多少页'''</span></span><br><span class="line">    resp = requests.get(self.tmp_url, headers=self.headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != requests.code.OK:</span><br><span class="line">        print(<span class="string">"Request Error ):"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        page = int(re.findall(<span class="string">'共&lt;span class="red"&gt;(.*?)&lt;/span&gt;页'</span>, resp.text, re.S)[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">"Error:"</span>, e)</span><br><span class="line">        sys.exit()</span><br><span class="line">    </span><br><span class="line">    _ = <span class="string">"http://tieba.baidu.com/p/%s?pn=&#123;&#125;"</span> % self.id</span><br><span class="line">    self.urls = [_.format(pn) <span class="keyword">for</span> pn <span class="keyword">in</span> range(<span class="number">1</span>, page+<span class="number">1</span>)]</span><br></pre></td></tr></table></figure></p>
-<p>连接数据库并保存:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connection_mysql</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">'''保存到MySQL数据库'''</span></span><br><span class="line">    db = pymysql.connect(<span class="string">'地址'</span>, <span class="string">'用户名'</span>, <span class="string">'数据库密码'</span>, <span class="string">'连接的表名'</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> self.content:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            cursor.execute(<span class="string">f'INSERT INTO email VALUES ("<span class="subst">&#123;i&#125;</span>")'</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">'\033[1;31mERROR\033[0m: \033[0;31m%s\033[0m ):'</span> % e)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    db.commit()</span><br><span class="line">    cursor.close()</span><br><span class="line">    db.close()</span><br><span class="line">    print(<span class="string">'DONE! (:'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>详细代码可以在这里看到 <a href="https://github.com/ZCKun/CCCoding" target="_blank" rel="noopener">CCCoding</a></p>
+<p>获取帖子页码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;获取帖子有多少页&#x27;&#x27;&#x27;</span></span><br><span class="line">    resp = requests.get(self.tmp_url, headers=self.headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != requests.code.OK:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Request Error ):&quot;</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        page = <span class="built_in">int</span>(re.findall(<span class="string">&#x27;共&lt;span class=&quot;red&quot;&gt;(.*?)&lt;/span&gt;页&#x27;</span>, resp.text, re.S)[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Error:&quot;</span>, e)</span><br><span class="line">        sys.exit()</span><br><span class="line">    </span><br><span class="line">    _ = <span class="string">&quot;http://tieba.baidu.com/p/%s?pn=&#123;&#125;&quot;</span> % self.<span class="built_in">id</span></span><br><span class="line">    self.urls = [_.<span class="built_in">format</span>(pn) <span class="keyword">for</span> pn <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, page+<span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+<p>连接数据库并保存:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connection_mysql</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;保存到MySQL数据库&#x27;&#x27;&#x27;</span></span><br><span class="line">    db = pymysql.connect(<span class="string">&#x27;地址&#x27;</span>, <span class="string">&#x27;用户名&#x27;</span>, <span class="string">&#x27;数据库密码&#x27;</span>, <span class="string">&#x27;连接的表名&#x27;</span>)</span><br><span class="line">    cursor = db.cursor()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> self.content:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            cursor.execute(<span class="string">f&#x27;INSERT INTO email VALUES (&quot;<span class="subst">&#123;i&#125;</span>&quot;)&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;\033[1;31mERROR\033[0m: \033[0;31m%s\033[0m ):&#x27;</span> % e)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    db.commit()</span><br><span class="line">    cursor.close()</span><br><span class="line">    db.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;DONE! (:&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>详细代码可以在这里看到 <a target="_blank" rel="noopener" href="https://github.com/ZCKun/CCCoding">CCCoding</a></p>
 
   </div>
 </article>
@@ -261,21 +270,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先安装MySQL到你的机器上"><span class="toc-number">1.</span> <span class="toc-text">首先安装MySQL到你的机器上</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85MySQL%E5%88%B0%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%B8%8A"><span class="toc-number">1.</span> <span class="toc-text">首先安装MySQL到你的机器上</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&text=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&is_video=false&description=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&text=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&is_video=false&description=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&body=Check out this article: http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&name=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&description=&lt;p&gt;昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&title=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2017/08/17/python-web-crawler-tieba-170817/&name=Python爬虫－扒一扒百度贴吧里的email并保存到MySQL&description=&lt;p&gt;昨晚闲得蛋疼，看了看MySQL的文档，人生第一次用mysql，看了一会儿发现，我操，这么简单，然后就瞎瘠薄搞了搞，今天下午就想写点东西，打开了铁把就想到之前看别人视频写的爬贴吧email，个人觉得写的不好，自己正好没事干，就顺手写了个爬虫，顺带保存到MySQL，开搞把。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -293,7 +302,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -314,15 +323,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -343,7 +362,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

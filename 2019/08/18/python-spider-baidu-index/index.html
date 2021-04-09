@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
-<meta name="keywords" content="python - 字体反爬 - 反爬虫 - 爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬虫 - 简单抓取百度指数">
 <meta property="og:url" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/1.png">
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/2.png">
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/3.png">
@@ -31,10 +30,11 @@
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/15.png">
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/16.png">
 <meta property="og:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/17.png">
-<meta property="og:updated_time" content="2019-09-05T18:51:39.562Z">
+<meta property="article:published_time" content="2019-08-17T18:43:08.000Z">
+<meta property="article:modified_time" content="2019-09-05T18:51:39.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="python - 字体反爬 - 反爬虫 - 爬虫">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫 - 简单抓取百度指数">
-<meta name="twitter:description" content="前言 有点忙，没空写东西，这是之前写的，加了些配图而已 这次要爬的网站是百度指数">
 <meta name="twitter:image" content="http://zckun.github.io/2019/08/18/python-spider-baidu-index/images/1.png">
     
     
@@ -57,15 +57,19 @@
     <!-- title -->
     <title>Python爬虫 - 简单抓取百度指数</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -87,7 +91,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -104,26 +108,27 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&text=Python爬虫 - 简单抓取百度指数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&is_video=false&description=Python爬虫 - 简单抓取百度指数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&text=Python爬虫 - 简单抓取百度指数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&is_video=false&description=Python爬虫 - 简单抓取百度指数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫 - 简单抓取百度指数&body=Check out this article: http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&name=Python爬虫 - 简单抓取百度指数&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&name=Python爬虫 - 简单抓取百度指数&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;有点忙，没空写东西，这是之前写的，加了些配图而已&lt;/p&gt;
-&lt;p&gt;这次要爬的网站是百度指数&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;这次要爬的网站是百度指数&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、分析"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、整理思路"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、整理思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、代码部分"><span class="toc-number">2.0.3.</span> <span class="toc-text">三、代码部分</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#END"><span class="toc-number">3.</span> <span class="toc-text">END</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E6%9E%90"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B4%E7%90%86%E6%80%9D%E8%B7%AF"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、整理思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-number">2.0.3.</span> <span class="toc-text">三、代码部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#END"><span class="toc-number">3.</span> <span class="toc-text">END</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -131,7 +136,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -141,7 +146,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -158,7 +163,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/python-字体反爬-反爬虫-爬虫/">python - 字体反爬 - 反爬虫 - 爬虫</a>
+        <a class="tag-link-link" href="/tags/python-%E5%AD%97%E4%BD%93%E5%8F%8D%E7%88%AC-%E5%8F%8D%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB/" rel="tag">python - 字体反爬 - 反爬虫 - 爬虫</a>
     </div>
 
 
@@ -169,49 +174,55 @@
   <div class="content" itemprop="articleBody">
     <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>有点忙，没空写东西，这是之前写的，加了些配图而已</p>
-<p>这次要爬的网站是百度指数<br><a id="more"></a></p>
+<p>这次要爬的网站是百度指数</p>
 </blockquote>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h4 id="一、分析"><a href="#一、分析" class="headerlink" title="一、分析"></a>一、分析</h4><p> 打开网站<a href="http://index.baidu.com/v2/index.html" target="_blank" rel="noopener">百度指数</a>，呈现出来是这样的</p>
+<span id="more"></span>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h4 id="一、分析"><a href="#一、分析" class="headerlink" title="一、分析"></a>一、分析</h4><p> 打开网站<a target="_blank" rel="noopener" href="http://index.baidu.com/v2/index.html">百度指数</a>，呈现出来是这样的</p>
 <p><img src="images/1.png" alt="主页"></p>
 <p>如果搜索的话就需要登陆了，如果没有什么特别频繁的请求的话，直接登陆复制Cookie就完事了</p>
 <p><img src="images/2.png" alt="登陆"></p>
 <p>这里以 <strong>酷安</strong> 为例搜索</p>
-<p><img src="images/3.png" alt=""></p>
+<p><img src="images/3.png"></p>
 <p>这一栏是选择时间范围的，拖拽它能将范围选择更广</p>
-<p><img src="images/4.png" alt=""></p>
+<p><img src="images/4.png"></p>
 <p>我将其拖拽至2011，调试窗口可以看到请求，是个GET请求，参数有四个，除了 <strong>area</strong> 其他的都很好理解</p>
-<p><img src="images/5.png" alt=""></p>
+<p><img src="images/5.png"></p>
 <p>切换到 Preview 预览窗口，通过分析，个人认为比较可疑的几个Key有这些：uniqid、all、pc、wise、data</p>
-<p><img src="images/6.png" alt=""></p>
+<p><img src="images/6.png"></p>
 <p>其中data可以看到应该是加密了的，all是表示全部数据，pc是指pc端，wise是移动端，这些可以在js文件里找到；首先先搞清楚这个像加密了的data是怎么解密的；我们现在知道这个数据是json格式，那么它处理肯定要从中取出这些data，所以，重新刷新一下网页，目的是为了让所有js都能加载出来，然后利用搜索功能从中找。搜索过程就不上图了，我是搜索 decrypt找到的；首先，我用decrypt找到了一个js文件，其中有一个名为decrypt的方法</p>
-<p><img src="images/7.png" alt=""><br>这个js文件中有很多decrypt的搜索结果，在不知道多少行处找到了一个名为 <strong>fetchThrendIndexLive</strong> 的方法，这个方法用我工地英语翻译为<strong>获取趋势指数</strong><br><img src="images/8.png" alt=""></p>
-<p>这里调用了名为decrypt的方法，是不是上面那个我不知道<br><img src="images/9.png" alt=""><br>这次我不打算用charles的替换js文件功能了，直接用浏览器的调试功能+console就行了<br>右键js的请求，<strong>Open in Sources panel</strong></p>
-<p><img src="images/10.png" alt=""><br>直接在这里下断点，然后刷新页面</p>
-<p><img src="images/11.png" alt=""></p>
+<p><img src="images/7.png"><br>这个js文件中有很多decrypt的搜索结果，在不知道多少行处找到了一个名为 <strong>fetchThrendIndexLive</strong> 的方法，这个方法用我工地英语翻译为<strong>获取趋势指数</strong><br><img src="images/8.png"></p>
+<p>这里调用了名为decrypt的方法，是不是上面那个我不知道<br><img src="images/9.png"><br>这次我不打算用charles的替换js文件功能了，直接用浏览器的调试功能+console就行了<br>右键js的请求，<strong>Open in Sources panel</strong></p>
+<p><img src="images/10.png"><br>直接在这里下断点，然后刷新页面</p>
+<p><img src="images/11.png"></p>
 <p>在这停顿后可以看到两个参数的内容</p>
-<p><img src="images/12.png" alt=""></p>
+<p><img src="images/12.png"></p>
 <p>想要知道这两个参数是什么很简单，回到Network看请求里的json；其中e参数是data，t参数不太清楚是什么。</p>
 <blockquote>
 <p>for循环里第一步是先将t字符串按单个字符分割，返回的列表保存在n变量里；<br>然后将e也按单字符分割，保存到i变量里<br>a是一个字典，r是一个列表</p>
 </blockquote>
 <p>从右边的 <strong>Scope</strong> 中可以看到</p>
-<p><img src="images/13.png" alt=""></p>
+<p><img src="images/13.png"></p>
 <p>以t的字符长度遍历，a中key为t遍历的字符，a中value为：从t中按索引取的值，其中索引为：t的字符长度除2后加上当前遍历的索引（a[n[o] = n[n.length/2 + o])</p>
 <p>这里始终没有用到i，也就是我们能获取到的data，这个i在第二个循环中才被用到；<br>第二个循环是遍历e，结果保存在r列表里，这里的遍历很容易就看得懂。。我就不分析了，自己都头晕，直接用python抄一遍就行了；</p>
 <p>最后是将r列表里的内容合并为一个字符串然后返回；</p>
-<h4 id="二、整理思路"><a href="#二、整理思路" class="headerlink" title="二、整理思路"></a>二、整理思路</h4><p>解密方法对应python代码为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(t,e)</span>:</span></span><br><span class="line">    n = list(t)</span><br><span class="line">    i = list(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = int(len(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> zip(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(result)</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、整理思路"><a href="#二、整理思路" class="headerlink" title="二、整理思路"></a>二、整理思路</h4><p>解密方法对应python代码为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">t,e</span>):</span></span><br><span class="line">    n = <span class="built_in">list</span>(t)</span><br><span class="line">    i = <span class="built_in">list</span>(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = <span class="built_in">int</span>(<span class="built_in">len</span>(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> <span class="built_in">zip</span>(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(result)</span><br></pre></td></tr></table></figure>
 <p>完全照搬。。可能有写地方可以简化，但我懒得去处理了，最后返回的是这个玩意儿</p>
-<p><img src="images/14.png" alt=""></p>
+<p><img src="images/14.png"></p>
 <p>python运行结果</p>
-<p><img src="images/15.png" alt=""></p>
-<p>到这可能都觉得已经解决了，可你不知道t这个参数是什么，怎么来的，这里我就不带各位分析了，你么可以自己尝试分析分析，我直接说结果，之前我就指出了几个可疑的东西，其中uniqid在获取t参数需要用到，这个t其实是叫ptbk，获取这个ptbk的url：<a href="http://index.baidu.com/Interface/ptbk?uniqid=" target="_blank" rel="noopener">http://index.baidu.com/Interface/ptbk?uniqid=</a> 有一个参数uniqid，GET请求，返回json内容</p>
-<p><img src="images/16.png" alt=""></p>
-<p>获取uniqid和data的url：<a href="http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=" target="_blank" rel="noopener">http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=</a> （如果要指定日期只需要在word后面追加&amp;startDate=、&amp;endDate=就行）</p>
+<p><img src="images/15.png"></p>
+<p>到这可能都觉得已经解决了，可你不知道t这个参数是什么，怎么来的，这里我就不带各位分析了，你么可以自己尝试分析分析，我直接说结果，之前我就指出了几个可疑的东西，其中uniqid在获取t参数需要用到，这个t其实是叫ptbk，获取这个ptbk的url：<a target="_blank" rel="noopener" href="http://index.baidu.com/Interface/ptbk?uniqid=">http://index.baidu.com/Interface/ptbk?uniqid=</a> 有一个参数uniqid，GET请求，返回json内容</p>
+<p><img src="images/16.png"></p>
+<p>获取uniqid和data的url：<a target="_blank" rel="noopener" href="http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=">http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=</a> （如果要指定日期只需要在word后面追加&amp;startDate=、&amp;endDate=就行）</p>
 <p>所以可以明确一下思路：<br>1、通过url获取uniqid和data<br>2、通过uniqid获取ptbk<br>3、通过ptbk和data解密</p>
 <p>解密后的东西就是我们要的</p>
-<h4 id="三、代码部分"><a href="#三、代码部分" class="headerlink" title="三、代码部分"></a>三、代码部分</h4><p>完整代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">word_url = <span class="string">'http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=&#123;&#125;'</span></span><br><span class="line">COOKIES = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(t,e)</span>:</span></span><br><span class="line">    n = list(t)</span><br><span class="line">    i = list(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = int(len(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> zip(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(result)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_home</span><span class="params">(keyword)</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(word_url.format(keyword), headers=headers)</span><br><span class="line">    j = resp.json()</span><br><span class="line">    uniqid = j.get(<span class="string">'data'</span>).get(<span class="string">'uniqid'</span>)</span><br><span class="line">    <span class="keyword">return</span> get_ptbk(uniqid)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ptbk</span><span class="params">(uniqid)</span>:</span></span><br><span class="line">    url = <span class="string">'http://index.baidu.com/Interface/ptbk?uniqid=&#123;&#125;'</span></span><br><span class="line">    ptbk_headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        <span class="string">'Cache-Control'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES,</span><br><span class="line">        <span class="string">'DNT'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Host'</span>: <span class="string">'index.baidu.com'</span>,</span><br><span class="line">        <span class="string">'Pragma'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Proxy-Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'http://index.baidu.com/v2/main/index.html'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url.format(uniqid), headers=ptbk_headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        print(<span class="string">'获取uniqid失败'</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> resp.json().get(<span class="string">'data'</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_data</span><span class="params">(keyword, start=<span class="string">'2011-01-03'</span>, end=<span class="string">'2019-08-05'</span>)</span>:</span></span><br><span class="line">    url = <span class="string">f'http://index.baidu.com/api/SearchApi/index?word=<span class="subst">&#123;keyword&#125;</span>&amp;area=0&amp;startDate=<span class="subst">&#123;start&#125;</span>&amp;endDate=<span class="subst">&#123;end&#125;</span>'</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'Accept'</span>: <span class="string">'application/json, text/plain, */*'</span>,</span><br><span class="line">        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate'</span>,</span><br><span class="line">        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        <span class="string">'Cache-Control'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Cookie'</span>: COOKIES,</span><br><span class="line">        <span class="string">'DNT'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'Host'</span>: <span class="string">'index.baidu.com'</span>,</span><br><span class="line">        <span class="string">'Pragma'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">        <span class="string">'Proxy-Connection'</span>: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'http://index.baidu.com/v2/main/index.html'</span>,</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        print(<span class="string">'获取指数失败'</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    data = resp.json().get(<span class="string">'data'</span>).get(<span class="string">'userIndexes'</span>)[<span class="number">0</span>]</span><br><span class="line">    uniqid = data.get(<span class="string">'uniqid'</span>)</span><br><span class="line">    ptbk = get_index_home(uniqid)</span><br><span class="line">    <span class="keyword">while</span> ptbk <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> ptbk == <span class="string">''</span>:</span><br><span class="line">        ptbk = get_index_home(uniqid)</span><br><span class="line">    all_data = data.get(<span class="string">'all'</span>).get(<span class="string">'data'</span>)</span><br><span class="line">    result = decrypt(ptbk, all_data)</span><br><span class="line">    result = result.split(<span class="string">','</span>)</span><br><span class="line">    print(result)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    get_index_data(<span class="string">'酷安'</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="三、代码部分"><a href="#三、代码部分" class="headerlink" title="三、代码部分"></a>三、代码部分</h4><p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">word_url = <span class="string">&#x27;http://index.baidu.com/api/SearchApi/thumbnail?area=0&amp;word=&#123;&#125;&#x27;</span></span><br><span class="line">COOKIES = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">t,e</span>):</span></span><br><span class="line">    n = <span class="built_in">list</span>(t)</span><br><span class="line">    i = <span class="built_in">list</span>(e)</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    result = []</span><br><span class="line">    ln = <span class="built_in">int</span>(<span class="built_in">len</span>(n)/<span class="number">2</span>)</span><br><span class="line">    start = n[ln:]</span><br><span class="line">    end = n[:ln]</span><br><span class="line">    <span class="keyword">for</span> j,k <span class="keyword">in</span> <span class="built_in">zip</span>(start, end):</span><br><span class="line">        a.update(&#123;k: j&#125;)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        result.append(a.get(j))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(result)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_home</span>(<span class="params">keyword</span>):</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cookie&#x27;</span>: COOKIES</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(word_url.<span class="built_in">format</span>(keyword), headers=headers)</span><br><span class="line">    j = resp.json()</span><br><span class="line">    uniqid = j.get(<span class="string">&#x27;data&#x27;</span>).get(<span class="string">&#x27;uniqid&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> get_ptbk(uniqid)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_ptbk</span>(<span class="params">uniqid</span>):</span></span><br><span class="line">    url = <span class="string">&#x27;http://index.baidu.com/Interface/ptbk?uniqid=&#123;&#125;&#x27;</span></span><br><span class="line">    ptbk_headers = &#123;</span><br><span class="line">        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;application/json, text/plain, */*&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.9&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cookie&#x27;</span>: COOKIES,</span><br><span class="line">        <span class="string">&#x27;DNT&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;index.baidu.com&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Pragma&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Proxy-Connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;http://index.baidu.com/v2/main/index.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;X-Requested-With&#x27;</span>: <span class="string">&#x27;XMLHttpRequest&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url.<span class="built_in">format</span>(uniqid), headers=ptbk_headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;获取uniqid失败&#x27;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> resp.json().get(<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_index_data</span>(<span class="params">keyword, start=<span class="string">&#x27;2011-01-03&#x27;</span>, end=<span class="string">&#x27;2019-08-05&#x27;</span></span>):</span></span><br><span class="line">    url = <span class="string">f&#x27;http://index.baidu.com/api/SearchApi/index?word=<span class="subst">&#123;keyword&#125;</span>&amp;area=0&amp;startDate=<span class="subst">&#123;start&#125;</span>&amp;endDate=<span class="subst">&#123;end&#125;</span>&#x27;</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;application/json, text/plain, */*&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-CN,zh;q=0.9&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cookie&#x27;</span>: COOKIES,</span><br><span class="line">        <span class="string">&#x27;DNT&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;index.baidu.com&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Pragma&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Proxy-Connection&#x27;</span>: <span class="string">&#x27;keep-alive&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;http://index.baidu.com/v2/main/index.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;X-Requested-With&#x27;</span>: <span class="string">&#x27;XMLHttpRequest&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="keyword">if</span> resp.status_code != <span class="number">200</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;获取指数失败&#x27;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line">    data = resp.json().get(<span class="string">&#x27;data&#x27;</span>).get(<span class="string">&#x27;userIndexes&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    uniqid = data.get(<span class="string">&#x27;uniqid&#x27;</span>)</span><br><span class="line">    ptbk = get_index_home(uniqid)</span><br><span class="line">    <span class="keyword">while</span> ptbk <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> ptbk == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        ptbk = get_index_home(uniqid)</span><br><span class="line">    all_data = data.get(<span class="string">&#x27;all&#x27;</span>).get(<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">    result = decrypt(ptbk, all_data)</span><br><span class="line">    result = result.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    get_index_data(<span class="string">&#x27;酷安&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
 <p>输出</p>
-<p><img src="images/17.png" alt=""></p>
+<p><img src="images/17.png"></p>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>转载请注明出处</p>
 
   </div>
@@ -238,23 +249,24 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、分析"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、整理思路"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、整理思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、代码部分"><span class="toc-number">2.0.3.</span> <span class="toc-text">三、代码部分</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#END"><span class="toc-number">3.</span> <span class="toc-text">END</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E6%9E%90"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B4%E7%90%86%E6%80%9D%E8%B7%AF"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、整理思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-number">2.0.3.</span> <span class="toc-text">三、代码部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#END"><span class="toc-number">3.</span> <span class="toc-text">END</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&text=Python爬虫 - 简单抓取百度指数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&is_video=false&description=Python爬虫 - 简单抓取百度指数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&text=Python爬虫 - 简单抓取百度指数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&is_video=false&description=Python爬虫 - 简单抓取百度指数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Python爬虫 - 简单抓取百度指数&body=Check out this article: http://zckun.github.io/2019/08/18/python-spider-baidu-index/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&name=Python爬虫 - 简单抓取百度指数&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&title=Python爬虫 - 简单抓取百度指数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/08/18/python-spider-baidu-index/&name=Python爬虫 - 简单抓取百度指数&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;有点忙，没空写东西，这是之前写的，加了些配图而已&lt;/p&gt;
-&lt;p&gt;这次要爬的网站是百度指数&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;这次要爬的网站是百度指数&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -272,7 +284,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -293,15 +305,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -322,7 +344,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->

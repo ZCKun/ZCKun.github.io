@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="前言 很早之前就想知道termux能不能成为ssh服务端，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已">
-<meta name="keywords" content="android,termux,ssh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="termux开启ssh服务">
 <meta property="og:url" content="http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/index.html">
 <meta property="og:site_name" content="0x2h">
 <meta property="og:description" content="前言 很早之前就想知道termux能不能成为ssh服务端，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8GAGUqkAACwsYBtp-A460.png">
 <meta property="og:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8KAZ8siAAEBXAUGxmE024.png">
 <meta property="og:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAek3iAAE8Y8dd_q0998.png">
 <meta property="og:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAI1jqAABlKfGoHvM797.png">
 <meta property="og:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAa8GwAAElAVe9kFY460.png">
-<meta property="og:updated_time" content="2019-02-03T11:57:33.527Z">
+<meta property="article:published_time" content="2019-02-03T11:50:28.000Z">
+<meta property="article:modified_time" content="2019-02-03T11:57:33.000Z">
+<meta property="article:author" content="0x2h">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="termux">
+<meta property="article:tag" content="ssh">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="termux开启ssh服务">
-<meta name="twitter:description" content="前言 很早之前就想知道termux能不能成为ssh服务端，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已">
 <meta name="twitter:image" content="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8GAGUqkAACwsYBtp-A460.png">
     
     
@@ -45,15 +47,19 @@
     <!-- title -->
     <title>termux开启ssh服务</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
     <!-- rss -->
     
     
-</head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -75,7 +81,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -92,25 +98,26 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&text=termux开启ssh服务"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&is_video=false&description=termux开启ssh服务"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&text=termux开启ssh服务"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&is_video=false&description=termux开启ssh服务"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=termux开启ssh服务&body=Check out this article: http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&name=termux开启ssh服务&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;很早之前就想知道&lt;strong&gt;termux&lt;/strong&gt;能不能成为&lt;strong&gt;ssh服务端&lt;/strong&gt;，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&name=termux开启ssh服务&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;很早之前就想知道&lt;strong&gt;termux&lt;/strong&gt;能不能成为&lt;strong&gt;ssh服务端&lt;/strong&gt;，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -118,7 +125,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -128,7 +135,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">0x2h</span>
       </span>
       
@@ -145,7 +152,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/ssh/">ssh</a>, <a class="tag-link" href="/tags/termux/">termux</a>
+        <a class="tag-link-link" href="/tags/android/" rel="tag">android</a>, <a class="tag-link-link" href="/tags/ssh/" rel="tag">ssh</a>, <a class="tag-link-link" href="/tags/termux/" rel="tag">termux</a>
     </div>
 
 
@@ -155,47 +162,44 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>很早之前就想知道<strong>termux</strong>能不能成为<strong>ssh服务端</strong>，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已<br><a id="more"></a></p>
+<p>很早之前就想知道<strong>termux</strong>能不能成为<strong>ssh服务端</strong>，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><blockquote>
-<p>所需工具：</p>
-<pre><code>1. termux （**termux**的话现在各大应用商店基本都有下载）
-2. android手机
-</code></pre></blockquote>
+<p>所需工具：<br>    1. termux （<strong>termux</strong>的话现在各大应用商店基本都有下载）<br>    2. android手机</p>
+</blockquote>
 <ul>
-<li>首先在你的<strong>termux</strong>中需要安装<strong>openssl</strong><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> apt-get install openssh -y</span><br></pre></td></tr></table></figure>
+<li><p>首先在你的<strong>termux</strong>中需要安装<strong>openssl</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install openssh -y</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8GAGUqkAACwsYBtp-A460.png"></p>
 </li>
-</ul>
-<p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8GAGUqkAACwsYBtp-A460.png" alt=""></p>
-<ul>
-<li>接着需要在你要连接<strong>termux</strong>的电脑上创建秘钥，也就是你要在哪台电脑上连接<strong>termux</strong>就在那电脑上创建<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p>接着需要在你要连接<strong>termux</strong>的电脑上创建秘钥，也就是你要在哪台电脑上连接<strong>termux</strong>就在那电脑上创建</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注：<strong>电脑上也要安装openssh不然没有这个命令</strong><br>会要求输入密码信息，没特殊要求一路回车即可</p>
 </blockquote>
-<ul>
-<li>之后会在指定路径生成两个文件，一个是<strong>没有后缀的私钥文件</strong>，一个是<strong>后缀为pub的公钥文件</strong>，把<strong>公钥文件发送到手机</strong>里，或者复制里面的内容也行<img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8KAZ8siAAEBXAUGxmE024.png" alt=""></li>
-<li>打开手机，比如我从电脑把文件发送到了手机的存储目录，那么我需要复制到<strong>termux</strong>的<strong>home</strong>目录<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cp /sdcard/公钥文件名.pub ~</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>接着还需要把里面的内容写入<strong>~/.ssh/authorized_keys</strong>文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat 公钥文件名.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
-<p>如果直接复制的公钥文件内容，那就不需要复制文件到<strong>home目录</strong>，直接编辑<strong>~/.ssh/authorized_keys</strong>文件即可，把复制的内容粘贴到<strong>authorized_keys</strong>文件里就可以了，接着启动ssh服务<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sshd</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAek3iAAE8Y8dd_q0998.png" alt=""></p>
-<ul>
+<li><p>之后会在指定路径生成两个文件，一个是<strong>没有后缀的私钥文件</strong>，一个是<strong>后缀为pub的公钥文件</strong>，把<strong>公钥文件发送到手机</strong>里，或者复制里面的内容也行<img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8KAZ8siAAEBXAUGxmE024.png"></p>
+</li>
+<li><p>打开手机，比如我从电脑把文件发送到了手机的存储目录，那么我需要复制到<strong>termux</strong>的<strong>home</strong>目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cp /sdcard/公钥文件名.pub ~</span></span><br></pre></td></tr></table></figure>
+<p>接着还需要把里面的内容写入**~/.ssh/authorized_keys**文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat 公钥文件名.pub &gt;&gt; ~/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+<p>如果直接复制的公钥文件内容，那就不需要复制文件到<strong>home目录</strong>，直接编辑**~/.ssh/authorized_keys<strong>文件即可，把复制的内容粘贴到</strong>authorized_keys**文件里就可以了，接着启动ssh服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sshd</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAek3iAAE8Y8dd_q0998.png"></p>
+</li>
 <li><p>接着就是在电脑上连接了，不过还需要做两件事，首先在<strong>termux</strong>上获取用户名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> whoami</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> whoami</span></span><br></pre></td></tr></table></figure></li>
 <li><p>接着还需要获取手机的局域网ip</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ifconfig -a</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ifconfig -a</span></span><br></pre></td></tr></table></figure></li>
 <li><p>接着就是在电脑上连接了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh 用户名@局域网ip -p 8022</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh 用户名@局域网ip -p 8022</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>接着会出现一个验证，输入<strong>yes</strong>即可，接着还需要输入你生成公钥和私钥时输入的密码，如果没有输入就直接回车<br><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAI1jqAABlKfGoHvM797.png"><br><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAa8GwAAElAVe9kFY460.png"></p>
+</blockquote>
 </li>
 </ul>
-<blockquote>
-<p>接着会出现一个验证，输入<strong>yes</strong>即可，接着还需要输入你生成公钥和私钥时输入的密码，如果没有输入就直接回车<br><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAI1jqAABlKfGoHvM797.png" alt=""><br><img src="http://cdn.u1.huluxia.com/g3/M01/57/DE/wKgBOVweS8OAa8GwAAElAVe9kFY460.png" alt=""></p>
-</blockquote>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>现在手机上除了<strong>termux</strong>又出了一个<strong>neoterm</strong>，虽然是参考了<strong>termux</strong>的部分代码，但这两个软件还是有些不同，各有各的特色，都很强</p>
 
   </div>
@@ -222,22 +226,23 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&text=termux开启ssh服务"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&is_video=false&description=termux开启ssh服务"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&text=termux开启ssh服务"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&is_video=false&description=termux开启ssh服务"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=termux开启ssh服务&body=Check out this article: http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&name=termux开启ssh服务&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;很早之前就想知道&lt;strong&gt;termux&lt;/strong&gt;能不能成为&lt;strong&gt;ssh服务端&lt;/strong&gt;，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&title=termux开启ssh服务"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://zckun.github.io/2019/02/03/termux-ssh-server-19-2-3/&name=termux开启ssh服务&description=&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;很早之前就想知道&lt;strong&gt;termux&lt;/strong&gt;能不能成为&lt;strong&gt;ssh服务端&lt;/strong&gt;，一开始想去找找教程，后来忘了这回事，去年因为某些事想了起来就去找了一些文章，其实早就解决了，忘了写篇文章来记录而已&lt;/p&gt;
+&lt;/blockquote&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -255,7 +260,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 0x2h
+    Copyright &copy; 2021 0x2h
   </div>
   <div class="footer-right">
     <nav>
@@ -276,15 +281,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -305,7 +320,9 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
